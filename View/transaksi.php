@@ -7,18 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?php echo $BASE_URL; ?>/assets/font-awesome-4.7.0/css/font-awesome.min.css">
     <title>Dashboard Transaksi</title>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <div class="navbar-brand mb-0 h1" href="../View/index.html">Belanja Baju Online</div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
     </nav>
@@ -39,8 +37,7 @@
                                 <li class="list-group-item">
                                     <div class="row justify-content-center">
                                         <div class="col-4">
-                                            <img src="../assets/img/casual 6.jpg" class="rounded img-fluid"
-                                                alt="Image Preview">
+                                            <img src="<?php echo $BASE_URL; ?>/assets/img/casual 6.jpg" class="rounded img-fluid" alt="Image Preview">
                                         </div>
                                         <div class="col-7">
                                             <div class="card" style="height: 100%;">
@@ -54,8 +51,7 @@
                                                     </blockquote>
                                                     <div class="form-inline">
                                                         <label for="txtJumlah" class="mr-2">jumlah</label>
-                                                        <input type="text" class="form-control text-center jumlahBaju"
-                                                            style="width: 4rem;" value="1" disabled>
+                                                        <input type="text" class="form-control text-center jumlahBaju" style="width: 4rem;" value="1" disabled>
                                                     </div>
                                                 </div>
                                             </div>
@@ -65,8 +61,7 @@
                                 <li class="list-group-item">
                                     <div class="row justify-content-center">
                                         <div class="col-4">
-                                            <img src="../assets/img/casual 6.jpg" class="rounded img-fluid"
-                                                alt="Image Preview">
+                                            <img src="<?php echo $BASE_URL; ?>/assets/img/casual 6.jpg" class="rounded img-fluid" alt="Image Preview">
                                         </div>
                                         <div class="col-7">
                                             <div class="card" style="height: 100%;">
@@ -80,8 +75,7 @@
                                                     </blockquote>
                                                     <div class="form-inline">
                                                         <label for="txtJumlah" class="mr-2">jumlah</label>
-                                                        <input type="text" class="form-control text-center jumlahBaju"
-                                                            style="width: 4rem;" value="2" disabled>
+                                                        <input type="text" class="form-control text-center jumlahBaju" style="width: 4rem;" value="2" disabled>
                                                     </div>
                                                 </div>
                                             </div>
@@ -96,18 +90,15 @@
                             <div class="card-body">
                                 <div class="form-inline mb-2">
                                     <label for="txtAlamat" class="mr-2">Alamat</label>
-                                    <input type="text" class="form-control text-center" id="txtAlamat" name="alamat"
-                                        value="jl. balala" disabled>
+                                    <input type="text" class="form-control text-center" id="txtAlamat" name="alamat" value="jl. balala" disabled>
                                 </div>
                                 <div class="form-inline mb-2">
                                     <label for="txtKota" class="mr-2">Kota</label>
-                                    <input type="text" class="form-control text-center" id="txtKota" name="kota"
-                                        value="Madiun" disabled>
+                                    <input type="text" class="form-control text-center" id="txtKota" name="kota" value="Madiun" disabled>
                                 </div>
                                 <div class="form-inline mb-2">
                                     <label for="txtJarak" class="mr-2">Jarak</label>
-                                    <input type="text" class="form-control text-center" id="txtJarak" name="jarak"
-                                        placeholder="Masukkan Jarak">
+                                    <input type="text" class="form-control text-center" id="txtJarak" name="jarak" placeholder="Masukkan Jarak">
                                     <label class="ml-2">Km</label>
                                 </div>
                                 <div class="form-inline mb-2">
@@ -136,17 +127,14 @@
     </div>
 
     <!-- Optional JavaScript -->
-    <script src="../assets/js/jquery-3.6.0.min.js"> </script>
-    <script src="../assets/js/script.js"></script>
+    <script src="<?php echo $BASE_URL; ?>/assets/js/jquery-3.6.0.min.js"> </script>
+    <script src="<?php echo $BASE_URL; ?>/assets/js/script.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
 </body>
 
