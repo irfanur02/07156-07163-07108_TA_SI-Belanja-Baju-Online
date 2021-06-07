@@ -15,7 +15,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-        <div class="navbar-brand mb-0 h1" href="../View/index.html">Belanja Baju Online</div>
+        <div class="navbar-brand mb-0 h1" href="index.php?page=utama&aksi=view">Belanja Baju Online</div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -115,7 +115,7 @@
                                         <p class="h4 text-center">Rp. 450000</p>
                                     </div>
                                 </div>
-                                <a href="" class="btn btn-success btn-block mt-3">
+                                <a href="index.php?page=transaksi&aksi=store" class="btn btn-success btn-block mt-3">
                                     <span class="h5">Buat Pesanan</span>
                                 </a>
                             </div>

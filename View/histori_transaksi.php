@@ -15,39 +15,29 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-        <a class="navbar-brand mb-0 h1" href="../View/index.html">Belanja Baju Online</a>
+        <a class="navbar-brand mb-0 h1" href="index.php?page=utama&aksi=view">Belanja Baju Online</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <form action="" method="" class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Cari Baju" aria-label="Search">
-                        <button class="btn btn-light my-2 my-sm-0 font-weight-bold" type="submit">Cari</button>
-                    </form>
-                </li>
-                <li class="nav-item">
-                    <button type="button" class="btn btn-dark ml-2" data-toggle="modal" data-target="#modalFilterPencarianProduk">Filter</button>
-                </li>
-            </ul>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <form class="form-inline my-2 my-lg-0">
                 <div class="dropdown">
                     <button class="btn btn-light dropdown-toggle mr-3 my-2 my-sm-0" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Nama
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="../View/profil.html">Profil</a>
-                        <a class="dropdown-item" href="../View/favorite.html">Favorite</a>
-                        <a class="dropdown-item" href="../View/histori_transaksi.html">Histori Transaksi</a>
-                        <a class="dropdown-item" href="../View/index.html">Keluar</a>
+                        <a class="dropdown-item" href="index.php?page=profil&aksi=view">Profil</a>
+                        <a class="dropdown-item" href="index.php?page=favorite&aksi=view">Favorite</a>
+                        <a class="dropdown-item" href="index.php?page=historiTransaksi&aksi=view">Histori
+                            Transaksi</a>
+                        <a class="dropdown-item" href="index.php?page=utama&aksi=prosesLogout">Keluar</a>
                     </div>
                 </div>
-                <a href="../View/keranjang.html" class="btn btn-info border-dark mr-3 my-2 my-sm-0">
+                <a href="index.php?page=keranjang&aksi=view" class="btn btn-info border-dark mr-3 my-2 my-sm-0">
                     Keranjang <span class="badge badge-light" id="jumlahKeranjang">2</span>
                 </a>
-                <a href="../View/pembelian.html" class="btn btn-dark mr-3 my-2 my-sm-0">
+                <a href="index.php?page=pembelian&aksi=view" class="btn btn-dark mr-3 my-2 my-sm-0">
                     Pembelian
                 </a>
             </form>

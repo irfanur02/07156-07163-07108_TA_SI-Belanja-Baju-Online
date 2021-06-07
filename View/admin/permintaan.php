@@ -15,7 +15,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <a class="navbar-brand mb-0 h1" href="../admin/index.html">Sistem Informasi Belanja Baju</a>
+        <a class="navbar-brand mb-0 h1" href="index.php?view=admin&page=dashboard&aksi=view">Sistem Informasi Belanja Baju</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="../admin/index.html">Menu Utama</a>
+                    <a class="nav-link" href="index.php?view=admin&page=dashboard&aksi=view">Menu Utama</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -31,20 +31,20 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modalPilihManajemenData">Produk</button>
-                        <a href="../admin/status_pembelian/index.html" class="dropdown-item">Status Pembelian</a>
-                        <a href="../admin/kota/index.html" class="dropdown-item">Kota</a>
-                        <a href="../admin/kurir/index.html" class="dropdown-item">Kurir</a>
+                        <a href="index.php?view=admin&page=statusPembelian&aksi=view" class="dropdown-item">Status Pembelian</a>
+                        <a href="index.php?view=admin&page=kota&aksi=view" class="dropdown-item">Kota</a>
+                        <a href="index.php?view=admin&page=kurir&aksi=view" class="dropdown-item">Kurir</a>
                     </div>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="../admin/permintaan.html">Permintaan <span class="badge badge-primary">4</span></a>
+                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary">4</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="../admin/laporan/index.html">Laporan</a>
+                    <a class="nav-link" href="index.php?view=admin&page=laporan&aksi=view">Laporan</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <a href="../admin/login.html" class="btn btn-primary mr-3 my-2 my-sm-0" type="submit"><i class="fa fa-sign-out" aria-hidden="true"></i> Keluar</a>
+                <a href="index.php?view=admin" class="btn btn-primary mr-3 my-2 my-sm-0" type="submit"><i class="fa fa-sign-out" aria-hidden="true"></i> Keluar</a>
             </form>
         </div>
     </nav>
@@ -70,8 +70,8 @@
                                         <div class="alert alert-dark" role="alert">
                                             <p class="text-center h6">Total Harga</br><strong>Rp. 23434</strong></p>
                                         </div>
-                                        <a href="" class="btn btn-success btn-block align-items-end">Kirim
-                                            Baju</a>
+                                        <a href="index.php?view=admin&page=permintaan&aksi=terimaPesanan" class="btn btn-success btn-block align-items-end">Kirim
+                                            Pesanan</a>
                                     </div>
                                     <div class="col-10">
                                         <div class="card-body text-dark" style="overflow-x: auto;">
@@ -169,6 +169,26 @@
         </div>
     </div>
 
+    <!-- modal manajemen data -->
+    <div class="modal fade bd-example-modal-sm" id="modalPilihManajemenData" tabindex="-1" role="dialog" aria-labelledby="modalLabelPilihManajemenData" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabelPilihManajemenData">Manajemen Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <a href="index.php?view=admin&page=produk&aksi=view" class="btn btn-light btn-block">Produk</a>
+                    <a href="index.php?view=admin&page=jenisBaju&aksi=view" class="btn btn-light btn-block">Jenis Baju</a>
+                    <a href="index.php?view=admin&page=kategoriBaju&aksi=view" class="btn btn-light btn-block">Kategori Baju</a>
+                    <a href="index.php?view=admin&page=merekBaju&aksi=view" class="btn btn-light btn-block">Merek Baju</a>
+                    <a href="index.php?view=admin&page=ukuranBaju&aksi=view" class="btn btn-light btn-block">Ukuran Baju</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Optional JavaScript -->
     <script src="<?php echo $BASE_URL; ?>/assets/js/jquery-3.6.0.min.js"></script>
     <script src="<?php echo $BASE_URL; ?>/assets/js/script.js"></script>

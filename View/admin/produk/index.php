@@ -15,7 +15,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <a class="navbar-brand mb-0 h1" href="../../admin/index.html">Sistem Informasi Belanja Baju</a>
+        <a class="navbar-brand mb-0 h1" href="index.php?view=admin&page=dashboard&aksi=view">Sistem Informasi Belanja Baju</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="../../admin/index.html">Menu Utama</a>
+                    <a class="nav-link" href="index.php?view=admin&page=dashboard&aksi=view">Menu Utama</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -31,20 +31,20 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modalPilihManajemenData">Produk</button>
-                        <a href="../../admin/status_pembelian/index.html" class="dropdown-item">Status Pembelian</a>
-                        <a href="../../admin/kota/index.html" class="dropdown-item">Kota</a>
-                        <a href="../../admin/kurir/index.html" class="dropdown-item">Kurir</a>
+                        <a href="index.php?view=admin&page=statusPembelian&aksi=view" class="dropdown-item">Status Pembelian</a>
+                        <a href="index.php?view=admin&page=kota&aksi=view" class="dropdown-item">Kota</a>
+                        <a href="index.php?view=admin&page=kurir&aksi=view" class="dropdown-item">Kurir</a>
                     </div>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="../../admin/permintaan.html">Permintaan <span class="badge badge-primary">4</span></a>
+                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary">4</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="../../admin/laporan/index.html">Laporan</a>
+                    <a class="nav-link" href="index.php?view=admin&page=laporan&aksi=view">Laporan</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <a href="../../admin/login.html" class="btn btn-primary mr-3 my-2 my-sm-0" type="submit"><i class="fa fa-sign-out" aria-hidden="true"></i> Keluar</a>
+                <a href="index.php?view=admin" class="btn btn-primary mr-3 my-2 my-sm-0" type="submit"><i class="fa fa-sign-out" aria-hidden="true"></i> Keluar</a>
             </form>
         </div>
     </nav>
@@ -55,19 +55,19 @@
             <div class="card-body text-dark" style="overflow-x: auto;">
                 <div class="row flex-row flex-nowrap">
                     <div class="col-3">
-                        <a href="../../admin/produk/index.html" class="btn btn-outline-primary btn-block btn-sm">Produk</a>
+                        <a href="index.php?view=admin&page=produk&aksi=view" class="btn btn-outline-primary btn-block btn-sm">Produk</a>
                     </div>
                     <div class="col-3">
-                        <a href="../../admin/jenis_baju/index.html" class="btn btn-outline-primary btn-block btn-sm">Jenis Baju</a>
+                        <a href="index.php?view=admin&page=jenisBaju&aksi=view" class="btn btn-outline-primary btn-block btn-sm">Jenis Baju</a>
                     </div>
                     <div class="col-3">
-                        <a href="../../admin/kategori_baju/index.html" class="btn btn-outline-primary btn-block btn-sm">Kategori Baju</a>
+                        <a href="index.php?view=admin&page=kategoriBaju&aksi=view" class="btn btn-outline-primary btn-block btn-sm">Kategori Baju</a>
                     </div>
                     <div class="col-3">
-                        <a href="../../admin/merek_baju/index.html" class="btn btn-outline-primary btn-block btn-sm">Merek Baju</a>
+                        <a href="index.php?view=admin&page=merekBaju&aksi=view" class="btn btn-outline-primary btn-block btn-sm">Merek Baju</a>
                     </div>
                     <div class="col-3">
-                        <a href="../../admin/ukuran_baju/index.html" class="btn btn-outline-primary btn-block btn-sm">Ukuran Baju</a>
+                        <a href="index.php?view=admin&page=ukuranBaju&aksi=view" class="btn btn-outline-primary btn-block btn-sm">Ukuran Baju</a>
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                             <span>Manajemen Produk</span>
                         </div>
                         <div class="col-4">
-                            <a href="../../admin/produk/tambah_produk.html" class="btn btn-success btn-sm float-right mb-3">
+                            <a href="index.php?view=admin&page=produk&aksi=tambah" class="btn btn-success btn-sm float-right mb-3">
                                 Tambah Data
                             </a>
                             <button class="btn btn-dark btn-sm" data-toggle="modal" data-target="#modalCariProduk">
@@ -123,7 +123,7 @@
                             </li>
                         </ul>
                         <div class="card-footer">
-                            <a href="../../admin/produk/edit_produk.html" class="btn btn-danger btn-block"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                            <a href="index.php?view=admin&page=produk&aksi=edit&id=masihkosong" class="btn btn-danger btn-block"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
                         </div>
                     </div>
                 </div>
@@ -141,7 +141,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="" method="post">
+                <form action="index.php?view=admin&page=produk&aksi=filter" method="post">
                     <div class="modal-body">
                         <div class="form-group row mb-3">
                             <label for="inputProduk" class="col-sm-3 col-form-label">Cari Produk</label>
@@ -230,11 +230,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <a href="../../admin/produk/index.html" class="btn btn-light btn-block">Produk</a>
-                    <a href="../../admin/jenis_baju/index.html" class="btn btn-light btn-block">Jenis Baju</a>
-                    <a href="../../admin/kategori_baju/index.html" class="btn btn-light btn-block">Kategori Baju</a>
-                    <a href="../../admin/merek_baju/index.html" class="btn btn-light btn-block">Merek Baju</a>
-                    <a href="../../admin/ukuran_baju/index.html" class="btn btn-light btn-block">Ukuran Baju</a>
+                    <a href="index.php?view=admin&page=produk&aksi=view" class="btn btn-light btn-block">Produk</a>
+                    <a href="index.php?view=admin&page=jenisBaju&aksi=view" class="btn btn-light btn-block">Jenis Baju</a>
+                    <a href="index.php?view=admin&page=kategoriBaju&aksi=view" class="btn btn-light btn-block">Kategori Baju</a>
+                    <a href="index.php?view=admin&page=merekBaju&aksi=view" class="btn btn-light btn-block">Merek Baju</a>
+                    <a href="index.php?view=admin&page=ukuranBaju&aksi=view" class="btn btn-light btn-block">Ukuran Baju</a>
                 </div>
             </div>
         </div>

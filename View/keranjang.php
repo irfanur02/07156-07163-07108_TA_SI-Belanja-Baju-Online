@@ -15,7 +15,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-        <a class="navbar-brand mb-0 h1" href="../View/index.html">Belanja Baju Online</a>
+        <a class="navbar-brand mb-0 h1" href="index.php?page=utama&aksi=view">Belanja Baju Online</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,16 +27,17 @@
                         Nama
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="../View/profil.html">Profil</a>
-                        <a class="dropdown-item" href="../View/favorite.html">Favorite</a>
-                        <a class="dropdown-item" href="../View/histori_transaksi.html">Histori Transaksi</a>
-                        <a class="dropdown-item" href="../View/index.html">Keluar</a>
+                        <a class="dropdown-item" href="index.php?page=profil&aksi=view">Profil</a>
+                        <a class="dropdown-item" href="index.php?page=favorite&aksi=view">Favorite</a>
+                        <a class="dropdown-item" href="index.php?page=historiTransaksi&aksi=view">Histori
+                            Transaksi</a>
+                        <a class="dropdown-item" href="index.php?page=utama&aksi=prosesLogout">Keluar</a>
                     </div>
                 </div>
-                <a href="../View/keranjang.html" class="btn btn-info border-dark mr-3 my-2 my-sm-0">
+                <a href="index.php?page=keranjang&aksi=view" class="btn btn-info border-dark mr-3 my-2 my-sm-0">
                     Keranjang <span class="badge badge-light" id="jumlahKeranjang">2</span>
                 </a>
-                <a href="../View/pembelian.html" class="btn btn-dark mr-3 my-2 my-sm-0">
+                <a href="index.php?page=pembelian&aksi=view" class="btn btn-dark mr-3 my-2 my-sm-0">
                     Pembelian
                 </a>
             </form>
@@ -76,7 +77,7 @@
                                         </div>
                                     </div>
                                     <ul class="list-group list-group-flush text-center">
-                                        <a href="" class="btn btn-danger btn-block">
+                                        <a href="index.php?page=keranjang&aksi=delete" class="btn btn-danger btn-block">
                                             Hapus
                                         </a>
                                     </ul>
@@ -109,7 +110,7 @@
                                         </div>
                                     </div>
                                     <ul class="list-group list-group-flush text-center">
-                                        <a href="" class="btn btn-danger btn-block">
+                                        <a href="index.php?page=keranjang&aksi=delete" class="btn btn-danger btn-block">
                                             Hapus
                                         </a>
                                     </ul>
@@ -143,7 +144,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <a href="../View/transaksi.html" class="btn btn-primary" id="btnCheckout">Ya, Sudah Benar</a>
+                    <a href="index.php?page=transaksi&aksi=view" class="btn btn-primary" id="btnCheckout">Ya, Sudah Benar</a>
                 </div>
             </div>
         </div>

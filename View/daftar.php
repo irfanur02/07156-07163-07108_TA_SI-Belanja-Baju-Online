@@ -15,7 +15,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-        <a class="navbar-brand mb-0 h1" href="../View/index.html">Belanja Baju Online</a>
+        <a class="navbar-brand mb-0 h1" href="index.php?page=utama&aksi=view">Belanja Baju Online</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -24,7 +24,7 @@
     <div class="container">
         <div class="card mt-5 mx-auto" style="width: 40rem; top: 35px;">
             <div class="card-body">
-                <form action="" method="post">
+                <form action="index.php?page=daftar&aksi=store" method="post">
                     <div class="row">
                         <div class="col">
                             <div class="form-group">

@@ -17,7 +17,7 @@
     <div class="d-flex justify-content-center ">
         <div class="card w-75 mt-5">
             <div class="card-body">
-                <form action="" method="post">
+                <form action="index.php?view=admin&page=login&aksi=prosesLogin" method="post">
                     <div class="form-group">
                         <label for="Username">Masukkan Username</label>
                         <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Username">

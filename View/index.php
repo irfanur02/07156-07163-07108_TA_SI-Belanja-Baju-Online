@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <form action="index.php?page=utama&aksi=cariBaju" method="" class="form-inline">
+                    <form action="index.php?page=utama&aksi=cariBaju" method="post" class="form-inline">
                         <input class="form-control mr-sm-2" type="search" placeholder="Cari Baju" aria-label="Search">
                         <button class="btn btn-light my-2 my-sm-0 font-weight-bold" type="submit">Cari</button>
                     </form>
