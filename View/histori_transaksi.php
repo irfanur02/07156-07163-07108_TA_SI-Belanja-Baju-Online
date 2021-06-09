@@ -58,69 +58,79 @@
                 <table class="table table-bordered">
                     <thead class="thead-dark text-center">
                         <tr>
-                            <th scope="col" style="width: 5%;">No. </th>
-                            <th scope="col" style="width: 10%;">Tanggal</th>
-                            <th scope="col" style="width: 10%;">Total Pembelian</th>
-                            <th scope="col" style="width: 75%;">Aksi</th>
+                            <th scope="col" class="align-middle" style="width: 5%;">No. </th>
+                            <th scope="col" class="align-middle" style="width: 12%;">Tanggal</th>
+                            <th scope="col" class="align-middle" style="width: 13%;">Total Pembelian</th>
+                            <th scope="col" class="align-middle" style="width: 70%;">Detail Pembelian</th>
                         </tr>
                     </thead>
                     <tbody class="bg-light">
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>2021-03-02</td>
-                            <td>Rp. 100000</td>
-                            <td>
-                                <div class="row">
-                                    <div class="col-8">
-                                        <table class="table table-sm table-bordered">
-                                            <thead class="text-center">
-                                                <tr>
-                                                    <th scope="col" style="width: 35%;">Barang</th>
-                                                    <th scope="col" style="width: 15%;">Jumah</th>
-                                                    <th scope="col" style="width: 25%;">Harga</th>
-                                                    <th scope="col" style="width: 25%;">Total</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="bg-light">
-                                                <tr>
-                                                    <td>
-                                                        <img class="card-img-top img-thumbnail" src="<?php echo $BASE_URL; ?>/assets/img/casual 1.jpg" style="width: 50%;" alt="Card image cap">
-                                                        Mark
-                                                    </td>
-                                                    <td>Mark</td>
-                                                    <td>Mark</td>
-                                                    <td>Mark</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="col" colspan="3"><span class="float-right">total
-                                                            pembelian : </span></th>
-                                                    <th scope="col">123124 </th>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <span>
-                                                    Alamat : gresik</br>
-                                                    Jarak : 1 km</br>
-                                                    jasa pengiriman : JNE</br>
-                                                    biaya pengiriman : 6000</br>
-                                                </span>
+                        <?php
+                        $no = 1;
+                        foreach ($dataTransaksi as $rowDataTransaksi) : ?>
+                            <tr>
+                                <th scope="row" class="text-center align-middle"><?php echo $no++; ?>.</th>
+                                <td class="align-middle text-center">
+                                    <?php
+                                    $data = explode(" ", $rowDataTransaksi['tanggalTransaksi']);
+                                    $tanggal = explode("-", $data[0]);
+                                    echo $tanggal[2] . "-" . date("M", $tanggal[1]) . "-" . $tanggal[0];
+                                    ?>
+                                    </br>Waktu</br>
+                                    <?php echo $data[1]; ?>
+                                </td>
+                                <td class="align-middle text-center font-weight-bold">Rp. <?php echo $rowDataTransaksi['totalPembelian']; ?></td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <table class="table table-sm table-bordered">
+                                                <thead class="text-center">
+                                                    <tr>
+                                                        <th scope="col" style="width: 30%;">Barang</th>
+                                                        <th scope="col" style="width: 15%;">Jumah</th>
+                                                        <th scope="col" style="width: 25%;">Harga</th>
+                                                        <th scope="col" style="width: 30%;">Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="bg-light text-center">
+                                                    <?php foreach ($detailDataTransaksi as $rowDetailDataTransaksi) : ?>
+                                                        <?php if ($rowDetailDataTransaksi['idTransaksi'] == $rowDataTransaksi['idTransaksi']) : ?>
+                                                            <tr>
+                                                                <td class="align-middle">
+                                                                    <img class="card-img-top img-thumbnail" src="<?php echo $BASE_URL; ?>/assets/img/<?php echo $rowDetailDataTransaksi['gambarBaju']; ?>" style="width: 50%;" alt="Card image cap"></br>
+                                                                    <?php echo $rowDetailDataTransaksi['namaProduk']; ?>
+                                                                </td>
+                                                                <td class="align-middle"><?php echo $rowDetailDataTransaksi['jumlahBaju']; ?></td>
+                                                                <td class="align-middle">Rp. <?php echo $rowDetailDataTransaksi['hargaBaju']; ?></td>
+                                                                <td class="align-middle">Rp. <?php echo $rowDetailDataTransaksi['totalHarga']; ?></td>
+                                                            </tr>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; ?>
+                                                    <tr class="table-info">
+                                                        <th scope="col" colspan="3">
+                                                            <span class="float-right">total harga : </span>
+                                                        </th>
+                                                        <th scope="col">Rp. <?php echo $rowDataTransaksi['totalHarga']; ?></th>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <span>
+                                                        Alamat : <?php echo $rowDataTransaksi['alamatPengiriman']; ?></br>
+                                                        Jarak : <?php echo $rowDataTransaksi['jarakPengiriman']; ?> km</br>
+                                                        jasa pengiriman : </br><mark><?php echo $rowDataTransaksi['jasaKurir']; ?></mark></br>
+                                                        biaya pengiriman : <?php echo $rowDataTransaksi['biayaPengiriman']; ?></br>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <span>
-                                                    total harga : 6000
-                                                </span>
-                                            </div>
-                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

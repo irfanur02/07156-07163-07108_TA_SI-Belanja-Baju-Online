@@ -4,6 +4,13 @@ require_once("Koneksi.php");
 
 $BASE_URL = "http://localhost/projek-belanjaBajuOnline";
 
+//memanggil model
+require_once("Model/TransaksiModel.php");
+
+//memanggil controller
+require_once("Controller/TransaksiController.php");
+
+
 if (isset($_GET['view'])) {
     $view = $_GET['view'];
 
@@ -205,7 +212,8 @@ if (isset($_GET['view'])) {
         }
     } elseif ($page == "historiTransaksi") {
         if ($aksi == "view") {
-            require_once("View/histori_transaksi.php");
+            $histori = new TransaksiController();
+            $histori->getHistoriTransaksi();
         }
     } elseif ($page == "keranjang") {
         if ($aksi == "view") {

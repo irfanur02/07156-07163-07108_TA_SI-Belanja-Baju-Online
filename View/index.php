@@ -253,22 +253,20 @@
                             </div>
                             <label for="inputUrutkanHarga" class="col-sm-2 col-form-label">Harga</label>
                             <div class="col-sm-10">
-                                <form>
-                                    <div class="form-row align-items-center">
-                                        <div class="col-sm-6 my-1 text-center">
-                                            <div class="form-group">
-                                                <label for="formGroupExampleInput">Terkecil</label>
-                                                <input type="text" class="form-control" name="hargaTerkecil" value="100000" id="formGroupExampleInput" placeholder="Harga Terkecil">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 my-1 text-center">
-                                            <div class="form-group">
-                                                <label for="formGroupExampleInput">Terbesar</label>
-                                                <input type="text" class="form-control" name="hargaTerbesar" value="1000000" id="formGroupExampleInput" placeholder="Harga Terbesar">
-                                            </div>
+                                <div class="form-row align-items-center">
+                                    <div class="col-sm-6 my-1 text-center">
+                                        <div class="form-group">
+                                            <label for="formGroupExampleInput">Terkecil</label>
+                                            <input type="text" class="form-control" name="hargaTerkecil" value="100000" id="formGroupExampleInput" placeholder="Harga Terkecil">
                                         </div>
                                     </div>
-                                </form>
+                                    <div class="col-sm-6 my-1 text-center">
+                                        <div class="form-group">
+                                            <label for="formGroupExampleInput">Terbesar</label>
+                                            <input type="text" class="form-control" name="hargaTerbesar" value="1000000" id="formGroupExampleInput" placeholder="Harga Terbesar">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
