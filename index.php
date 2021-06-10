@@ -211,9 +211,9 @@ if (isset($_GET['view'])) {
             require_once("View/favorite.php");
         }
     } elseif ($page == "historiTransaksi") {
+        $histori = new TransaksiController();
         if ($aksi == "view") {
-            $histori = new TransaksiController();
-            $histori->getHistoriTransaksi();
+            $histori->getHistoriTransaksi("Diterima");
         }
     } elseif ($page == "keranjang") {
         if ($aksi == "view") {
@@ -222,12 +222,15 @@ if (isset($_GET['view'])) {
             require_once("View/keranjang.php");
         }
     } elseif ($page == "pembelian") {
+        $pembelian = new TransaksiController();
         if ($aksi == "view") {
-            require_once("View/pembelian.php");
+            $pembelian->getPembelianTerproses("Diproses");
         } elseif ($aksi == "keadaanTerproses") {
-            require_once("View/pembelian.php");
+            $pembelian->getPembelianTerproses("Diproses");
         } elseif ($aksi == "keadaanTerkirim") {
-            require_once("View/pembelian.php");
+            $pembelian->getPembelianTerkirim("Dikirim");
+        } elseif ($aksi == "pembelianDiterima") {
+            $pembelian->updatePembelian();
         }
     } elseif ($page == "transaksi") {
         if ($aksi == "view") {
