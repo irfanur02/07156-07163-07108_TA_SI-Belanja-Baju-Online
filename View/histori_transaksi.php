@@ -72,9 +72,17 @@
                                 <th scope="row" class="text-center align-middle"><?php echo $no++; ?>.</th>
                                 <td class="align-middle text-center">
                                     <?php
+                                    $namaBulan = "";
+                                    $bulan = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
                                     $data = explode(" ", $rowDataTransaksi['tanggalTransaksi']);
                                     $tanggal = explode("-", $data[0]);
-                                    echo $tanggal[2] . "-" . date("M", $tanggal[1]) . "-" . $tanggal[0];
+                                    for ($i = 0; $i < count($bulan); $i++) {
+                                        if (substr($tanggal[1], 1) == $i) {
+                                            $namaBulan = $bulan[$i];
+                                            break;
+                                        }
+                                    }
+                                    echo $tanggal[2] . "-" . $namaBulan . "-" . $tanggal[0];
                                     ?>
                                     </br>Waktu</br>
                                     <?php echo $data[1]; ?>
