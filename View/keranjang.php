@@ -24,6 +24,7 @@
             <form class="form-inline my-2 my-lg-0">
                 <div class="dropdown">
                     <button class="btn btn-light dropdown-toggle mr-3 my-2 my-sm-0" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <input type="hidden" name="idUser" id="idUser" value="1">
                         Nama
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -53,72 +54,41 @@
     <div class="container" style="margin-top: 20px;">
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                <div class="card keranjang">
-                    <div class="card-body bg-light">
-                        <input type="hidden" name="id" value="1">
-                        <div class="row justify-content-center">
-                            <div class="col-3">
-                                <img src="<?php echo $BASE_URL; ?>/assets/img/casual 6.jpg" class="rounded img-fluid" alt="Image Preview">
-                            </div>
-                            <div class="col-7">
-                                <div class="card" style="height: 100%;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Special title treatment</h5>
-                                        <p class="card-text">With supporting text below as a natural lead-in
-                                            to additional content.
-                                        </p>
-                                        <h6 class="card-subtitle mb-2 text-muted">Stok 5</h6>
-                                        <blockquote class="blockquote font-weight-bold">
-                                            <p class="mb-0">Rp. <span class="hargaBaju">150000</span></p>
-                                        </blockquote>
-                                        <div class="form-inline">
-                                            <label for="txtJumlah" class="mr-2">jumlah</label>
-                                            <input type="text" class="form-control text-center jumlahBaju" style="width: 4rem;" name="jumlah" value="1">
+                <?php foreach ($dataKeranjang as $rowDataKeranjang) : ?>
+                    <div class="card keranjang">
+                        <div class="card-body bg-light">
+                            <input type="hidden" name="idBaju" class="idBaju" value="<?php echo $rowDataKeranjang['idBaju']; ?>">
+                            <input type="hidden" name="idTransaksi" class="idTransaksi" value="<?php echo $rowDataKeranjang['idTransaksi']; ?>">
+                            <div class="row justify-content-center">
+                                <div class="col-3">
+                                    <img src="<?php echo $BASE_URL; ?>/assets/img/<?php echo $rowDataKeranjang['gambarBaju']; ?>" class="rounded img-fluid" alt="Image Preview">
+                                </div>
+                                <div class="col-7">
+                                    <div class="card" style="height: 100%;">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?php echo $rowDataKeranjang['namaProduk']; ?></h5>
+                                            <p class="card-text"><?php echo $rowDataKeranjang['detailProduk']; ?>.
+                                            </p>
+                                            <h6 class="card-subtitle mb-2 text-muted">Stok <?php echo $rowDataKeranjang['jumlahBaju']; ?></h6>
+                                            <blockquote class="blockquote font-weight-bold">
+                                                <p class="mb-0">Rp. <span class="hargaBaju"><?php echo $rowDataKeranjang['hargaBaju']; ?></span></p>
+                                            </blockquote>
+                                            <div class="form-inline">
+                                                <label for="txtJumlah" class="mr-2">jumlah</label>
+                                                <input type="text" class="form-control text-center jumlahBaju" style="width: 4rem;" name="jumlah" value="<?php echo $rowDataKeranjang['jumlahPembelian']; ?>">
+                                            </div>
                                         </div>
+                                        <ul class="list-group list-group-flush text-center">
+                                            <a href="index.php?page=keranjang&aksi=delete&idTransaksi=<?php echo $rowDataKeranjang['idTransaksi']; ?>&idBaju=<?php echo $rowDataKeranjang['idBaju']; ?>" class="btn btn-danger btn-block">
+                                                Hapus
+                                            </a>
+                                        </ul>
                                     </div>
-                                    <ul class="list-group list-group-flush text-center">
-                                        <a href="index.php?page=keranjang&aksi=delete" class="btn btn-danger btn-block">
-                                            Hapus
-                                        </a>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="card keranjang">
-                    <div class="card-body bg-light">
-                        <input type="hidden" name="id" value="2">
-                        <div class="row justify-content-center">
-                            <div class="col-3">
-                                <img src="<?php echo $BASE_URL; ?>/assets/img/casual 6.jpg" class="rounded img-fluid" alt="Image Preview">
-                            </div>
-                            <div class="col-7">
-                                <div class="card" style="height: 100%;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Special title treatment</h5>
-                                        <p class="card-text">With supporting text below as a natural lead-in
-                                            to additional content.
-                                        </p>
-                                        <h6 class="card-subtitle mb-2 text-muted">Stok 5</h6>
-                                        <blockquote class="blockquote font-weight-bold">
-                                            <p class="mb-0">Rp. <span class="hargaBaju">150000</span></p>
-                                        </blockquote>
-                                        <div class="form-inline">
-                                            <label for="txtJumlah" class="mr-2">jumlah</label>
-                                            <input type="text" class="form-control text-center jumlahBaju" style="width: 4rem;" name="jumlah" value="2">
-                                        </div>
-                                    </div>
-                                    <ul class="list-group list-group-flush text-center">
-                                        <a href="index.php?page=keranjang&aksi=delete" class="btn btn-danger btn-block">
-                                            Hapus
-                                        </a>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
                 <button type="button" class="btn btn-success btn-block mt-3" data-toggle="modal" data-target="#modalKonfirmasiCheckout">
                     <span class="h5">Checkout</span>
                 </button>
@@ -144,7 +114,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <a href="index.php?page=transaksi&aksi=view" class="btn btn-primary" id="btnCheckout">Ya, Sudah Benar</a>
+                    <button type="button" class="btn btn-primary" id="btnCheckout">Ya, Sudah Benar</button>
                 </div>
             </div>
         </div>
@@ -154,8 +124,8 @@
     <script src="<?php echo $BASE_URL; ?>/assets/js/jquery-3.6.0.min.js"> </script>
     <script src="<?php echo $BASE_URL; ?>/assets/js/script.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">

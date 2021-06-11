@@ -216,10 +216,11 @@ if (isset($_GET['view'])) {
             $histori->getHistoriTransaksi("Diterima");
         }
     } elseif ($page == "keranjang") {
+        $keranjang = new TransaksiController();
         if ($aksi == "view") {
-            require_once("View/keranjang.php");
+            $keranjang->getKeranjang();
         } elseif ($aksi == "delete") {
-            require_once("View/keranjang.php");
+            $keranjang->delete();
         }
     } elseif ($page == "pembelian") {
         $pembelian = new TransaksiController();

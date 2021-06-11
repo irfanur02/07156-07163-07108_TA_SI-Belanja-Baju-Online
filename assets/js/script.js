@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	var base_url = "http://localhost/projek-belanjaBajuOnline";
+
 	$('#laporanTransaksiTiapUser').hide();
 	$('#laporanSeluruhTransaksi').hide();
 	$("#rbCariUser").hide();
@@ -71,17 +73,16 @@ $(document).ready(function() {
 	$("#formEditProfil input").attr('disabled', true);
 
 	$('#btnCheckout').on('click', function() {
-		var jumlahBaju = $('.keranjang').length;
-		var arrayJumlah = [];
-		var arrayId = $('input[name=id]').map(function() {
-			return this.value;
-		}).get();
-		for(let i=0; i<jumlahBaju; i++) {
-			var strJumlah = $($('.jumlahBaju')[i]).val();
-			arrayJumlah.push(strJumlah);
+		var idUser = $('#idUser').val();
+		var jumlahKeranjang = $('.keranjang').length;
+		var arrayIdTransaksi = [];
+		var arrayIdBaju = [];
+		var arrayJumlahBaju = [];
+		for(let i=0; i<jumlahKeranjang; i++) {
+			arrayIdTransaksi.push($($('.idTransaksi')[i]).val());
+			arrayIdBaju.push($($('.idBaju')[i]).val());
+			arrayJumlahBaju.push($($('.jumlahBaju')[i]).val());
 		}
-		console.log(arrayId);
-		console.log(arrayJumlah);
 	})
 
 	$('#inputGambar').change(function(){

@@ -65,4 +65,28 @@ class TransaksiController
         $this->model->prosesUpdatePembelian($idTransaksi);
         header("location: index.php?page=pembelian&aksi=keadaanTerkirim");
     }
+
+    /**
+     * berfungsi untuk mendapatkan produk yang telah dimasukkan ke dalam keranjang
+     */
+    public function getKeranjang()
+    {
+        //? nunggu progress login
+        //! $id_user = $_SESSION['user']['id'];
+        $dataKeranjang = $this->model->getDataKeranjang(1);
+        extract($dataKeranjang);
+        $BASE_URL = "http://localhost/projek-belanjaBajuOnline";
+        require_once("View/keranjang.php");
+    }
+
+    /**
+     * berfungsi untuk mengahapus produk yang ada dalam keranjang
+     */
+    public function delete()
+    {
+        $idBaju = $_GET['idBaju'];
+        $idTransaksi = $_GET['idTransaksi'];
+        $this->model->prosesDeleteKeranjang($idTransaksi, $idBaju);
+        header("location: index.php?page=keranjang&aksi=view");
+    }
 }
