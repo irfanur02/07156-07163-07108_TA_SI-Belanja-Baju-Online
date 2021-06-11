@@ -54,44 +54,54 @@
     <div class="container" style="margin-top: 20px;">
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                <?php foreach ($dataKeranjang as $rowDataKeranjang) : ?>
-                    <div class="card keranjang">
-                        <div class="card-body bg-light">
-                            <input type="hidden" name="idBaju" class="idBaju" value="<?php echo $rowDataKeranjang['idBaju']; ?>">
-                            <input type="hidden" name="idTransaksi" class="idTransaksi" value="<?php echo $rowDataKeranjang['idTransaksi']; ?>">
-                            <div class="row justify-content-center">
-                                <div class="col-3">
-                                    <img src="<?php echo $BASE_URL; ?>/assets/img/<?php echo $rowDataKeranjang['gambarBaju']; ?>" class="rounded img-fluid" alt="Image Preview">
-                                </div>
-                                <div class="col-7">
-                                    <div class="card" style="height: 100%;">
-                                        <div class="card-body">
-                                            <h5 class="card-title"><?php echo $rowDataKeranjang['namaProduk']; ?></h5>
-                                            <p class="card-text"><?php echo $rowDataKeranjang['detailProduk']; ?>.
-                                            </p>
-                                            <h6 class="card-subtitle mb-2 text-muted">Stok <?php echo $rowDataKeranjang['jumlahBaju']; ?></h6>
-                                            <blockquote class="blockquote font-weight-bold">
-                                                <p class="mb-0">Rp. <span class="hargaBaju"><?php echo $rowDataKeranjang['hargaBaju']; ?></span></p>
-                                            </blockquote>
-                                            <div class="form-inline">
-                                                <label for="txtJumlah" class="mr-2">jumlah</label>
-                                                <input type="text" class="form-control text-center jumlahBaju" style="width: 4rem;" name="jumlah" value="<?php echo $rowDataKeranjang['jumlahPembelian']; ?>">
+                <?php if (empty($dataKeranjang)) : ?>
+                    <div class="alert alert-primary text-center" role="alert">
+                        <i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i>&nbsp;&nbsp;
+                        Keranjangmu Masih Kosong Nih, &nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i>
+                        <br>
+                        <i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Isi keranjangmu <a href="index.php?page=utama&aksi=view" class="alert-link h6">Di Sini</a>
+                        &nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i>
+                    </div>
+                <?php else : ?>
+                    <?php foreach ($dataKeranjang as $rowDataKeranjang) : ?>
+                        <div class="card keranjang">
+                            <div class="card-body bg-light">
+                                <input type="hidden" name="idBaju" class="idBaju" value="<?php echo $rowDataKeranjang['idBaju']; ?>">
+                                <input type="hidden" name="idTransaksi" class="idTransaksi" value="<?php echo $rowDataKeranjang['idTransaksi']; ?>">
+                                <div class="row justify-content-center">
+                                    <div class="col-3">
+                                        <img src="<?php echo $BASE_URL; ?>/assets/img/<?php echo $rowDataKeranjang['gambarBaju']; ?>" class="rounded img-fluid" alt="Image Preview">
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="card" style="height: 100%;">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><?php echo $rowDataKeranjang['namaProduk']; ?></h5>
+                                                <p class="card-text"><?php echo $rowDataKeranjang['detailProduk']; ?>.
+                                                </p>
+                                                <h6 class="card-subtitle mb-2 text-muted">Stok <?php echo $rowDataKeranjang['jumlahBaju']; ?></h6>
+                                                <blockquote class="blockquote font-weight-bold">
+                                                    <p class="mb-0">Rp. <span class="hargaBaju"><?php echo $rowDataKeranjang['hargaBaju']; ?></span></p>
+                                                </blockquote>
+                                                <div class="form-inline">
+                                                    <label for="txtJumlah" class="mr-2">jumlah</label>
+                                                    <input type="text" class="form-control text-center jumlahBaju" style="width: 4rem;" name="jumlah" value="<?php echo $rowDataKeranjang['jumlahPembelian']; ?>">
+                                                </div>
                                             </div>
+                                            <ul class="list-group list-group-flush text-center">
+                                                <a href="index.php?page=keranjang&aksi=delete&idTransaksi=<?php echo $rowDataKeranjang['idTransaksi']; ?>&idBaju=<?php echo $rowDataKeranjang['idBaju']; ?>" class="btn btn-danger btn-block">
+                                                    Hapus
+                                                </a>
+                                            </ul>
                                         </div>
-                                        <ul class="list-group list-group-flush text-center">
-                                            <a href="index.php?page=keranjang&aksi=delete&idTransaksi=<?php echo $rowDataKeranjang['idTransaksi']; ?>&idBaju=<?php echo $rowDataKeranjang['idBaju']; ?>" class="btn btn-danger btn-block">
-                                                Hapus
-                                            </a>
-                                        </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
-                <button type="button" class="btn btn-success btn-block mt-3" data-toggle="modal" data-target="#modalKonfirmasiCheckout">
-                    <span class="h5">Checkout</span>
-                </button>
+                    <?php endforeach; ?>
+                    <button type="button" class="btn btn-success btn-block mt-3" data-toggle="modal" data-target="#modalKonfirmasiCheckout">
+                        <span class="h5">Checkout</span>
+                    </button>
+                <?php endif; ?>
             </div>
         </div>
     </div>
