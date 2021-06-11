@@ -68,11 +68,19 @@
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
                 <?php if (empty($dataTransaksi)) : ?>
-                    <div class="alert alert-primary text-center" role="alert">
-                        <i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i>
-                        Ayo <a href="index.php?page=utama&aksi=view" class="alert-link">Belanja Baju</a> lagi
-                        <i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i>
-                    </div>
+                    <?php if ($judul == "Dalam Proses") : ?>
+                        <div class="alert alert-primary text-center h5" role="alert">
+                            <i class="fa fa-heart" aria-hidden="true"></i>&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-smile-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-smile-o" aria-hidden="true"></i>
+                            &nbsp;&nbsp;Kayaknya kamu perlu membeli baju Deh&nbsp;&nbsp;
+                            <i class="fa fa-smile-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-smile-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>
+                        </div>
+                    <?php else : ?>
+                        <div class="alert alert-primary text-center h5" role="alert">
+                            <i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i>
+                            Ayo <a href="index.php?page=utama&aksi=view" class="alert-link">Belanja Baju</a> lagi
+                            <i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i>
+                        </div>
+                    <?php endif; ?>
                 <?php else : ?>
                     <?php foreach ($dataTransaksi as $rowDataTransaksi) : ?>
                         <div class="row mb-3">

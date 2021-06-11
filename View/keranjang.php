@@ -55,12 +55,11 @@
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
                 <?php if (empty($dataKeranjang)) : ?>
-                    <div class="alert alert-primary text-center" role="alert">
-                        <i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i>&nbsp;&nbsp;
-                        Keranjangmu Masih Kosong Nih, &nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i>
+                    <div class="alert alert-primary text-center h5" role="alert">
+                        <i class="fa fa-heart" aria-hidden="true"></i>&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>&nbsp;&nbsp;
+                        Keranjangmu Masih Kosong Nih,&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i>&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>
                         <br>
-                        <i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Isi keranjangmu <a href="index.php?page=utama&aksi=view" class="alert-link h6">Di Sini</a>
-                        &nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i>
+                        <i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i>&nbsp;&nbsp;Isi keranjangmu <a href="index.php?page=utama&aksi=view" class="alert-link h6">Di Sini</a>&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>
                     </div>
                 <?php else : ?>
                     <?php foreach ($dataKeranjang as $rowDataKeranjang) : ?>
