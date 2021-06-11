@@ -83,6 +83,14 @@ $(document).ready(function() {
 			arrayIdBaju.push($($('.idBaju')[i]).val());
 			arrayJumlahBaju.push($($('.jumlahBaju')[i]).val());
 		}
+		$.ajax({
+            url: base_url + '/index.php?page=transaksi&aksi=checkoutKeranjang',
+            type: 'post',
+            data: { idTransaksi: arrayIdTransaksi, idBaju: arrayIdBaju, jumlahPembelian: arrayJumlahBaju},
+			success: function(data) {
+				window.location.href = base_url + '/index.php?page=transaksi&aksi=view&idUser=' + idUser;
+            }
+        });
 	})
 
 	$('#inputGambar').change(function(){
@@ -96,5 +104,35 @@ $(document).ready(function() {
 			reader.readAsDataURL(file);
         }
     });
+
+	$('#jasaPengiriman').on('change', function() {
+		var jarak = parseInt($('#txtJarak').val());
+		if($('#txtJarak').val() != '' && $(this)[0].selectedIndex != 0) {
+			var totalHargaCheckout = parseInt($('#totalHargaCheckout').text());
+			var biayaKurir = $( "#jasaPengiriman option:selected" ).text().split(" | ");
+			var intBiayaKurir = parseInt(biayaKurir[1]);
+			$('#totalPengiriman').html(jarak * intBiayaKurir);
+			var totalPegiriman = parseInt($('#totalPengiriman').text());
+			$('#totalHarga').html(totalHargaCheckout + totalPegiriman);
+		} else {
+			$('#totalPengiriman').html(0);
+			$('#totalHarga').html(0);
+		}
+	});
+
+	$('#txtJarak').on('input', function() {
+		var jarak = parseInt($(this).val());
+		if($(this).val() != '' && $('#jasaPengiriman')[0].selectedIndex != 0) {
+			var totalHargaCheckout = parseInt($('#totalHargaCheckout').text());
+			var biayaKurir = $( "#jasaPengiriman option:selected" ).text().split(" | ");
+			var intBiayaKurir = parseInt(biayaKurir[1]);
+			$('#totalPengiriman').html(jarak * intBiayaKurir);
+			var totalPegiriman = parseInt($('#totalPengiriman').text());
+			$('#totalHarga').html(totalHargaCheckout + totalPegiriman);
+		} else {
+			$('#totalPengiriman').html(0);
+			$('#totalHarga').html(0);
+		}
+	})
 })
 

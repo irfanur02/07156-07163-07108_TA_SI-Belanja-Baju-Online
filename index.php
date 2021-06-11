@@ -6,6 +6,8 @@ $BASE_URL = "http://localhost/projek-belanjaBajuOnline";
 
 //memanggil model
 require_once("Model/TransaksiModel.php");
+require_once("Model/UserModel.php");
+require_once("Model/KurirModel.php");
 
 //memanggil controller
 require_once("Controller/TransaksiController.php");
@@ -234,10 +236,13 @@ if (isset($_GET['view'])) {
             $pembelian->updatePembelian();
         }
     } elseif ($page == "transaksi") {
+        $transaksi = new TransaksiController();
         if ($aksi == "view") {
-            require_once("View/transaksi.php");
-        } elseif ($aksi == "store") {
-            require_once("View/pembelian.php");
+            $transaksi->view();
+        } elseif ($aksi == "checkoutKeranjang") {
+            $transaksi->checkoutKeranjang();
+        } elseif ($aksi == "update") {
+            $transaksi->update();
         }
     } elseif ($page == "daftar") {
         if ($aksi == "view") {

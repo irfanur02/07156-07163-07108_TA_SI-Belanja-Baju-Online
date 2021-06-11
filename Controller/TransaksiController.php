@@ -2,11 +2,33 @@
 
 class TransaksiController
 {
-    private $model;
+    private $modelTransaksi;
+    private $modelUser;
+    private $modelKurir;
 
     public function __construct()
     {
-        $this->model = new TransaksiModel();
+        $this->modelTransaksi = new TransaksiModel();
+        $this->modelUser = new UserModel();
+        $this->modelKurir = new KurirModel();
+    }
+
+    /**
+     * berfungsi untuk menampilkan produk yang sudah di checkout
+     */
+    public function view()
+    {
+        $idUser = $_GET['idUser'];
+        $dataCheckout = $this->modelTransaksi->getDataCheckout($idUser);
+        $totalHargaCheckout = $this->modelTransaksi->getTotalHargaDataCheckout($idUser);
+        $dataUser = $this->modelUser->getDataUser($idUser);
+        $dataKurir = $this->modelKurir->getKurir();
+        extract($dataCheckout);
+        extract($totalHargaCheckout);
+        extract($dataUser);
+        extract($dataKurir);
+        $BASE_URL = "http://localhost/projek-belanjaBajuOnline";
+        require_once("View/transaksi.php");
     }
 
     /**
@@ -15,9 +37,9 @@ class TransaksiController
     public function getHistoriTransaksi($statusPembelian)
     {
         //? nunggu progress login
-        //! $id_user = $_SESSION['user']['id'];
-        $dataTransaksi = $this->model->getDataTransaksi(3, $statusPembelian);
-        $detailDataTransaksi = $this->model->getDetailDataTransaksi(3, $statusPembelian);
+        //! $idUser = $_SESSION['user']['id'];
+        $dataTransaksi = $this->modelTransaksi->getDataTransaksi(3, $statusPembelian);
+        $detailDataTransaksi = $this->modelTransaksi->getDetailDataTransaksi(3, $statusPembelian);
         extract($dataTransaksi);
         extract($detailDataTransaksi);
         $BASE_URL = "http://localhost/projek-belanjaBajuOnline";
@@ -30,9 +52,9 @@ class TransaksiController
     public function getPembelianTerproses($statusPembelian)
     {
         //? nunggu progress login
-        //! $id_user = $_SESSION['user']['id'];
-        $dataTransaksi = $this->model->getDataTransaksi(2, $statusPembelian);
-        $detailDataTransaksi = $this->model->getDetailDataTransaksi(2, $statusPembelian);
+        //! $idUser = $_SESSION['user']['id'];
+        $dataTransaksi = $this->modelTransaksi->getDataTransaksi(2, $statusPembelian);
+        $detailDataTransaksi = $this->modelTransaksi->getDetailDataTransaksi(2, $statusPembelian);
         extract($dataTransaksi);
         extract($detailDataTransaksi);
         $BASE_URL = "http://localhost/projek-belanjaBajuOnline";
@@ -46,9 +68,9 @@ class TransaksiController
     public function getPembelianTerkirim($statusPembelian)
     {
         //? nunggu progress login
-        //! $id_user = $_SESSION['user']['id'];
-        $dataTransaksi = $this->model->getDataTransaksi(3, $statusPembelian);
-        $detailDataTransaksi = $this->model->getDetailDataTransaksi(3, $statusPembelian);
+        //! $idUser = $_SESSION['user']['id'];
+        $dataTransaksi = $this->modelTransaksi->getDataTransaksi(3, $statusPembelian);
+        $detailDataTransaksi = $this->modelTransaksi->getDetailDataTransaksi(3, $statusPembelian);
         extract($dataTransaksi);
         extract($detailDataTransaksi);
         $BASE_URL = "http://localhost/projek-belanjaBajuOnline";
@@ -62,7 +84,7 @@ class TransaksiController
     public function updatePembelian()
     {
         $idTransaksi = $_GET['id'];
-        $this->model->prosesUpdatePembelian($idTransaksi);
+        $this->modelTransaksi->prosesUpdatePembelian($idTransaksi);
         header("location: index.php?page=pembelian&aksi=keadaanTerkirim");
     }
 
@@ -72,8 +94,8 @@ class TransaksiController
     public function getKeranjang()
     {
         //? nunggu progress login
-        //! $id_user = $_SESSION['user']['id'];
-        $dataKeranjang = $this->model->getDataKeranjang(1);
+        //! $idUser = $_SESSION['user']['id'];
+        $dataKeranjang = $this->modelTransaksi->getDataKeranjang(1);
         extract($dataKeranjang);
         $BASE_URL = "http://localhost/projek-belanjaBajuOnline";
         require_once("View/keranjang.php");
@@ -86,7 +108,36 @@ class TransaksiController
     {
         $idBaju = $_GET['idBaju'];
         $idTransaksi = $_GET['idTransaksi'];
-        $this->model->prosesDeleteKeranjang($idTransaksi, $idBaju);
+        $this->modelTransaksi->prosesDeleteKeranjang($idTransaksi, $idBaju);
         header("location: index.php?page=keranjang&aksi=view");
+    }
+
+    /**
+     * berfungsi untuk mengupdate jumlah pembelian sebelum dilakukan transaksi
+     */
+    public function checkoutKeranjang()
+    {
+        $idTransaksi = $_POST['idTransaksi'];
+        $idBaju = $_POST['idBaju'];
+        $jumlahPembelian = $_POST['jumlahPembelian'];
+        for ($i = 0; $i < count($idTransaksi); $i++) {
+            $this->modelTransaksi->updateCheckout($idTransaksi[$i], $idBaju[$i], $jumlahPembelian[$i]);
+        }
+    }
+
+    /**
+     * berfungsi untuk menyimpan data dengan mengupdate transaksi menjadi dalam keadaan proses
+     */
+    public function update()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $idUser = $_POST['idUser'];
+        $jarak = $_POST['jarak'];
+        $idKurir = $_POST['jasaPengiriman'];
+        $tanggal = date("Y-m-d");
+        $waktu = date("H:i:s");
+        $tanggalWaktu = $tanggal . " " . $waktu;
+        $this->modelTransaksi->prosesUpdate($idUser, $tanggalWaktu, $jarak, $idKurir);
+        header("location: index.php?page=pembelian&aksi=view");
     }
 }

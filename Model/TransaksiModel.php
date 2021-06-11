@@ -91,4 +91,70 @@ class TransaksiModel
                 WHERE id_transaksi = $idTransaksi AND id_baju = $idBaju";
         koneksi()->query($sql);
     }
+
+    /**
+     * berfungsi untuk mengupdate jumlah pembelian produk yang ada dalam keranjang berdasarkan id transaksi dan id baju
+     */
+    public function updateCheckout($idTransaksi, $idBaju, $jumlahPembelian)
+    {
+        $sql = "UPDATE detail_transaksi 
+                SET jumlah_pembelian = $jumlahPembelian
+                WHERE id_transaksi = $idTransaksi AND id_baju = $idBaju";
+        koneksi()->query($sql);
+    }
+
+    /**
+     * berfungsi untuk menampilkan data produk yang sudah di checkout berdasarkan id user
+     */
+    public function getDataCheckout($idUser)
+    {
+        $sql = "SELECT CONCAT_WS(' ', mb.nama_merek_baju, jb.nama_jenis_baju) AS namaProduk, 
+                ba.gambar_baju AS gambarBaju, ba.deskripsi_baju AS detailProduk, ba.harga_baju AS hargaBaju, 
+                dt.jumlah_pembelian AS jumlahPembelian, ba.harga_baju * dt.jumlah_pembelian AS totalHarga 
+                FROM transaksi tr 
+                JOIN status_pembelian sp ON tr.id_status_pembelian = sp.id_status_pembelian 
+                JOIN detail_transaksi dt ON tr.id_transaksi = dt.id_transaksi 
+                JOIN baju ba ON dt.id_baju = ba.id_baju 
+                JOIN merek_baju mb ON ba.id_merek_baju = mb.id_merek_baju 
+                JOIN jenis_baju jb ON ba.id_jenis_baju = jb.id_jenis_baju 
+                WHERE sp.nama_status_pembelian = 'Keranjang' AND tr.id_user = $idUser";
+        $query = koneksi()->query($sql);
+        $hasil = [];
+        while ($data = $query->fetch_assoc()) {
+            $hasil[] = $data;
+        }
+        return $hasil;
+    }
+
+    /**
+     * berfungsi untuk mendapatkan seluruh total harga produk pada view transaksi berdasarkan id user
+     */
+    public function getTotalHargaDataCheckout($idUser)
+    {
+        $sql = "SELECT SUM(ba.harga_baju * dt.jumlah_pembelian) AS totalHarga 
+                FROM transaksi tr 
+                JOIN status_pembelian sp ON tr.id_status_pembelian = sp.id_status_pembelian 
+                JOIN detail_transaksi dt ON tr.id_transaksi = dt.id_transaksi 
+                JOIN baju ba ON dt.id_baju = ba.id_baju 
+                WHERE sp.nama_status_pembelian = 'Keranjang' AND tr.id_user = $idUser GROUP BY tr.id_user";
+        $query = koneksi()->query($sql);
+        $hasil = [];
+        while ($data = $query->fetch_assoc()) {
+            $hasil[] = $data;
+        }
+        return $hasil;
+    }
+
+    /**
+     * berfungisi untuk memasukkan data transaksi dengan mengupdate data transaksi yang status pembeliannya keranjang menjadi proses
+     */
+    public function prosesUpdate($idUser, $tanggalWaktu, $jarak, $idKurir)
+    {
+        $sql = "UPDATE transaksi SET tanggal_transaksi = '$tanggalWaktu', 
+                                    jarak_pengiriman = $jarak, 
+                                    id_kurir = $idKurir, 
+                                    id_status_pembelian = 2
+                WHERE id_user = $idUser AND id_status_pembelian = 1";
+        koneksi()->query($sql);
+    }
 }
