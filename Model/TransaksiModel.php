@@ -157,4 +157,66 @@ class TransaksiModel
                 WHERE id_user = $idUser AND id_status_pembelian = 1";
         koneksi()->query($sql);
     }
+
+    /**
+     * berfungsi untuk mendapatkan produk yang ada dikeranjang berdasarkan id user, apakah produk tersebut sudah ada di keranjang atau belum
+     */
+    public function cekKeranjangUser($idUser, $idBaju)
+    {
+        $sqlGetIdTransaksi = "SELECT id_transaksi AS id FROM transaksi 
+                                WHERE id_status_pembelian = 1 AND id_user = $idUser LIMIT 1";
+        $query = koneksi()->query($sqlGetIdTransaksi);
+        $hasilQuery = $query->fetch_assoc();
+        $idTransaksi = $hasilQuery['id'];
+        $sql = "SELECT * FROM detail_transaksi dt 
+                JOIN transaksi tr ON dt.id_transaksi = tr.id_transaksi 
+                WHERE tr.id_user = $idUser AND dt.id_baju = $idBaju AND dt.id_transaksi = $idTransaksi";
+        $query = koneksi()->query($sql);
+        return $query->fetch_assoc();
+    }
+
+    /**
+     * berfungsi untuk mendapatkan data produk yang ada di keranjang berdasarkan id user
+     */
+    public function getKeranjang($idUser)
+    {
+        $sql = "SELECT dt.id_baju AS idBaju 
+                FROM transaksi tr 
+                JOIN detail_transaksi dt ON tr.id_transaksi = dt.id_transaksi
+                WHERE tr.id_user = $idUser AND tr.id_status_pembelian = 1";
+        $query = koneksi()->query($sql);
+        $hasil = [];
+        while ($data = $query->fetch_assoc()) {
+            $hasil[] = $data;
+        }
+        return $hasil;
+    }
+
+    /**
+     * berfungsi untuk mendapatkan jumlah keranjang berdasarkan id user
+     */
+    public function getJumlahKeranjangUser($idUser)
+    {
+        $sql = "SELECT COUNT(tr.id_status_pembelian) AS jumlahKeranjang 
+                FROM detail_transaksi dt
+                JOIN transaksi tr ON dt.id_transaksi = tr.id_transaksi
+                WHERE tr.id_user = $idUser AND tr.id_status_pembelian = 1 GROUP BY tr.id_status_pembelian";
+        $query = koneksi()->query($sql);
+        return $query->fetch_assoc();
+    }
+
+    /**
+     * berfungsi untuk proses menyimpan data produk ke dalam keranjang dengan cara menyimpan transaksi dalam keadaan keranjang berdasarkan id user dan id baju
+     */
+    public function prosesStore($idUser, $idBaju)
+    {
+        $sqlGetIdTransaksi = "SELECT id_transaksi AS id FROM transaksi 
+                WHERE id_status_pembelian = 1 AND id_user = $idUser LIMIT 1";
+        $query = koneksi()->query($sqlGetIdTransaksi);
+        $hasilQuery = $query->fetch_assoc();
+        $idTransaksi = $hasilQuery['id'];
+        $sqlstore = "INSERT INTO detail_transaksi (id_transaksi, id_baju, jumlah_pembelian) 
+                        VALUES($idTransaksi, $idBaju, 1)";
+        koneksi()->query($sqlstore);
+    }
 }

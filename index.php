@@ -8,10 +8,13 @@ $BASE_URL = "http://localhost/projek-belanjaBajuOnline";
 require_once("Model/TransaksiModel.php");
 require_once("Model/UserModel.php");
 require_once("Model/KurirModel.php");
+require_once("Model/ProdukModel.php");
+require_once("Model/FavoriteModel.php");
 
 //memanggil controller
 require_once("Controller/TransaksiController.php");
-
+require_once("Controller/ProdukController.php");
+require_once("Controller/FavoriteController.php");
 
 if (isset($_GET['view'])) {
     $view = $_GET['view'];
@@ -177,24 +180,24 @@ if (isset($_GET['view'])) {
         header("location: index.php?view=admin");
     }
 } elseif (isset($_GET['page']) && isset($_GET['aksi'])) {
+    session_start();
     $page = $_GET['page'];
     $aksi = $_GET['aksi'];
 
     if ($page == "utama") {
+        $produk = new ProdukController();
+        $keranjang = new TransaksiController();
+        $favorite = new FavoriteController();
         if ($aksi == "view") {
-            require_once("View/index.php");
+            $produk->viewUser();
         } elseif ($aksi == "prosesLogin") {
             require("View/index.php");
         } elseif ($aksi == "prosesLogout") {
             require("View/index.php");
         } elseif ($aksi == "tambahKeranjang") {
-            if ($_SESSION['user'] == "aktif") {
-                //isi proses model
-            }
+            $keranjang->storeKeranjang();
         } elseif ($aksi == "simpanBaju") {
-            if ($_SESSION['user'] == "aktif") {
-                //isi proses model
-            }
+            $favorite->store();
         } elseif ($aksi == "filterPencarian") {
             require_once("View/index.php");
         } elseif ($aksi == "cariBaju") {

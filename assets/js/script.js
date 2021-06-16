@@ -42,28 +42,32 @@ $(document).ready(function() {
 	})
 
 	$('.tambahKeranjang').on('click', function() {
+		var idBaju = $(this).data('id');
+		var idUser = $('#idUser').val();
+		$.ajax({
+            url: base_url + '/index.php?page=utama&aksi=tambahKeranjang',
+            type: 'post',
+            data: { idBaju: idBaju, idUser: idUser}
+        })
 		jumlahKeranjang = parseInt($('#jumlahKeranjang').text());
 		$('#jumlahKeranjang').text(jumlahKeranjang+1);
-	})
-
-	$('.tambahKeranjang').on('click', function() {
-		// console.log($(this).data('id'));
 		$(this).html('Telah Masuk Keranjang');
 		$(this).removeClass('btn btn-primary tambahKeranjang mb-1');
-		$(this).addClass('btn btn-success tambahKeranjang mb-1');
+		$(this).addClass('btn btn-success mb-1');
 	})
 
 	$('.simpanBaju').on('click', function() {
-		// console.log($(this).data('id'));
+		var idBaju = $(this).data('id');
+		var idUser = $('#idUser').val();
+		$.ajax({
+            url: base_url + '/index.php?page=utama&aksi=simpanBaju',
+            type: 'post',
+            data: { idBaju: idBaju, idUser: idUser}
+        })
 		$(this).html('<i class="fa fa-heart" aria-hidden="true"></i> Tersimpan');
 		$(this).removeClass('btn btn-light border-dark simpanBaju');
 		$(this).addClass('btn btn-danger batalSimpanBaju');
 	})
-
-	// $('.batalSimpanBaju').on('click', function() {
-	// 	$(this).removeClass('btn btn-danger batalSimpanBaju');
-	// 	$(this).addClass('btn btn-light border-dark simpanBaju');
-	// })
 
 	$('#btnEditProfil').on('click', function() {
 		$('#btnUpdate').show();

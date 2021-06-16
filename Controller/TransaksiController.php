@@ -95,7 +95,7 @@ class TransaksiController
     {
         //? nunggu progress login
         //! $idUser = $_SESSION['user']['id'];
-        $dataKeranjang = $this->modelTransaksi->getDataKeranjang(1);
+        $dataKeranjang = $this->modelTransaksi->getDataKeranjang(4);
         extract($dataKeranjang);
         $BASE_URL = "http://localhost/projek-belanjaBajuOnline";
         require_once("View/keranjang.php");
@@ -139,5 +139,17 @@ class TransaksiController
         $tanggalWaktu = $tanggal . " " . $waktu;
         $this->modelTransaksi->prosesUpdate($idUser, $tanggalWaktu, $jarak, $idKurir);
         header("location: index.php?page=pembelian&aksi=view");
+    }
+
+    /**
+     * berfungsi untuk menyimpan data produk ke dalam keranjang
+     */
+    public function storeKeranjang()
+    {
+        $idUser = $_POST['idUser'];
+        $idBaju = $_POST['idBaju'];
+        if (empty($this->modelTransaksi->cekKeranjangUser($idUser, $idBaju))) {
+            $this->modelTransaksi->prosesStore($idUser, $idBaju);
+        }
     }
 }
