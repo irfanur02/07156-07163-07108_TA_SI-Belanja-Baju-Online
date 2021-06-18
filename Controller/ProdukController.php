@@ -102,17 +102,11 @@ class ProdukController
             }
         }
 
-        if ($pencarian == "") {
-            if (empty($merek) && empty($jenis) && empty($kategori) && empty($deskripsi)) {
-                $hasilPencarian = "notFound";
-            } else {
-                $hasilPencarian = "found";
-                $dataSeluruhBaju = $this->modelProduk->getAllPencarianBaju($merek, $jenis, $kategori, $deskripsi);
-                extract($dataSeluruhBaju);
-            }
+        if (empty($merek) && empty($jenis) && empty($kategori) && empty($deskripsi)) {
+            $hasilPencarian = "notFound";
         } else {
             $hasilPencarian = "found";
-            $dataSeluruhBaju = $this->modelProduk->getSeluruhBaju();
+            $dataSeluruhBaju = $this->modelProduk->getAllPencarianBaju($merek, $jenis, $kategori, $deskripsi);
             extract($dataSeluruhBaju);
         }
 

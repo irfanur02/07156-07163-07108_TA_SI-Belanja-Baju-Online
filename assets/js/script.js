@@ -30,6 +30,7 @@ $(document).ready(function() {
 			$("#cbTotPemTertinggi1").prop('checked', false);
 			$('#inputTglAwal').val("");
 			$('#inputTglAkhir').val("");
+			$("#cbTotPemTertinggi2").prop('checked', false);
 		}
 	})
 	
