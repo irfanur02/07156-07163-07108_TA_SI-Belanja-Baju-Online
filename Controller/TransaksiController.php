@@ -47,6 +47,35 @@ class TransaksiController
     }
 
     /**
+     * berfungsi untuk mendapatkan semua transaksi yang memiliki status dalam proses
+     */
+    public function getAllPembelianTerproses()
+    {
+        $dataJumlahPermintaan = $this->modelTransaksi->getJumlahPermintaan();
+        $dataTransaksi = $this->modelTransaksi->getAllDataTransaksiTerproses();
+        $detailDataTransaksi = $this->modelTransaksi->getAllDetailDataTransaksiTerproses();
+        extract($dataTransaksi);
+        extract($detailDataTransaksi);
+        extract($dataJumlahPermintaan);
+        $BASE_URL = "http://localhost/projek-belanjaBajuOnline";
+        require_once("View/admin/permintaan.php");
+    }
+
+    /**
+     * berfungsi untuk mengaupdate status transaksi
+     */
+    public function updateStatusTransaksi($idStatusTransaksi)
+    {
+        $idTransaksi = $_GET['id'];
+        $this->modelTransaksi->prosesUpdateStatusTransaksi($idTransaksi, $idStatusTransaksi);
+        if ($idStatusTransaksi == 3) {
+            header("location: index.php?view=admin&page=permintaan&aksi=view");
+        } elseif ($idStatusTransaksi == 4) {
+            header("location: index.php?page=pembelian&aksi=keadaanTerkirim");
+        }
+    }
+
+    /**
      * berfungsi untuk mendapatkan transaksi pembelian statusnya dalam proses
      */
     public function getPembelianTerproses($statusPembelian)
@@ -76,16 +105,6 @@ class TransaksiController
         $BASE_URL = "http://localhost/projek-belanjaBajuOnline";
         $judul = "Dalam Pengiriman";
         require_once("View/pembelian.php");
-    }
-
-    /**
-     * berfungsi untuk mengupdate pembelian yang barangnya telah diterima
-     */
-    public function updatePembelian()
-    {
-        $idTransaksi = $_GET['id'];
-        $this->modelTransaksi->prosesUpdatePembelian($idTransaksi);
-        header("location: index.php?page=pembelian&aksi=keadaanTerkirim");
     }
 
     /**

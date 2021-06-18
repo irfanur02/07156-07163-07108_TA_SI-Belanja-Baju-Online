@@ -161,10 +161,11 @@ if (isset($_GET['view'])) {
                     require_once("View/admin/kurir/index.php");
                 }
             } elseif ($page == "permintaan") {
+                $permintaan = new TransaksiController();
                 if ($aksi == "view") {
-                    require_once("View/admin/permintaan.php");
-                } elseif ($aksi == "terimaPesanan") {
-                    require_once("View/admin/permintaan.php");
+                    $permintaan->getAllPembelianTerproses();
+                } elseif ($aksi == "terimaPermintaan") {
+                    $permintaan->updateStatusTransaksi(3);
                 }
             } elseif ($page == "laporan") {
                 if ($aksi == "view") {
@@ -240,7 +241,7 @@ if (isset($_GET['view'])) {
         } elseif ($aksi == "keadaanTerkirim") {
             $pembelian->getPembelianTerkirim("Dikirim");
         } elseif ($aksi == "pembelianDiterima") {
-            $pembelian->updatePembelian();
+            $pembelian->updateStatusTransaksi(4);
         }
     } elseif ($page == "transaksi") {
         $transaksi = new TransaksiController();

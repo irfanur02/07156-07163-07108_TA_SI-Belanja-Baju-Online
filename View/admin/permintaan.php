@@ -37,7 +37,7 @@
                     </div>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary">4</span></a>
+                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary"><?php echo $dataJumlahPermintaan[0]['jumlahPermintaan']; ?></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="index.php?view=admin&page=laporan&aksi=view">Laporan</a>
@@ -58,103 +58,92 @@
     <div class="container" style="margin-top: 20px;">
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-2 align-self-center">
-                                        <p class="text-center h6">Tanggal</br>Buat Transaksi</br>2021-02-04</p>
-                                        <p class="text-center"><mark><u>Mark</u></mark></p>
-                                        <p class="text-center">Jasa Pengiriman</br>JNE</p>
-                                        <div class="alert alert-dark" role="alert">
-                                            <p class="text-center h6">Total Harga</br><strong>Rp. 23434</strong></p>
+                <?php if (!empty($dataTransaksi)) : ?>
+                    <?php foreach ($dataTransaksi as $rowDataTransaksi) : ?>
+                        <div class="row mb-5">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>Nama : </strong><?php echo $rowDataTransaksi['namaPembeli']; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Alamat Pengiriman : </strong><?php echo $rowDataTransaksi['alamatPengiriman']; ?>
+                                        <div class="float-right text-danger">
+                                            <strong>Tanggal Buat Transaksi : </strong>
+                                            <?php
+                                            $namaBulan = "";
+                                            $bulan = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+                                            $data = explode(" ", $rowDataTransaksi['tanggalTransaksi']);
+                                            $tanggal = explode("-", $data[0]);
+                                            for ($i = 0; $i < count($bulan); $i++) {
+                                                if (substr($tanggal[1], 1) == $i) {
+                                                    $namaBulan = $bulan[$i];
+                                                    break;
+                                                }
+                                            }
+                                            echo $tanggal[2] . "-" . $namaBulan . "-" . $tanggal[0];
+                                            ?>
+                                            &nbsp;<strong>Jam : </strong>&nbsp;<?php echo $data[1]; ?>
                                         </div>
-                                        <a href="index.php?view=admin&page=permintaan&aksi=terimaPesanan" class="btn btn-success btn-block align-items-end">Kirim
-                                            Pesanan</a>
                                     </div>
-                                    <div class="col-10">
-                                        <div class="card-body text-dark" style="overflow-x: auto;">
-                                            <div class="row flex-row flex-nowrap">
-                                                <div class="col-6">
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-4">
-                                                            <img src="<?php echo $BASE_URL; ?>/assets/img/casual 6.jpg" class="rounded img-fluid" alt="Image Preview">
-                                                        </div>
-                                                        <div class="col-7">
-                                                            <div class="card" style="height: 100%;">
-                                                                <div class="card-body">
-                                                                    <h5 class="card-title">Special title treatment
-                                                                    </h5>
-                                                                    <p class="card-text">With supporting text below
-                                                                        as a
-                                                                        natural lead-in
-                                                                        to additional content.
-                                                                    </p>
-                                                                    <blockquote class="blockquote font-weight-bold">
-                                                                        <p class="mb-0">Rp. <span class="hargaBaju">150000</span></p>
-                                                                    </blockquote>
-                                                                    <div class="form-inline">
-                                                                        <label for="txtJumlah" class="mr-2">jumlah</label>
-                                                                        <input type="text" class="form-control text-center jumlahBaju" style="width: 4rem;" value="1" disabled>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-2 align-self-center">
+                                                <p class="text-center" style="font-size: 14px;">
+                                                    <mark><u>Jasa Pengiriman</u></mark></br><?php echo $rowDataTransaksi['jasaKurir']; ?></br>
+                                                    <mark><u>Biaya Pengiriman</u></mark></br>Rp. <?php echo $rowDataTransaksi['biayaPengiriman']; ?></br>
+                                                    <mark><u>Total Harga Pembelian</u></mark></br>Rp. <?php echo $rowDataTransaksi['totalHargaPembelian']; ?>
+                                                </p>
+                                                <div class="alert alert-dark" role="alert">
+                                                    <p class="text-center h6">Total Seluruh Harga</br><strong>Rp. <?php echo $rowDataTransaksi['totalPembelian']; ?></strong>
+                                                    </p>
                                                 </div>
-                                                <div class="col-6">
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-4">
-                                                            <img src="<?php echo $BASE_URL; ?>/assets/img/casual 6.jpg" class="rounded img-fluid" alt="Image Preview">
-                                                        </div>
-                                                        <div class="col-7">
-                                                            <div class="card" style="height: 100%;">
-                                                                <div class="card-body">
-                                                                    <h5 class="card-title">Special title treatment
-                                                                    </h5>
-                                                                    <p class="card-text">With supporting text below
-                                                                        as a
-                                                                        natural lead-in
-                                                                        to additional content.
-                                                                    </p>
-                                                                    <blockquote class="blockquote font-weight-bold">
-                                                                        <p class="mb-0">Rp. <span class="hargaBaju">150000</span></p>
-                                                                    </blockquote>
-                                                                    <div class="form-inline">
-                                                                        <label for="txtJumlah" class="mr-2">jumlah</label>
-                                                                        <input type="text" class="form-control text-center jumlahBaju" style="width: 4rem;" value="1" disabled>
+                                                <a href="index.php?view=admin&page=permintaan&aksi=terimaPermintaan&id=<?php echo $rowDataTransaksi['idTransaksi']; ?>" class="btn btn-success btn-block align-items-end">Kirim
+                                                    Pesanan</a>
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="card-body text-dark" style="overflow-x: auto;">
+                                                    <div class="row flex-row flex-nowrap">
+                                                        <?php foreach ($detailDataTransaksi as $rowDetailDataTransaksi) : ?>
+                                                            <?php if ($rowDetailDataTransaksi['idTransaksi'] == $rowDataTransaksi['idTransaksi']) : ?>
+                                                                <div class="col-6">
+                                                                    <div class="row justify-content-center">
+                                                                        <div class="col">
+                                                                            <div class="card" style="height: 100%;">
+                                                                                <div class="card-body">
+                                                                                    <div class="row">
+                                                                                        <div class="col-4"><img src="<?php echo $BASE_URL; ?>/assets/img/<?php echo $rowDetailDataTransaksi['gambarBaju']; ?>" class="rounded img-fluid" style="width: 100%;" alt="Image Preview"></div>
+                                                                                        <div class="col-8">
+                                                                                            <h5 class="card-title"><?php echo $rowDetailDataTransaksi['namaProduk']; ?>
+                                                                                            </h5>
+                                                                                            <p class="card-text">
+                                                                                                <small><?php echo $rowDetailDataTransaksi['detailProduk']; ?>
+                                                                                                </small>
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row" style="height: 2rem;">
+                                                                                        <div class="col text-center">
+                                                                                            <blockquote class="blockquote font-weight-bold mt-2">
+                                                                                                <p class="mb-0">Rp. <span class="hargaBaju"><?php echo $rowDetailDataTransaksi['hargaBaju']; ?></span></p>
+                                                                                            </blockquote>
+                                                                                        </div>
+                                                                                        <div class="col text-center mt-2">
+                                                                                            <div class="form-inline">
+                                                                                                <label for="txtJumlah" class="mr-2">jumlah</label>
+                                                                                                <input type="text" class="form-control form-control-sm text-center jumlahBaju" style="width: 4rem;" value="<?php echo $rowDetailDataTransaksi['jumlahBaju']; ?>" disabled>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <ul class="list-group list-group-flush">
+                                                                                    <li class="list-group-item text-center bg-dark text-white">Total Harga</br><span class="font-weight-bold">Rp. <?php echo $rowDetailDataTransaksi['totalHarga']; ?></span></li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-4">
-                                                            <img src="<?php echo $BASE_URL; ?>/assets/img/casual 6.jpg" class="rounded img-fluid" alt="Image Preview">
-                                                        </div>
-                                                        <div class="col-7">
-                                                            <div class="card" style="height: 100%;">
-                                                                <div class="card-body">
-                                                                    <h5 class="card-title">Special title treatment
-                                                                    </h5>
-                                                                    <p class="card-text">With supporting text below
-                                                                        as a
-                                                                        natural lead-in
-                                                                        to additional content.
-                                                                    </p>
-                                                                    <blockquote class="blockquote font-weight-bold">
-                                                                        <p class="mb-0">Rp. <span class="hargaBaju">150000</span></p>
-                                                                    </blockquote>
-                                                                    <div class="form-inline">
-                                                                        <label for="txtJumlah" class="mr-2">jumlah</label>
-                                                                        <input type="text" class="form-control text-center jumlahBaju" style="width: 4rem;" value="1" disabled>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                            <?php endif; ?>
+                                                        <?php endforeach; ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -163,8 +152,12 @@
                                 </div>
                             </div>
                         </div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <div class="alert alert-light text-center h5" role="alert">
+                        Data Permintaan masih kosong
                     </div>
-                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

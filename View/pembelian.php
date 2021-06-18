@@ -89,7 +89,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-2 align-self-center">
-                                                <p class="text-center h6">
+                                                <p class="text-center h6 text-danger">
                                                     <?php
                                                     $namaBulan = "";
                                                     $bulan = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
@@ -106,9 +106,14 @@
                                                     </br>Waktu</br>
                                                     <?php echo $data[1]; ?>
                                                 </p>
-                                                <p class="text-center"><u>Jasa Pengiriman</u></br><?php echo $rowDataTransaksi['jasaKurir']; ?></br><u>Biaya Pengiriman</u></br>Rp. <?php echo $rowDataTransaksi['biayaPengiriman']; ?></p>
+                                                <p class="text-center" style="font-size: 14px;">
+                                                    <mark><u>Jasa Pengiriman</u></mark></br><?php echo $rowDataTransaksi['jasaKurir']; ?></br>
+                                                    <mark><u>Biaya Pengiriman</u></mark></br>Rp. <?php echo $rowDataTransaksi['biayaPengiriman']; ?></br>
+                                                    <mark><u>Total Harga Pembelian</u></mark></br>Rp. <?php echo $rowDataTransaksi['totalHargaPembelian']; ?>
+                                                </p>
                                                 <div class="alert alert-dark" role="alert">
-                                                    <p class="text-center h6">Total Pembelian</br><strong>Rp. <?php echo $rowDataTransaksi['totalPembelian']; ?></strong></p>
+                                                    <p class="text-center h6">Total Pembelian</br><strong>Rp. <?php echo $rowDataTransaksi['totalPembelian']; ?></strong>
+                                                    </p>
                                                 </div>
                                                 <?php if ($rowDataTransaksi['idStatusPembelian'] == 3) : ?>
                                                     <a href="index.php?page=pembelian&aksi=pembelianDiterima&id=<?php echo $rowDataTransaksi['idTransaksi']; ?>" class="btn btn-success btn-block">Telah Diterima</a>
