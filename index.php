@@ -9,6 +9,10 @@ require_once("Model/TransaksiModel.php");
 require_once("Model/UserModel.php");
 require_once("Model/KurirModel.php");
 require_once("Model/ProdukModel.php");
+require_once("Model/MerekModel.php");
+require_once("Model/JenisModel.php");
+require_once("Model/KategoriModel.php");
+require_once("Model/UkuranModel.php");
 require_once("Model/FavoriteModel.php");
 
 //memanggil controller
@@ -199,9 +203,9 @@ if (isset($_GET['view'])) {
         } elseif ($aksi == "simpanBaju") {
             $favorite->store();
         } elseif ($aksi == "filterPencarian") {
-            require_once("View/index.php");
+            $produk->filterPencarian();
         } elseif ($aksi == "cariBaju") {
-            require_once("View/index.php");
+            $produk->cariBaju();
         }
     } elseif ($page == "profil") {
         if ($aksi == "view") {
