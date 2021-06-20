@@ -69,11 +69,14 @@
                                             <strong>Tanggal Buat Transaksi : </strong>
                                             <?php
                                             $namaBulan = "";
-                                            $bulan = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+                                            $bulan = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
                                             $data = explode(" ", $rowDataTransaksi['tanggalTransaksi']);
                                             $tanggal = explode("-", $data[0]);
-                                            for ($i = 0; $i < count($bulan); $i++) {
-                                                if (substr($tanggal[1], 1) == $i) {
+                                            for ($i = 1; $i < count($bulan); $i++) {
+                                                if ($tanggal[1] >= 10 && $tanggal[1] == $i) {
+                                                    $namaBulan = $bulan[$i];
+                                                    break;
+                                                } elseif ($tanggal[1] < 10 && substr($tanggal[1], 1) == $i) {
                                                     $namaBulan = $bulan[$i];
                                                     break;
                                                 }

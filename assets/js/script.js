@@ -5,6 +5,7 @@ $(document).ready(function() {
 	$('#laporanSeluruhTransaksi').hide();
 	$("#rbCariUser").hide();
 	$("#namaUser").hide();
+	$("#btnReset").hide();
 	
 	$('#selectPilihLaporan').on('change', function() {
 		if($("#selectPilihLaporan")[0].selectedIndex == 0) {
@@ -12,34 +13,67 @@ $(document).ready(function() {
 			$('#laporanTransaksiTiapUser').hide();
 			$('#namaUser').val("");
 			$('#namaUser').hide("");
-			$("#cbCariUser").prop('checked', false);
+			$("#rbCariUser").prop('checked', false);
 			$('#inputTglAwal').val("");
 			$('#inputTglAkhir').val("");
-			$("#cbTotPemTertinggi1").prop('checked', false);
-			$("#cbTotPemTertinggi2").prop('checked', false);
+			$("#cbTotPemTertinggi").prop('checked', false);
+			$("#rbTotPemTertinggi").prop('checked', false);
+			$("#inputTglAwal").attr('disabled', true);
+			$("#inputTglAkhir").attr('disabled', true);
+			$("#cbTanggal").prop('checked', false);
 		} else if($("#selectPilihLaporan")[0].selectedIndex == 1) {
 			$('#laporanSeluruhTransaksi').show();
 			$('#laporanTransaksiTiapUser').hide();
 			$('#namaUser').val("");
 			$('#namaUser').hide("");
-			$("#cbCariUser").prop('checked', false);
-			$("#cbTotPemTertinggi1").prop('checked', false);
+			$("#rbCariUser").prop('checked', false);
+			$("#cbTotPemTertinggi").prop('checked', false);
 		} else {
 			$('#laporanSeluruhTransaksi').hide();
 			$('#laporanTransaksiTiapUser').show();
-			$("#cbTotPemTertinggi1").prop('checked', false);
+			$("#cbTotPemTertinggi").prop('checked', false);
+			$("#inputTglAwal").attr('disabled', true);
+			$("#inputTglAkhir").attr('disabled', true);
+			$("#cbTanggal").prop('checked', false);
 			$('#inputTglAwal').val("");
 			$('#inputTglAkhir').val("");
-			$("#cbTotPemTertinggi2").prop('checked', false);
+			$("#rbTotPemTertinggi").prop('checked', false);
+		}
+	})
+
+	$('#cbTanggal').on('click', function() {
+		if($(this).is(":checked")) {
+			$("#inputTglAwal").attr('disabled', false);
+			$("#inputTglAkhir").attr('disabled', false);
+		} else {
+			$("#inputTglAwal").attr('disabled', true);
+			$("#inputTglAkhir").attr('disabled', true);
 		}
 	})
 	
-	$('#cbCariUser').on('click', function() {
+	$('#rbCariUser').on('click', function() {
+		$("#btnReset").show();
 		if($(this).is(":checked")) {
 			$("#namaUser").show();
+			$("#rbTotPemTertinggi").prop('checked', false);
 		} else {
 			$("#namaUser").hide();
 		}
+	})
+	
+	$('#rbTotPemTertinggi').on('click', function() {
+		$("#btnReset").show();
+		$("#rbCariUser").prop('checked', false);
+		$("#namaUser").hide();
+		$('#namaUser').val("");
+	})
+	
+	$('#btnReset').on('click', function() {
+		$("#rbTotPemTertinggi").prop('checked', false);
+		$("#rbCariUser").prop('checked', false);
+		$("#namaUser").hide();
+		$('#namaUser').val("");
+		$(this).hide();		
 	})
 
 	$('.tambahKeranjang').on('click', function() {

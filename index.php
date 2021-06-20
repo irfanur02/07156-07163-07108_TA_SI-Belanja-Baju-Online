@@ -14,11 +14,13 @@ require_once("Model/JenisModel.php");
 require_once("Model/KategoriModel.php");
 require_once("Model/UkuranModel.php");
 require_once("Model/FavoriteModel.php");
+require_once("Model/LaporanModel.php");
 
 //memanggil controller
 require_once("Controller/TransaksiController.php");
 require_once("Controller/ProdukController.php");
 require_once("Controller/FavoriteController.php");
+require_once("Controller/LaporanController.php");
 
 if (isset($_GET['view'])) {
     $view = $_GET['view'];
@@ -168,14 +170,21 @@ if (isset($_GET['view'])) {
                     $permintaan->updateStatusTransaksi(3);
                 }
             } elseif ($page == "laporan") {
+                $laporan = new LaporanController();
                 if ($aksi == "view") {
-                    require_once("View/admin/laporan/index.php");
-                } elseif ($aksi == "detailLaporan") {
-                    require_once("View/admin/laporan/laporan_tiap_user.php");
+                    $laporan->index();
+                } elseif ($aksi == "detailLaporanUserDiproses") {
+                    $laporan->getLaporanUser("Diproses");
+                } elseif ($aksi == "detailLaporanUserDikirim") {
+                    $laporan->getLaporanUser("Dikirim");
+                } elseif ($aksi == "detailLaporanUserDiterima") {
+                    $laporan->getLaporanUser("Diterima");
                 } elseif ($aksi == "semuaTransaksi") {
-                    require_once("View/admin/laporan/index.php");
+                    $laporan->getLaporanSemuaTransaksi();
+                } elseif ($aksi == "detailLaporanByTanggal") {
+                    $laporan->getDetailLaporanByTanggal();
                 } elseif ($aksi == "transaksiByUser") {
-                    require_once("View/admin/laporan/index.php");
+                    $laporan->getLaporanTiapUser();
                 }
             }
         } else {

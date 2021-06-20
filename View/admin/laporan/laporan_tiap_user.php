@@ -54,10 +54,23 @@
             <h5 class="card-header text-light bg-primary">
                 <div class="row">
                     <div class="col-4">
-                        <a href="index.php?view=admin&page=laporan&aksi=view" class="btn btn-light float-left">Kembali</a>
+                        <?php if ($data == "laporanTiapUser") : ?>
+                            <a href="index.php?view=admin&page=laporan&aksi=transaksiByUser" class="btn btn-light float-left">Kembali</a>
+                        <?php elseif ($data == "laporanByTanggal") : ?>
+                            <a href="index.php?view=admin&page=laporan&aksi=semuaTransaksi" class="btn btn-light float-left">Kembali</a>
+                        <?php endif; ?>
                     </div>
                     <div class="col-4">
-                        Laporan
+                        Laporan</br>
+                        <span class="font-weight-normal">
+                            <?php if (isset($judul)) : ?>
+                                <?php if ($judul == "berdasarkanUser") : ?>
+                                    Berdasarkan User
+                                <?php elseif ($judul == "semuaTransaksi") : ?>
+                                    Semua Transaksi
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        </span>
                     </div>
                 </div>
             </h5>
@@ -66,75 +79,147 @@
 
     <div class="container" id="kontenLaporan" style="margin-top: 20px;">
         <div class="jumbotron jumbotron-fluid">
+            <?php if ($data == "laporanTiapUser") : ?>
+                <div class="container mb-5  w-50">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row justify-content-center text-center">
+                                <div class="col-3">
+                                    <a href="index.php?view=admin&page=laporan&aksi=detailLaporanUserDiproses&id=<?php echo $idUser; ?>" class="btn btn-outline-primary <?php echo $btnDiproses == 'active' ? 'active' : ''; ?>">Di Proses</a>
+                                </div>
+                                <div class="col-3">
+                                    <a href="index.php?view=admin&page=laporan&aksi=detailLaporanUserDikirim&id=<?php echo $idUser; ?>" class="btn btn-outline-primary <?php echo $btnDikirim == 'active' ? 'active' : ''; ?>">Di kirim</a>
+                                </div>
+                                <div class="col-3">
+                                    <a href="index.php?view=admin&page=laporan&aksi=detailLaporanUserDiterima&id=<?php echo $idUser; ?>" class="btn btn-outline-primary <?php echo $btnDiterima == 'active' ? 'active' : ''; ?>" class="btn btn-outline-primary">Di Terima</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
             <div class="container">
                 <div class="card mb-2">
                     <div class="card-body">
-                        <span>Nama : agung</br>Email : agung@gmail.com</span>
+                        <?php if ($data == "laporanTiapUser") : ?>
+                            <span><strong>Nama : </strong><?php echo $dataUser['nama']; ?></br><strong>Email : </strong><?php echo $dataUser['email']; ?></span>
+                        <?php elseif ($data == "laporanByTanggal") : ?>
+                            <span><strong>Tanggal Transaksi</strong><br>
+                                <?php
+                                $namaBulan = "";
+                                $bulan = ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                                $dataTanggal = explode("-", $tanggal);
+                                for ($i = 1; $i < count($bulan); $i++) {
+                                    if ($dataTanggal[1] >= 10 && $dataTanggal[1] == $i) {
+                                        $namaBulan = $bulan[$i];
+                                        break;
+                                    } elseif ($dataTanggal[1] < 10 && substr($dataTanggal[1], 1) == $i) {
+                                        $namaBulan = $bulan[$i];
+                                        break;
+                                    }
+                                }
+                                echo $dataTanggal[2] . " " . $namaBulan . " " . $dataTanggal[0];
+                                ?>
+                            </span>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <table class="table table-bordered">
                     <thead class="thead-dark text-center">
                         <tr>
                             <th scope="col" style="width: 5%;">No. </th>
-                            <th scope="col" style="width: 10%;">Tanggal</th>
+                            <th scope="col" style="width: 10%;">
+                                <?php if ($data == "laporanTiapUser") : ?>
+                                    Tanggal
+                                <?php elseif ($data == "laporanByTanggal") : ?>
+                                    Jam
+                                <?php endif; ?>
+                            </th>
                             <th scope="col" style="width: 85%;">Detail Pembelian</th>
                         </tr>
                     </thead>
                     <tbody class="bg-light">
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>2021-03-03</td>
-                            <td>
-                                <div class="row">
-                                    <div class="col-8">
-                                        <table class="table table-sm table-bordered">
-                                            <thead class="text-center">
-                                                <tr>
-                                                    <th scope="col" style="width: 35%;">Barang</th>
-                                                    <th scope="col" style="width: 15%;">Jumah</th>
-                                                    <th scope="col" style="width: 25%;">Harga</th>
-                                                    <th scope="col" style="width: 25%;">Total</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="bg-light">
-                                                <tr>
-                                                    <td>
-                                                        <img class="card-img-top img-thumbnail" src="<?php echo $BASE_URL; ?>/assets/img/casual 1.jpg" style="width: 50%;" alt="Card image cap">
-                                                        Mark
-                                                    </td>
-                                                    <td>Mark</td>
-                                                    <td>Mark</td>
-                                                    <td>Mark</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="col" colspan="3">total pembelian : </th>
-                                                    <th scope="col">123124 </th>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <span>
-                                                    Alamat : gresik</br>
-                                                    Jarak : 1 km</br>
-                                                    jasa pengiriman : JNE (6000)</br>
-                                                    biaya pengiriman : 6000</br>
-                                                </span>
+                        <?php if (!empty($dataLaporan)) : ?>
+                            <?php
+                            $no = 1;
+                            foreach ($dataLaporan as $rowDataLaporan) : ?>
+                                <tr>
+                                    <th scope="row" class="text-center align-middle"><?php echo $no++; ?>.</th>
+                                    <td class="align-middle">
+                                        <div class="text-center">
+                                            <?php if ($data == "laporanTiapUser") : ?>
+                                                <?php echo $rowDataLaporan['tanggalTransaksi']; ?>
+                                            <?php elseif ($data == "laporanByTanggal") : ?>
+                                                <?php echo $rowDataLaporan['tanggalTransaksi']; ?>
+                                            <?php endif; ?>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <table class="table table-sm table-bordered">
+                                                    <thead class="text-center thead-dark">
+                                                        <tr>
+                                                            <th scope="col" style="width: 50%;">Barang</th>
+                                                            <th scope="col" style="width: 10%;">Jumah</th>
+                                                            <th scope="col" style="width: 20%;">Harga</th>
+                                                            <th scope="col" style="width: 20%;">Total</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="bg-light">
+                                                        <?php foreach ($dataDetailLaporan as $rowDataDetailLaporan) : ?>
+                                                            <?php if ($rowDataLaporan['idTransaksi'] == $rowDataDetailLaporan['idTransaksi']) : ?>
+                                                                <tr>
+                                                                    <td>
+                                                                        <img class="card-img-top img-thumbnail" src="<?php echo $BASE_URL; ?>/assets/img/<?php echo $rowDataDetailLaporan['gambarBaju']; ?>" style="width: 40%;" alt="Card image cap">
+                                                                        <?php echo $rowDataDetailLaporan['namaProduk']; ?>
+                                                                    </td>
+                                                                    <td class="text-center align-middle"><?php echo $rowDataDetailLaporan['jumlahBaju']; ?></td>
+                                                                    <td class="text-center align-middle">Rp. <?php echo $rowDataDetailLaporan['hargaBaju']; ?></td>
+                                                                    <td class="text-center align-middle">Rp. <?php echo $rowDataDetailLaporan['totalHarga']; ?></td>
+                                                                </tr>
+                                                            <?php endif; ?>
+                                                        <?php endforeach; ?>
+                                                        <tr class="text-danger">
+                                                            <th scope="col" colspan="3"><span class="float-right">Total Harga Pembelian : </span></th>
+                                                            <th scope="col" class="text-center">Rp. <?php echo $rowDataLaporan['totalHargaPembelian']; ?></th>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <span>
+                                                            <?php if ($data == "laporanByTanggal") : ?>
+                                                                <strong>Status Transaksi : </strong><span class="text-danger"><?php echo $rowDataLaporan['statusTransaksi']; ?></span></br>
+                                                                User : <?php echo $rowDataLaporan['username']; ?></br>
+                                                                Nama : <?php echo $rowDataLaporan['nama']; ?></br>
+                                                            <?php endif; ?>
+                                                            Alamat : <?php echo $rowDataLaporan['alamatPengiriman']; ?></br>
+                                                            Jarak : <?php echo $rowDataLaporan['jarak']; ?> km</br>
+                                                            Jasa Pengiriman<br><?php echo $rowDataLaporan['jasaKurir']; ?> (Rp. <?php echo $rowDataLaporan['biayaKurir']; ?>)</br>
+                                                            Biaya Pengiriman : Rp. <?php echo $rowDataLaporan['biayaPengiriman']; ?></br>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <span class="font-weight-bold">
+                                                            Total Seluruh Harga<br>Rp. <?php echo $rowDataLaporan['totalHarga']; ?>
+                                                        </span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <span>
-                                                    total harga : 6000
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else : ?>
+                            <div class="alert alert-light" role="alert">
+                                Laporan tidak Ada!
+                            </div>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
