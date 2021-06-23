@@ -143,7 +143,7 @@ class TransaksiController
         $jumlahPembelian = $_POST['jumlahPembelian'];
         for ($i = 0; $i < count($idTransaksi); $i++) {
             $this->modelProduk->updateStokBaju($idBaju[$i], $jumlahPembelian[$i]);
-            $this->$this->modelTransaksi->updateCheckout($idTransaksi[$i], $idBaju[$i], $jumlahPembelian[$i]);
+            $this->modelTransaksi->updateCheckout($idTransaksi[$i], $idBaju[$i], $jumlahPembelian[$i]);
         }
     }
 
