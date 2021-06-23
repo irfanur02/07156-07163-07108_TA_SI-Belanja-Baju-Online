@@ -5,12 +5,14 @@ class TransaksiController
     private $modelTransaksi;
     private $modelUser;
     private $modelKurir;
+    private $modelProduk;
 
     public function __construct()
     {
         $this->modelTransaksi = new TransaksiModel();
         $this->modelUser = new UserModel();
         $this->modelKurir = new KurirModel();
+        $this->modelProduk = new ProdukModel();
     }
 
     /**
@@ -140,7 +142,8 @@ class TransaksiController
         $idBaju = $_POST['idBaju'];
         $jumlahPembelian = $_POST['jumlahPembelian'];
         for ($i = 0; $i < count($idTransaksi); $i++) {
-            $this->modelTransaksi->updateCheckout($idTransaksi[$i], $idBaju[$i], $jumlahPembelian[$i]);
+            $this->modelProduk->updateStokBaju($idBaju[$i], $jumlahPembelian[$i]);
+            $this->$this->modelTransaksi->updateCheckout($idTransaksi[$i], $idBaju[$i], $jumlahPembelian[$i]);
         }
     }
 

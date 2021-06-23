@@ -146,4 +146,17 @@ class ProdukModel
         $query = koneksi()->query($sql);
         return $query->fetch_assoc();
     }
+
+    /**
+     * berfungsi untuk mengupdate stok baju berdasarkan id baju dan jumlah pembelian baju
+     */
+    public function updateStokBaju($idBaju, $jumlahPembelian)
+    {
+        $sqlGetStokBaju = "SELECT jumlah_baju AS stokBaju FROM stok_baju WHERE id_baju = $idBaju";
+        $queryGetStokBaju = koneksi()->query($sqlGetStokBaju);
+        $stokBaju = $queryGetStokBaju->fetch_assoc();
+        $jumlahBaju = $stokBaju['stokBaju'] - $jumlahPembelian;
+        $sqlUpdate = "UPDATE stok_baju SET jumlah_baju = $jumlahBaju WHERE id_baju = $idBaju";
+        koneksi()->query($sqlUpdate);
+    }
 }
