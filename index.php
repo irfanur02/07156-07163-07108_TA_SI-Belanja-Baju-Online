@@ -293,10 +293,11 @@ if (isset($_GET['view'])) {
             header("location: index.php?page=utama&aksi=view");
         }
     } elseif ($page == "daftar") {
+        $daftar = new AuthController();
         if ($aksi == "view") {
-            require_once("View/daftar.php");
+            $daftar->viewDaftar();
         } elseif ($aksi == "store") {
-            require_once("View/index.php");
+            $daftar->store();
         }
     }
 } else {

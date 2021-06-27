@@ -54,8 +54,9 @@
                                 <label for="inputKota">Kota</label>
                                 <select class="form-control" id="inputKota" name="kota">
                                     <option selected>Pilih Kota</option>
-                                    <option value="1">aaa</option>
-                                    <option value="2">bbb</option>
+                                    <?php foreach ($dataKota as $row) : ?>
+                                        <option value="<?php echo $row['id_kota']; ?>"><?php echo $row['nama_kota']; ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -78,7 +79,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputPassword">Password</label>
-                                <input type="text" class="form-control" id="inputPassword" name="password" placeholder="Masukkan Password">
+                                <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Masukkan Password">
                             </div>
                         </div>
                     </div>
