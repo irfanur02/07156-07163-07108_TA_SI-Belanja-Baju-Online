@@ -36,8 +36,8 @@
                 <?php if ($_SESSION['statusUser'] == 'logged') : ?>
                     <div class="dropdown">
                         <button class="btn btn-light dropdown-toggle mr-3 my-2 my-sm-0" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <input type="hidden" name="idUser" id="idUser" value="4">
-                            Nama
+                            <input type="hidden" name="idUser" id="idUser" value="<?php echo $_SESSION['user']['id_user']; ?>">
+                            <?php echo $_SESSION['user']['username']; ?>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="index.php?page=profil&aksi=view">Profil</a>
@@ -58,11 +58,16 @@
                     <a href="index.php?page=pembelian&aksi=view" class="btn btn-dark my-2 my-sm-0">
                         Pembelian
                     </a>
-                <?php endif; ?>
-                <?php if ($_SESSION['statusUser'] != 'logged') : ?>
-                    <div class="alert alert-info my-0 mr-3" role="alert">
-                        Login untuk dapat melakukan Pembelian !
-                    </div>
+                <?php else : ?>
+                    <?php if (isset($_SESSION['statusLogin']) == 'gagal') : ?>
+                        <div class="alert alert-danger my-0 mr-3" role="alert">
+                            Login tidak Berhasil !
+                        </div>
+                    <?php else : ?>
+                        <div class="alert alert-info my-0 mr-3" role="alert">
+                            Login untuk dapat melakukan Pembelian !
+                        </div>
+                    <?php endif; ?>
                     <button type="button" class="btn btn-primary border-white mr-3 my-2 my-sm-0" data-toggle="modal" data-target="#modalLogin">
                         Login
                     </button>
@@ -111,8 +116,8 @@
                                                             <blockquote class="blockquote font-weight-bold">
                                                                 <p class="mb-0">Rp. <?php echo $rowDataBajuPopuler['hargaBaju']; ?></p>
                                                             </blockquote>
-                                                            <!-- keranjang -->
                                                             <?php if ($_SESSION['statusUser'] == 'logged') : ?>
+                                                                <!-- keranjang -->
                                                                 <?php if (!empty($dataKeranjangUser)) : ?>
                                                                     <?php foreach ($dataKeranjangUser as $key => $rowDataKeranjangUser) : ?>
                                                                         <?php if ($rowDataBajuPopuler['idBaju'] == $rowDataKeranjangUser['idBaju']) : ?>
@@ -280,7 +285,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="Password">Masukkan Password</label>
-                                <input type="text" class="form-control" id="inputPassword" name="password" placeholder="Password">
+                                <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
                             </div>
                         </div>
                         <div class="modal-footer">

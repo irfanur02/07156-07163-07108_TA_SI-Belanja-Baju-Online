@@ -26,9 +26,22 @@ class ProdukController
      */
     public function viewUser()
     {
-        //? nunggu progress login
-        //! $idUser = $_SESSION['user']['id'];
-        $idUser = 4;
+        if (isset($_SESSION['user'])) {
+            $idUser = $_SESSION['user']['id_user'];
+            $dataKeranjangUser = $this->modelTransaksi->getKeranjang($idUser);
+            $jumlahKeranjangUser = $this->modelTransaksi->getJumlahKeranjangUser($idUser);
+            $dataBajuFavorite = $this->modelFavorite->getBajuFavorite($idUser);
+            extract($dataKeranjangUser);
+            extract($dataBajuFavorite);
+
+            if (empty($jumlahKeranjangUser)) {
+                $jumlahKeranjang =  0;
+            } else {
+                $jumlahKeranjang =  $jumlahKeranjangUser['jumlahKeranjang'];
+            }
+        } else {
+            $_SESSION['statusUser'] = 'notLogged';
+        }
         $dataJenisBaju = $this->modelJenis->getAllJenisBajuAktif();
         $dataMerekBaju = $this->modelMerek->getAllMerekBajuAktif();
         $dataKategoriBaju = $this->modelKategori->getAllKategoriBajuAktif();
@@ -37,25 +50,13 @@ class ProdukController
         $dataHargaMaxProduk = $this->modelProduk->getHargaMaxProduk();
         $dataSeluruhBaju = $this->modelProduk->getSeluruhBaju();
         $dataBajuPopuler = $this->modelProduk->getBajuPopuler(5);
-        $dataKeranjangUser = $this->modelTransaksi->getKeranjang($idUser);
-        $jumlahKeranjangUser = $this->modelTransaksi->getJumlahKeranjangUser($idUser);
-        $dataBajuFavorite = $this->modelFavorite->getBajuFavorite($idUser);
+
         extract($dataSeluruhBaju);
         extract($dataJenisBaju);
         extract($dataMerekBaju);
         extract($dataKategoriBaju);
         extract($dataUkuranBaju);
         extract($dataBajuPopuler);
-        extract($dataKeranjangUser);
-        extract($dataBajuFavorite);
-
-        $_SESSION['statusUser'] = 'notLogged'; // hanya percobaan
-
-        if (empty($jumlahKeranjangUser)) {
-            $jumlahKeranjang =  0;
-        } else {
-            $jumlahKeranjang =  $jumlahKeranjangUser['jumlahKeranjang'];
-        }
 
         $data = "produk_populer";
         $hasilPencarian = "found";
@@ -70,18 +71,29 @@ class ProdukController
      */
     public function cariBaju()
     {
-        //? nunggu progress login
-        //! $idUser = $_SESSION['user']['id'];
-        $idUser = 4;
+        if (isset($_SESSION['user'])) {
+            $idUser = $_SESSION['user']['id_user'];
+            $dataKeranjangUser = $this->modelTransaksi->getKeranjang($idUser);
+            $jumlahKeranjangUser = $this->modelTransaksi->getJumlahKeranjangUser($idUser);
+            $dataBajuFavorite = $this->modelFavorite->getBajuFavorite($idUser);
+            extract($dataKeranjangUser);
+            extract($dataBajuFavorite);
+
+            if (empty($jumlahKeranjangUser)) {
+                $jumlahKeranjang =  0;
+            } else {
+                $jumlahKeranjang =  $jumlahKeranjangUser['jumlahKeranjang'];
+            }
+        } else {
+            $_SESSION['statusUser'] = 'notLogged';
+        }
+
         $dataJenisBaju = $this->modelJenis->getAllJenisBajuAktif();
         $dataMerekBaju = $this->modelMerek->getAllMerekBajuAktif();
         $dataKategoriBaju = $this->modelKategori->getAllKategoriBajuAktif();
         $dataUkuranBaju = $this->modelUkuran->getAllUkuranBajuAktif();
         $dataHargaMinProduk = $this->modelProduk->getHargaMinProduk();
         $dataHargaMaxProduk = $this->modelProduk->getHargaMaxProduk();
-        $dataKeranjangUser = $this->modelTransaksi->getKeranjang($idUser);
-        $jumlahKeranjangUser = $this->modelTransaksi->getJumlahKeranjangUser($idUser);
-        $dataBajuFavorite = $this->modelFavorite->getBajuFavorite($idUser);
         $merek = "";
         $jenis = "";
         $kategori = "";
@@ -114,14 +126,6 @@ class ProdukController
         extract($dataMerekBaju);
         extract($dataKategoriBaju);
         extract($dataUkuranBaju);
-        extract($dataKeranjangUser);
-        extract($dataBajuFavorite);
-
-        if (empty($jumlahKeranjangUser)) {
-            $jumlahKeranjang =  0;
-        } else {
-            $jumlahKeranjang =  $jumlahKeranjangUser['jumlahKeranjang'];
-        }
 
         $hargaMinProduk = $dataHargaMinProduk['hargaMin'];
         $hargaMaxProduk = $dataHargaMaxProduk['hargaMax'];
@@ -140,25 +144,35 @@ class ProdukController
         $ukuran = $_POST['ukuran'];
         $hargaMin = $_POST['hargaTerkecil'];
         $hargaMax = $_POST['hargaTerbesar'];
-        //? nunggu progress login
-        //! $idUser = $_SESSION['user']['id'];
-        $idUser = 4;
+
+        if (isset($_SESSION['user'])) {
+            $idUser = $_SESSION['user']['id_user'];
+            $dataKeranjangUser = $this->modelTransaksi->getKeranjang($idUser);
+            $jumlahKeranjangUser = $this->modelTransaksi->getJumlahKeranjangUser($idUser);
+            $dataBajuFavorite = $this->modelFavorite->getBajuFavorite($idUser);
+            extract($dataKeranjangUser);
+            extract($dataBajuFavorite);
+
+            if (empty($jumlahKeranjangUser)) {
+                $jumlahKeranjang =  0;
+            } else {
+                $jumlahKeranjang =  $jumlahKeranjangUser['jumlahKeranjang'];
+            }
+        } else {
+            $_SESSION['statusUser'] = 'notLogged';
+        }
+
         $dataJenisBaju = $this->modelJenis->getAllJenisBajuAktif();
         $dataMerekBaju = $this->modelMerek->getAllMerekBajuAktif();
         $dataKategoriBaju = $this->modelKategori->getAllKategoriBajuAktif();
         $dataUkuranBaju = $this->modelUkuran->getAllUkuranBajuAktif();
         $dataHargaMinProduk = $this->modelProduk->getHargaMinProduk();
         $dataHargaMaxProduk = $this->modelProduk->getHargaMaxProduk();
-        $dataKeranjangUser = $this->modelTransaksi->getKeranjang($idUser);
-        $jumlahKeranjangUser = $this->modelTransaksi->getJumlahKeranjangUser($idUser);
-        $dataBajuFavorite = $this->modelFavorite->getBajuFavorite($idUser);
 
         if (isset($_POST['populer'])) {
             $dataSeluruhBaju = $this->modelProduk->getAllPencarianFilterBajuPopuler($merek, $jenis, $kategori, $ukuran, $hargaMin, $hargaMax);
         } else {
             $dataSeluruhBaju = $this->modelProduk->getAllPencarianFilterBaju($merek, $jenis, $kategori, $ukuran, $hargaMin, $hargaMax);
-            // var_export($dataSeluruhBaju);
-            // die();
         }
 
         extract($dataJenisBaju);
@@ -166,14 +180,6 @@ class ProdukController
         extract($dataKategoriBaju);
         extract($dataUkuranBaju);
         extract($dataSeluruhBaju);
-        extract($dataKeranjangUser);
-        extract($dataBajuFavorite);
-
-        if (empty($jumlahKeranjangUser)) {
-            $jumlahKeranjang =  0;
-        } else {
-            $jumlahKeranjang =  $jumlahKeranjangUser['jumlahKeranjang'];
-        }
 
         $hasilPencarian = "found";
         $hargaMinProduk = $dataHargaMinProduk['hargaMin'];

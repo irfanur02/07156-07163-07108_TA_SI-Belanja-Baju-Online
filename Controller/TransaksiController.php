@@ -38,10 +38,15 @@ class TransaksiController
      */
     public function getHistoriTransaksi($statusPembelian)
     {
-        //? nunggu progress login
-        //! $idUser = $_SESSION['user']['id'];
-        $dataTransaksi = $this->modelTransaksi->getDataTransaksi(3, $statusPembelian);
-        $detailDataTransaksi = $this->modelTransaksi->getDetailDataTransaksi(3, $statusPembelian);
+        $idUser = $_SESSION['user']['id_user'];
+        $dataTransaksi = $this->modelTransaksi->getDataTransaksi($idUser, $statusPembelian);
+        $detailDataTransaksi = $this->modelTransaksi->getDetailDataTransaksi($idUser, $statusPembelian);
+        $jumlahKeranjangUser = $this->modelTransaksi->getJumlahKeranjangUser($idUser);
+        if (empty($jumlahKeranjangUser)) {
+            $jumlahKeranjang =  0;
+        } else {
+            $jumlahKeranjang =  $jumlahKeranjangUser['jumlahKeranjang'];
+        }
         extract($dataTransaksi);
         extract($detailDataTransaksi);
         $BASE_URL = "http://localhost/projek-belanjaBajuOnline";
@@ -53,9 +58,16 @@ class TransaksiController
      */
     public function getAllPembelianTerproses()
     {
+        $idUser = $_SESSION['user']['id_user'];
         $dataJumlahPermintaan = $this->modelTransaksi->getJumlahPermintaan();
         $dataTransaksi = $this->modelTransaksi->getAllDataTransaksiTerproses();
         $detailDataTransaksi = $this->modelTransaksi->getAllDetailDataTransaksiTerproses();
+        $jumlahKeranjangUser = $this->modelTransaksi->getJumlahKeranjangUser($idUser);
+        if (empty($jumlahKeranjangUser)) {
+            $jumlahKeranjang =  0;
+        } else {
+            $jumlahKeranjang =  $jumlahKeranjangUser['jumlahKeranjang'];
+        }
         extract($dataTransaksi);
         extract($detailDataTransaksi);
         extract($dataJumlahPermintaan);
@@ -82,10 +94,15 @@ class TransaksiController
      */
     public function getPembelianTerproses($statusPembelian)
     {
-        //? nunggu progress login
-        //! $idUser = $_SESSION['user']['id'];
-        $dataTransaksi = $this->modelTransaksi->getDataTransaksi(2, $statusPembelian);
-        $detailDataTransaksi = $this->modelTransaksi->getDetailDataTransaksi(2, $statusPembelian);
+        $idUser = $_SESSION['user']['id_user'];
+        $dataTransaksi = $this->modelTransaksi->getDataTransaksi($idUser, $statusPembelian);
+        $detailDataTransaksi = $this->modelTransaksi->getDetailDataTransaksi($idUser, $statusPembelian);
+        $jumlahKeranjangUser = $this->modelTransaksi->getJumlahKeranjangUser($idUser);
+        if (empty($jumlahKeranjangUser)) {
+            $jumlahKeranjang =  0;
+        } else {
+            $jumlahKeranjang =  $jumlahKeranjangUser['jumlahKeranjang'];
+        }
         extract($dataTransaksi);
         extract($detailDataTransaksi);
         $BASE_URL = "http://localhost/projek-belanjaBajuOnline";
@@ -98,10 +115,15 @@ class TransaksiController
      */
     public function getPembelianTerkirim($statusPembelian)
     {
-        //? nunggu progress login
-        //! $idUser = $_SESSION['user']['id'];
-        $dataTransaksi = $this->modelTransaksi->getDataTransaksi(3, $statusPembelian);
-        $detailDataTransaksi = $this->modelTransaksi->getDetailDataTransaksi(3, $statusPembelian);
+        $idUser = $_SESSION['user']['id_user'];
+        $dataTransaksi = $this->modelTransaksi->getDataTransaksi($idUser, $statusPembelian);
+        $detailDataTransaksi = $this->modelTransaksi->getDetailDataTransaksi($idUser, $statusPembelian);
+        $jumlahKeranjangUser = $this->modelTransaksi->getJumlahKeranjangUser($idUser);
+        if (empty($jumlahKeranjangUser)) {
+            $jumlahKeranjang =  0;
+        } else {
+            $jumlahKeranjang =  $jumlahKeranjangUser['jumlahKeranjang'];
+        }
         extract($dataTransaksi);
         extract($detailDataTransaksi);
         $BASE_URL = "http://localhost/projek-belanjaBajuOnline";
@@ -114,9 +136,14 @@ class TransaksiController
      */
     public function getKeranjang()
     {
-        //? nunggu progress login
-        //! $idUser = $_SESSION['user']['id'];
-        $dataKeranjang = $this->modelTransaksi->getDataKeranjang(4);
+        $idUser = $_SESSION['user']['id_user'];
+        $dataKeranjang = $this->modelTransaksi->getDataKeranjang($idUser);
+        $jumlahKeranjangUser = $this->modelTransaksi->getJumlahKeranjangUser($idUser);
+        if (empty($jumlahKeranjangUser)) {
+            $jumlahKeranjang =  0;
+        } else {
+            $jumlahKeranjang =  $jumlahKeranjangUser['jumlahKeranjang'];
+        }
         extract($dataKeranjang);
         $BASE_URL = "http://localhost/projek-belanjaBajuOnline";
         require_once("View/keranjang.php");

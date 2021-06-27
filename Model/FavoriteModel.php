@@ -27,12 +27,29 @@ class FavoriteModel
      */
     public function getBajuFavorite($idUser)
     {
-        $sql = "SELECT id_baju AS idBaju FROM wishlist WHERE id_user = $idUser";
+        $sql = "SELECT wi.id_baju AS idBaju, wi.id_wishlist AS idWishlist, ba.gambar_baju AS gambarProduk, 
+                    CONCAT_WS(' ', mb.nama_merek_baju, jb.nama_jenis_baju) AS namaProduk, 
+                    ba.deskripsi_baju AS detailProduk, ba.harga_baju AS hargaProduk, sb.jumlah_baju AS stok 
+                FROM wishlist wi 
+                JOIN baju ba ON wi.id_baju = ba.id_baju 
+                JOIN merek_baju mb ON ba.id_merek_baju = mb.id_merek_baju 
+                JOIN jenis_baju jb ON ba.id_jenis_baju = jb.id_jenis_baju 
+                JOIN stok_baju sb ON ba.id_baju = sb.id_baju 
+                WHERE wi.id_user = $idUser";
         $query = koneksi()->query($sql);
         $hasil = [];
         while ($data = $query->fetch_assoc()) {
             $hasil[] = $data;
         }
         return $hasil;
+    }
+
+    /**
+     *  berfungsi untuk mengahapus data wishlist berdasarkan id wishlist
+     */
+    public function delete($idWishlist)
+    {
+        $sql = "DELETE FROM wishlist WHERE id_wishlist = $idWishlist";
+        koneksi()->query($sql);
     }
 }

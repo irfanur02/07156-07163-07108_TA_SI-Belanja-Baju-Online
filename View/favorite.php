@@ -24,7 +24,8 @@
             <form class="form-inline my-2 my-lg-0">
                 <div class="dropdown">
                     <button class="btn btn-light dropdown-toggle mr-3 my-2 my-sm-0" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Nama
+                        <input type="hidden" name="idUser" id="idUser" value="<?php echo $_SESSION['user']['id_user']; ?>">
+                        <?php echo $_SESSION['user']['username']; ?>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="index.php?page=profil&aksi=view">Profil</a>
@@ -35,7 +36,12 @@
                     </div>
                 </div>
                 <a href="index.php?page=keranjang&aksi=view" class="btn btn-info border-dark mr-3 my-2 my-sm-0">
-                    Keranjang <span class="badge badge-light" id="jumlahKeranjang">2</span>
+                    Keranjang
+                    <?php if ($jumlahKeranjang != 0) : ?>
+                        <span class="badge badge-light" id="jumlahKeranjang"><?php echo $jumlahKeranjang; ?></span>
+                    <?php else : ?>
+                        <span class="badge badge-light" id="jumlahKeranjang">0</span>
+                    <?php endif; ?>
                 </a>
                 <a href="index.php?page=pembelian&aksi=view" class="btn btn-dark mr-3 my-2 my-sm-0">
                     Pembelian
@@ -54,29 +60,37 @@
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
                 <div class="d-flex flex-wrap justify-content-center">
-                    <div class="card mb-4" style="width: 12rem;">
-                        <img class="card-img-top img-thumbnail" src="<?php echo $BASE_URL; ?>/assets/img/casual 1.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural
-                                lead-in to
-                                additional content.
-                            </p>
+                    <?php if (!empty($dataBajuFavorite)) : ?>
+                        <?php foreach ($dataBajuFavorite as $row) : ?>
+                            <div class="card mb-4" style="width: 12rem;">
+                                <img class="card-img-top img-thumbnail" src="<?php echo $BASE_URL; ?>/assets/img/<?php echo $row['gambarProduk']; ?>" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $row['namaProduk']; ?></h5>
+                                    <p class="card-text"><?php echo $row['detailProduk']; ?>.
+                                    </p>
+                                </div>
+                                <ul class="list-group list-group-flush text-center">
+                                    <li class="list-group-item h6 bg-info text-white">
+                                        Stok <?php echo $row['stok']; ?>
+                                    </li>
+                                </ul>
+                                <ul class="list-group list-group-flush text-center">
+                                    <li class="list-group-item h5 bg-dark text-white">
+                                        Rp. <?php echo $row['hargaProduk']; ?>
+                                    </li>
+                                </ul>
+                                <div class="card-footer">
+                                    <a href="index.php?page=favorite&aksi=delete&idWishlist=<?php echo $row['idWishlist']; ?>" class="btn btn-danger btn-block">Hapus</a>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <div class="alert alert-primary text-center h5" role="alert">
+                            <i class="fa fa-heart" aria-hidden="true"></i>&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-smile-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-smile-o" aria-hidden="true"></i>
+                            &nbsp;&nbsp;Favoritemu Masih Kosong&nbsp;&nbsp;
+                            <i class="fa fa-smile-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-smile-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>
                         </div>
-                        <ul class="list-group list-group-flush text-center">
-                            <li class="list-group-item h6 bg-info text-white">
-                                Stok 26
-                            </li>
-                        </ul>
-                        <ul class="list-group list-group-flush text-center">
-                            <li class="list-group-item h5 bg-dark text-white">
-                                Rp. 170.000
-                            </li>
-                        </ul>
-                        <div class="card-footer">
-                            <a href="index.php?page=favorite&aksi=delete" class="btn btn-danger btn-block">Hapus</a>
-                        </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

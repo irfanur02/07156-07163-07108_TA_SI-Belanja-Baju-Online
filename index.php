@@ -15,12 +15,14 @@ require_once("Model/KategoriModel.php");
 require_once("Model/UkuranModel.php");
 require_once("Model/FavoriteModel.php");
 require_once("Model/LaporanModel.php");
+require_once("Model/AuthModel.php");
 
 //memanggil controller
 require_once("Controller/TransaksiController.php");
 require_once("Controller/ProdukController.php");
 require_once("Controller/FavoriteController.php");
 require_once("Controller/LaporanController.php");
+require_once("Controller/AuthController.php");
 
 if (isset($_GET['view'])) {
     $view = $_GET['view'];
@@ -202,12 +204,13 @@ if (isset($_GET['view'])) {
         $produk = new ProdukController();
         $keranjang = new TransaksiController();
         $favorite = new FavoriteController();
+        $auth = new AuthController();
         if ($aksi == "view") {
             $produk->viewUser();
         } elseif ($aksi == "prosesLogin") {
-            require("View/index.php");
+            $auth->prosesLogin();
         } elseif ($aksi == "prosesLogout") {
-            require("View/index.php");
+            $auth->prosesLogout();
         } elseif ($aksi == "tambahKeranjang") {
             $keranjang->storeKeranjang();
         } elseif ($aksi == "simpanBaju") {
@@ -218,48 +221,73 @@ if (isset($_GET['view'])) {
             $produk->cariBaju();
         }
     } elseif ($page == "profil") {
-        if ($aksi == "view") {
-            require_once("View/profil.php");
-        } elseif ($aksi == "update") {
-            require_once("View/profil.php");
+        if (isset($_SESSION['user'])) {
+            if ($aksi == "view") {
+                require_once("View/profil.php");
+            } elseif ($aksi == "update") {
+                require_once("View/profil.php");
+            }
+        } else {
+            header("location: index.php?page=utama&aksi=view");
         }
     } elseif ($page == "favorite") {
-        if ($aksi == "view") {
-            require_once("View/favorite.php");
-        } elseif ($aksi == "delete") {
-            require_once("View/favorite.php");
+        $favorite = new FavoriteController();
+        if (isset($_SESSION['user'])) {
+            if ($aksi == "view") {
+                $favorite->view();
+            } elseif ($aksi == "delete") {
+                $favorite->delete();
+            }
+        } else {
+            header("location: index.php?page=utama&aksi=view");
         }
     } elseif ($page == "historiTransaksi") {
         $histori = new TransaksiController();
-        if ($aksi == "view") {
-            $histori->getHistoriTransaksi("Diterima");
+        if (isset($_SESSION['user'])) {
+            if ($aksi == "view") {
+                $histori->getHistoriTransaksi("Diterima");
+            }
+        } else {
+            header("location: index.php?page=utama&aksi=view");
         }
     } elseif ($page == "keranjang") {
         $keranjang = new TransaksiController();
-        if ($aksi == "view") {
-            $keranjang->getKeranjang();
-        } elseif ($aksi == "delete") {
-            $keranjang->delete();
+        if (isset($_SESSION['user'])) {
+            if ($aksi == "view") {
+                $keranjang->getKeranjang();
+            } elseif ($aksi == "delete") {
+                $keranjang->delete();
+            }
+        } else {
+            header("location: index.php?page=utama&aksi=view");
         }
     } elseif ($page == "pembelian") {
         $pembelian = new TransaksiController();
-        if ($aksi == "view") {
-            $pembelian->getPembelianTerproses("Diproses");
-        } elseif ($aksi == "keadaanTerproses") {
-            $pembelian->getPembelianTerproses("Diproses");
-        } elseif ($aksi == "keadaanTerkirim") {
-            $pembelian->getPembelianTerkirim("Dikirim");
-        } elseif ($aksi == "pembelianDiterima") {
-            $pembelian->updateStatusTransaksi(4);
+        if (isset($_SESSION['user'])) {
+            if ($aksi == "view") {
+                $pembelian->getPembelianTerproses("Diproses");
+            } elseif ($aksi == "keadaanTerproses") {
+                $pembelian->getPembelianTerproses("Diproses");
+            } elseif ($aksi == "keadaanTerkirim") {
+                $pembelian->getPembelianTerkirim("Dikirim");
+            } elseif ($aksi == "pembelianDiterima") {
+                $pembelian->updateStatusTransaksi(4);
+            }
+        } else {
+            header("location: index.php?page=utama&aksi=view");
         }
     } elseif ($page == "transaksi") {
         $transaksi = new TransaksiController();
-        if ($aksi == "view") {
-            $transaksi->view();
-        } elseif ($aksi == "checkoutKeranjang") {
-            $transaksi->checkoutKeranjang();
-        } elseif ($aksi == "update") {
-            $transaksi->update();
+        if (isset($_SESSION['user'])) {
+            if ($aksi == "view") {
+                $transaksi->view();
+            } elseif ($aksi == "checkoutKeranjang") {
+                $transaksi->checkoutKeranjang();
+            } elseif ($aksi == "update") {
+                $transaksi->update();
+            }
+        } else {
+            header("location: index.php?page=utama&aksi=view");
         }
     } elseif ($page == "daftar") {
         if ($aksi == "view") {

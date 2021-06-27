@@ -24,7 +24,8 @@
             <form class="form-inline my-2 my-lg-0">
                 <div class="dropdown">
                     <button class="btn btn-light dropdown-toggle mr-3 my-2 my-sm-0" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Nama
+                        <input type="hidden" name="idUser" id="idUser" value="<?php echo $_SESSION['user']['id_user']; ?>">
+                        <?php echo $_SESSION['user']['username']; ?>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="index.php?page=profil&aksi=view">Profil</a>
@@ -35,7 +36,12 @@
                     </div>
                 </div>
                 <a href="index.php?page=keranjang&aksi=view" class="btn btn-info border-dark mr-3 my-2 my-sm-0">
-                    Keranjang <span class="badge badge-light" id="jumlahKeranjang">2</span>
+                    Keranjang
+                    <?php if ($jumlahKeranjang != 0) : ?>
+                        <span class="badge badge-light" id="jumlahKeranjang"><?php echo $jumlahKeranjang; ?></span>
+                    <?php else : ?>
+                        <span class="badge badge-light" id="jumlahKeranjang">0</span>
+                    <?php endif; ?>
                 </a>
                 <a href="index.php?page=pembelian&aksi=view" class="btn btn-dark mr-3 my-2 my-sm-0">
                     Pembelian
