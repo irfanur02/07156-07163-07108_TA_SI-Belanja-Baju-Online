@@ -170,8 +170,12 @@ class TransaksiController
     {
         $idUser = $_POST['idUser'];
         $idBaju = $_POST['idBaju'];
-        if (empty($this->modelTransaksi->cekKeranjangUser($idUser, $idBaju))) {
-            $this->modelTransaksi->prosesStore($idUser, $idBaju);
+        if (empty($this->modelTransaksi->cekUserTransaksi($idUser))) {
+            $this->modelTransaksi->prosesTransaksiAwalUser($idUser, $idBaju);
+        } else {
+            if (empty($this->modelTransaksi->cekKeranjangUser($idUser, $idBaju))) {
+                $this->modelTransaksi->prosesStore($idUser, $idBaju);
+            }
         }
     }
 }

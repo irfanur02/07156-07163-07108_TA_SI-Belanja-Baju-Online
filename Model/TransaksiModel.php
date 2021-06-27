@@ -234,15 +234,48 @@ class TransaksiModel
     }
 
     /**
+     * berfungsi untuk mendapatkan id transaksi berdasarkan id user
+     */
+    public function getCurrentTransaksiUser($idUser)
+    {
+        $sqlGetIdTransaksi = "SELECT id_transaksi AS id FROM transaksi 
+                                WHERE id_status_pembelian = 1 AND id_user = $idUser";
+        $query = koneksi()->query($sqlGetIdTransaksi);
+        $hasilQuery = $query->fetch_assoc();
+        return $hasilQuery['id'];
+    }
+
+    /**
+     * berfungsi untuk mengecek apakah user sudah ada di dalam tabel transaksi berdasarkan id user
+     */
+    public function cekUserTransaksi($idUser)
+    {
+        $sql = "SELECT * FROM transaksi WHERE id_user = $idUser AND id_status_pembelian NOT IN(1, 2, 3, 4)";
+        $query = koneksi()->query($sql);
+        $hasilQuery = $query->fetch_assoc();
+        return $hasilQuery;
+    }
+
+    /**
+     * berfungsi untuk input data transaksi dimana yang diberarti sama dengan tambah keranjang dimana berdasarkan
+     * id user dan id baju
+     */
+    public function prosesTransaksiAwalUser($idUser, $idBaju)
+    {
+        $sqlInsertTranskasi = "INSERT INTO transaksi(id_status_pembelian, id_user) VALUES(1, $idUser)";
+        koneksi()->query($sqlInsertTranskasi);
+        $idTransaksi = $this->getCurrentTransaksiUser($idUser);
+        $sqlInsertDetailTranskasi = "INSERT INTO detail_transaksi(id_transaksi, id_baju, jumlah_pembelian)
+                                        VALUES('$idTransaksi', '$idBaju', 1)";
+        koneksi()->query($sqlInsertDetailTranskasi);
+    }
+
+    /**
      * berfungsi untuk mendapatkan produk yang ada dikeranjang berdasarkan id user, apakah produk tersebut sudah ada di keranjang atau belum
      */
     public function cekKeranjangUser($idUser, $idBaju)
     {
-        $sqlGetIdTransaksi = "SELECT id_transaksi AS id FROM transaksi 
-                                WHERE id_status_pembelian = 1 AND id_user = $idUser LIMIT 1";
-        $query = koneksi()->query($sqlGetIdTransaksi);
-        $hasilQuery = $query->fetch_assoc();
-        $idTransaksi = $hasilQuery['id'];
+        $idTransaksi = $this->getCurrentTransaksiUser($idUser);
         $sql = "SELECT * FROM detail_transaksi dt 
                 JOIN transaksi tr ON dt.id_transaksi = tr.id_transaksi 
                 WHERE tr.id_user = $idUser AND dt.id_baju = $idBaju AND dt.id_transaksi = $idTransaksi";
@@ -285,11 +318,7 @@ class TransaksiModel
      */
     public function prosesStore($idUser, $idBaju)
     {
-        $sqlGetIdTransaksi = "SELECT id_transaksi AS id FROM transaksi 
-                WHERE id_status_pembelian = 1 AND id_user = $idUser LIMIT 1";
-        $query = koneksi()->query($sqlGetIdTransaksi);
-        $hasilQuery = $query->fetch_assoc();
-        $idTransaksi = $hasilQuery['id'];
+        $idTransaksi = $this->getCurrentTransaksiUser($idUser);
         $sqlstore = "INSERT INTO detail_transaksi (id_transaksi, id_baju, jumlah_pembelian) 
                         VALUES($idTransaksi, $idBaju, 1)";
         koneksi()->query($sqlstore);
