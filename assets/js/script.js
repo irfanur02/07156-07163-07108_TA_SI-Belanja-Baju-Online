@@ -107,9 +107,19 @@ $(document).ready(function() {
 	$('#btnEditProfil').on('click', function() {
 		$('#btnUpdate').show();
 		$("#formEditProfil input").attr('disabled', false);
+		$("#formEditProfil #selectKota").attr('disabled', false);
+		$('#btnBatalUpdate').show();
+	})
+	
+	$('#btnBatalUpdate').on('click', function() {
+		$("#formEditProfil input").attr('disabled', true);
+		$("#formEditProfil #selectKota").attr('disabled', true);
+		$('#btnUpdate').hide();
+		$(this).hide();
 	})
 
 	$("#formEditProfil input").attr('disabled', true);
+	$("#formEditProfil #selectKota").attr('disabled', true);
 
 	$('#btnCheckout').on('click', function() {
 		var idUser = $('#idUser').val();

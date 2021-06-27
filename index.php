@@ -16,6 +16,7 @@ require_once("Model/UkuranModel.php");
 require_once("Model/FavoriteModel.php");
 require_once("Model/LaporanModel.php");
 require_once("Model/AuthModel.php");
+require_once("Model/KotaModel.php");
 
 //memanggil controller
 require_once("Controller/TransaksiController.php");
@@ -23,6 +24,7 @@ require_once("Controller/ProdukController.php");
 require_once("Controller/FavoriteController.php");
 require_once("Controller/LaporanController.php");
 require_once("Controller/AuthController.php");
+require_once("Controller/UserController.php");
 
 if (isset($_GET['view'])) {
     $view = $_GET['view'];
@@ -221,11 +223,12 @@ if (isset($_GET['view'])) {
             $produk->cariBaju();
         }
     } elseif ($page == "profil") {
+        $profil = new UserController();
         if (isset($_SESSION['user'])) {
             if ($aksi == "view") {
-                require_once("View/profil.php");
+                $profil->view();
             } elseif ($aksi == "update") {
-                require_once("View/profil.php");
+                $profil->update();
             }
         } else {
             header("location: index.php?page=utama&aksi=view");

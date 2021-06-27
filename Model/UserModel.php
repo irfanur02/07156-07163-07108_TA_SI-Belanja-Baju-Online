@@ -16,4 +16,26 @@ class UserModel
         $data = $query->fetch_assoc();
         return $data;
     }
+
+    /**
+     * berfungsi untuk mengupdate profil berdasarkan data yang ada di form
+     */
+    public function prosesUpdate($idUser, $idOwnerUser, $nama, $tanggalLahir, $jenisKelamin, $alamat, $kota, $noTelp, $email, $username, $password)
+    {
+        $sqlUpdateOwnerUser = "UPDATE owner_user SET
+                                    nama = '$nama',
+                                    tanggal_lahir = '$tanggalLahir',
+                                    jenis_kelamin = '$jenisKelamin',
+                                    alamat = '$alamat',
+                                    id_kota = $kota
+                                WHERE id_owner_user = $idOwnerUser";
+        koneksi()->query($sqlUpdateOwnerUser);
+        $sqlUpdateUser = "UPDATE users SET
+                                email = $email,
+                                no_telp = $noTelp,
+                                username = $username,
+                                password = $password
+                            WHERE id_user = $idUser";
+        koneksi()->query($sqlUpdateUser);
+    }
 }
