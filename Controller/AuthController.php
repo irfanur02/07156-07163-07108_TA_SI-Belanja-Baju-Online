@@ -12,6 +12,31 @@ class AuthController
     }
 
     /**
+     * berfungsi untuk proses login admin berdasarkan username dan password
+     */
+    public function prosesLoginAdmin()
+    {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        if ($username == "admin" && $password == "admin") {
+            $_SESSION['statusAdmin'] = 'logged';
+            header("location: index.php?view=admin&page=dashboard&aksi=view");
+        } else {
+            $_SESSION['statusLogin'] = 'gagal';
+            header("location: index.php?view=admin");
+        }
+    }
+
+    /**
+     * berfungsi untuk proses logout admin
+     */
+    public function prosesLogoutAdmin()
+    {
+        session_destroy();
+        header("location: index.php?view=admin");
+    }
+
+    /**
      * berfungsi untuk proses login berdasarkan username dan password
      */
     public function prosesLogin()

@@ -44,7 +44,7 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <a href="index.php?view=admin" class="btn btn-primary mr-3 my-2 my-sm-0" type="submit"><i class="fa fa-sign-out" aria-hidden="true"></i> Keluar</a>
+                <a href="index.php?view=admin&page=auth&aksi=logout" class="btn btn-primary mr-3 my-2 my-sm-0" type="submit"><i class="fa fa-sign-out" aria-hidden="true"></i> Keluar</a>
             </form>
         </div>
     </nav>

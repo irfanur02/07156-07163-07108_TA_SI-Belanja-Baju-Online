@@ -28,167 +28,215 @@ require_once("Controller/UserController.php");
 
 if (isset($_GET['view'])) {
     $view = $_GET['view'];
+    session_start();
 
     if ($view == "admin") {
         if (isset($_GET['page']) && isset($_GET['aksi'])) {
             $page = $_GET['page'];
             $aksi = $_GET['aksi'];
 
-            if ($page == "login") {
-                if ($aksi == "prosesLogin") {
-                    require_once("View/admin/index.php");
+            if ($page == "auth") {
+                $admin = new AuthController();
+                if ($aksi == "login") {
+                    $admin->prosesLoginAdmin();
+                } elseif ($aksi == "logout") {
+                    $admin->prosesLogoutAdmin();
                 }
             } elseif ($page == "dashboard") {
-                if ($aksi == "view") {
-                    require_once("View/admin/index.php");
+                if (isset($_SESSION['statusAdmin']) == 'logged') {
+                    if ($aksi == "view") {
+                        require_once("View/admin/index.php");
+                    }
+                } else {
+                    header("location: index.php?view=admin");
                 }
             } elseif ($page == "produk") {
-                if ($aksi == "view") {
-                    require_once("View/admin/produk/index.php");
-                } elseif ($aksi == "filterPopuler") {
-                    require_once("View/admin/produk/index.php");
-                } elseif ($aksi == "filterFavorite") {
-                    require_once("View/admin/produk/index.php");
-                } elseif ($aksi == "filterPopuler") {
-                    require_once("View/admin/produk/edit_produk.php");
-                } elseif ($aksi == "tambah") {
-                    require_once("View/admin/produk/tambah_produk.php");
-                } elseif ($aksi == "edit") {
-                    require_once("View/admin/produk/edit_produk.php");
-                } elseif ($aksi == "store") {
-                    require_once("View/admin/produk/index.php");
-                } elseif ($aksi == "update") {
-                    require_once("View/admin/produk/index.php");
-                } elseif ($aksi == "filter") {
-                    require_once("View/admin/produk/index.php");
+                if (isset($_SESSION['statusAdmin']) == 'logged') {
+                    if ($aksi == "view") {
+                        require_once("View/admin/produk/index.php");
+                    } elseif ($aksi == "filterPopuler") {
+                        require_once("View/admin/produk/index.php");
+                    } elseif ($aksi == "filterFavorite") {
+                        require_once("View/admin/produk/index.php");
+                    } elseif ($aksi == "filterPopuler") {
+                        require_once("View/admin/produk/edit_produk.php");
+                    } elseif ($aksi == "tambah") {
+                        require_once("View/admin/produk/tambah_produk.php");
+                    } elseif ($aksi == "edit") {
+                        require_once("View/admin/produk/edit_produk.php");
+                    } elseif ($aksi == "store") {
+                        require_once("View/admin/produk/index.php");
+                    } elseif ($aksi == "update") {
+                        require_once("View/admin/produk/index.php");
+                    } elseif ($aksi == "filter") {
+                        require_once("View/admin/produk/index.php");
+                    }
+                } else {
+                    header("location: index.php?view=admin");
                 }
             } elseif ($page == "jenisBaju") {
-                if ($aksi == "view") {
-                    require_once("View/admin/jenis_baju/index.php");
-                } elseif ($aksi == "filterPopuler") {
-                    require_once("View/admin/jenis_baju/index.php");
-                } elseif ($aksi == "tambah") {
-                    require_once("View/admin/jenis_baju/tambah_jenis_baju.php");
-                } elseif ($aksi == "edit") {
-                    require_once("View/admin/jenis_baju/edit_jenis_baju.php");
-                } elseif ($aksi == "store") {
-                    require_once("View/admin/jenis_baju/index.php");
-                } elseif ($aksi == "update") {
-                    require_once("View/admin/jenis_baju/index.php");
-                } elseif ($aksi == "filter") {
-                    require_once("View/admin/jenis_baju/index.php");
+                if (isset($_SESSION['statusAdmin']) == 'logged') {
+                    if ($aksi == "view") {
+                        require_once("View/admin/jenis_baju/index.php");
+                    } elseif ($aksi == "filterPopuler") {
+                        require_once("View/admin/jenis_baju/index.php");
+                    } elseif ($aksi == "tambah") {
+                        require_once("View/admin/jenis_baju/tambah_jenis_baju.php");
+                    } elseif ($aksi == "edit") {
+                        require_once("View/admin/jenis_baju/edit_jenis_baju.php");
+                    } elseif ($aksi == "store") {
+                        require_once("View/admin/jenis_baju/index.php");
+                    } elseif ($aksi == "update") {
+                        require_once("View/admin/jenis_baju/index.php");
+                    } elseif ($aksi == "filter") {
+                        require_once("View/admin/jenis_baju/index.php");
+                    }
+                } else {
+                    header("location: index.php?view=admin");
                 }
             } elseif ($page == "kategoriBaju") {
-                if ($aksi == "view") {
-                    require_once("View/admin/kategori_baju/index.php");
-                } elseif ($aksi == "filterPopuler") {
-                    require_once("View/admin/kategori_baju/index.php");
-                } elseif ($aksi == "tambah") {
-                    require_once("View/admin/kategori_baju/tambah_kategori_baju.php");
-                } elseif ($aksi == "edit") {
-                    require_once("View/admin/kategori_baju/edit_kategori_baju.php");
-                } elseif ($aksi == "store") {
-                    require_once("View/admin/kategori_baju/index.php");
-                } elseif ($aksi == "update") {
-                    require_once("View/admin/kategori_baju/index.php");
-                } elseif ($aksi == "filter") {
-                    require_once("View/admin/kategori_baju/index.php");
+                if (isset($_SESSION['statusAdmin']) == 'logged') {
+                    if ($aksi == "view") {
+                        require_once("View/admin/kategori_baju/index.php");
+                    } elseif ($aksi == "filterPopuler") {
+                        require_once("View/admin/kategori_baju/index.php");
+                    } elseif ($aksi == "tambah") {
+                        require_once("View/admin/kategori_baju/tambah_kategori_baju.php");
+                    } elseif ($aksi == "edit") {
+                        require_once("View/admin/kategori_baju/edit_kategori_baju.php");
+                    } elseif ($aksi == "store") {
+                        require_once("View/admin/kategori_baju/index.php");
+                    } elseif ($aksi == "update") {
+                        require_once("View/admin/kategori_baju/index.php");
+                    } elseif ($aksi == "filter") {
+                        require_once("View/admin/kategori_baju/index.php");
+                    }
+                } else {
+                    header("location: index.php?view=admin");
                 }
             } elseif ($page == "merekBaju") {
-                if ($aksi == "view") {
-                    require_once("View/admin/merek_baju/index.php");
-                } elseif ($aksi == "filterPopuler") {
-                    require_once("View/admin/merek_baju/index.php");
-                } elseif ($aksi == "tambah") {
-                    require_once("View/admin/merek_baju/tambah_merek_baju.php");
-                } elseif ($aksi == "edit") {
-                    require_once("View/admin/merek_baju/edit_merek_baju.php");
-                } elseif ($aksi == "store") {
-                    require_once("View/admin/merek_baju/index.php");
-                } elseif ($aksi == "update") {
-                    require_once("View/admin/merek_baju/index.php");
-                } elseif ($aksi == "filter") {
-                    require_once("View/admin/merek_baju/index.php");
+                if (isset($_SESSION['statusAdmin']) == 'logged') {
+                    if ($aksi == "view") {
+                        require_once("View/admin/merek_baju/index.php");
+                    } elseif ($aksi == "filterPopuler") {
+                        require_once("View/admin/merek_baju/index.php");
+                    } elseif ($aksi == "tambah") {
+                        require_once("View/admin/merek_baju/tambah_merek_baju.php");
+                    } elseif ($aksi == "edit") {
+                        require_once("View/admin/merek_baju/edit_merek_baju.php");
+                    } elseif ($aksi == "store") {
+                        require_once("View/admin/merek_baju/index.php");
+                    } elseif ($aksi == "update") {
+                        require_once("View/admin/merek_baju/index.php");
+                    } elseif ($aksi == "filter") {
+                        require_once("View/admin/merek_baju/index.php");
+                    }
+                } else {
+                    header("location: index.php?view=admin");
                 }
             } elseif ($page == "ukuranBaju") {
-                if ($aksi == "view") {
-                    require_once("View/admin/ukuran_baju/index.php");
-                } elseif ($aksi == "tambah") {
-                    require_once("View/admin/ukuran_baju/tambah_ukuran_baju.php");
-                } elseif ($aksi == "edit") {
-                    require_once("View/admin/ukuran_baju/edit_ukuran_baju.php");
-                } elseif ($aksi == "store") {
-                    require_once("View/admin/ukuran_baju/index.php");
-                } elseif ($aksi == "update") {
-                    require_once("View/admin/ukuran_baju/index.php");
+                if (isset($_SESSION['statusAdmin']) == 'logged') {
+                    if ($aksi == "view") {
+                        require_once("View/admin/ukuran_baju/index.php");
+                    } elseif ($aksi == "tambah") {
+                        require_once("View/admin/ukuran_baju/tambah_ukuran_baju.php");
+                    } elseif ($aksi == "edit") {
+                        require_once("View/admin/ukuran_baju/edit_ukuran_baju.php");
+                    } elseif ($aksi == "store") {
+                        require_once("View/admin/ukuran_baju/index.php");
+                    } elseif ($aksi == "update") {
+                        require_once("View/admin/ukuran_baju/index.php");
+                    }
+                } else {
+                    header("location: index.php?view=admin");
                 }
             } elseif ($page == "statusPembelian") {
-                if ($aksi == "view") {
-                    require_once("View/admin/status_pembelian/index.php");
-                } elseif ($aksi == "tambah") {
-                    require_once("View/admin/status_pembelian/tambah_status_pembelian.php");
-                } elseif ($aksi == "edit") {
-                    require_once("View/admin/status_pembelian/edit_status_pembelian.php");
-                } elseif ($aksi == "store") {
-                    require_once("View/admin/status_pembelian/index.php");
-                } elseif ($aksi == "update") {
-                    require_once("View/admin/status_pembelian/index.php");
+                if (isset($_SESSION['statusAdmin']) == 'logged') {
+                    if ($aksi == "view") {
+                        require_once("View/admin/status_pembelian/index.php");
+                    } elseif ($aksi == "tambah") {
+                        require_once("View/admin/status_pembelian/tambah_status_pembelian.php");
+                    } elseif ($aksi == "edit") {
+                        require_once("View/admin/status_pembelian/edit_status_pembelian.php");
+                    } elseif ($aksi == "store") {
+                        require_once("View/admin/status_pembelian/index.php");
+                    } elseif ($aksi == "update") {
+                        require_once("View/admin/status_pembelian/index.php");
+                    }
+                } else {
+                    header("location: index.php?view=admin");
                 }
             } elseif ($page == "kota") {
-                if ($aksi == "view") {
-                    require_once("View/admin/kota/index.php");
-                } elseif ($aksi == "kotaTerbanyak") {
-                    require_once("View/admin/kota/index.php");
-                } elseif ($aksi == "tambah") {
-                    require_once("View/admin/kota/tambah_kota.php");
-                } elseif ($aksi == "edit") {
-                    require_once("View/admin/kota/edit_kota.php");
-                } elseif ($aksi == "store") {
-                    require_once("View/admin/kota/index.php");
-                } elseif ($aksi == "update") {
-                    require_once("View/admin/kota/index.php");
-                } elseif ($aksi == "filter") {
-                    require_once("View/admin/kota/index.php");
+                if (isset($_SESSION['statusAdmin']) == 'logged') {
+                    if ($aksi == "view") {
+                        require_once("View/admin/kota/index.php");
+                    } elseif ($aksi == "kotaTerbanyak") {
+                        require_once("View/admin/kota/index.php");
+                    } elseif ($aksi == "tambah") {
+                        require_once("View/admin/kota/tambah_kota.php");
+                    } elseif ($aksi == "edit") {
+                        require_once("View/admin/kota/edit_kota.php");
+                    } elseif ($aksi == "store") {
+                        require_once("View/admin/kota/index.php");
+                    } elseif ($aksi == "update") {
+                        require_once("View/admin/kota/index.php");
+                    } elseif ($aksi == "filter") {
+                        require_once("View/admin/kota/index.php");
+                    }
+                } else {
+                    header("location: index.php?view=admin");
                 }
             } elseif ($page == "kurir") {
-                if ($aksi == "view") {
-                    require_once("View/admin/kurir/index.php");
-                } elseif ($aksi == "kurirTerbanyak") {
-                    require_once("View/admin/kurir/index.php");
-                } elseif ($aksi == "tambah") {
-                    require_once("View/admin/kurir/tambah_kurir.php");
-                } elseif ($aksi == "edit") {
-                    require_once("View/admin/kurir/edit_kurir.php");
-                } elseif ($aksi == "store") {
-                    require_once("View/admin/kurir/index.php");
-                } elseif ($aksi == "update") {
-                    require_once("View/admin/kurir/index.php");
-                } elseif ($aksi == "filter") {
-                    require_once("View/admin/kurir/index.php");
+                if (isset($_SESSION['statusAdmin']) == 'logged') {
+                    if ($aksi == "view") {
+                        require_once("View/admin/kurir/index.php");
+                    } elseif ($aksi == "kurirTerbanyak") {
+                        require_once("View/admin/kurir/index.php");
+                    } elseif ($aksi == "tambah") {
+                        require_once("View/admin/kurir/tambah_kurir.php");
+                    } elseif ($aksi == "edit") {
+                        require_once("View/admin/kurir/edit_kurir.php");
+                    } elseif ($aksi == "store") {
+                        require_once("View/admin/kurir/index.php");
+                    } elseif ($aksi == "update") {
+                        require_once("View/admin/kurir/index.php");
+                    } elseif ($aksi == "filter") {
+                        require_once("View/admin/kurir/index.php");
+                    }
+                } else {
+                    header("location: index.php?view=admin");
                 }
             } elseif ($page == "permintaan") {
-                $permintaan = new TransaksiController();
-                if ($aksi == "view") {
-                    $permintaan->getAllPembelianTerproses();
-                } elseif ($aksi == "terimaPermintaan") {
-                    $permintaan->updateStatusTransaksi(3);
+                if (isset($_SESSION['statusAdmin']) == 'logged') {
+                    $permintaan = new TransaksiController();
+                    if ($aksi == "view") {
+                        $permintaan->getAllPembelianTerproses();
+                    } elseif ($aksi == "terimaPermintaan") {
+                        $permintaan->updateStatusTransaksi(3);
+                    }
+                } else {
+                    header("location: index.php?view=admin");
                 }
             } elseif ($page == "laporan") {
-                $laporan = new LaporanController();
-                if ($aksi == "view") {
-                    $laporan->index();
-                } elseif ($aksi == "detailLaporanUserDiproses") {
-                    $laporan->getLaporanUser("Diproses");
-                } elseif ($aksi == "detailLaporanUserDikirim") {
-                    $laporan->getLaporanUser("Dikirim");
-                } elseif ($aksi == "detailLaporanUserDiterima") {
-                    $laporan->getLaporanUser("Diterima");
-                } elseif ($aksi == "semuaTransaksi") {
-                    $laporan->getLaporanSemuaTransaksi();
-                } elseif ($aksi == "detailLaporanByTanggal") {
-                    $laporan->getDetailLaporanByTanggal();
-                } elseif ($aksi == "transaksiByUser") {
-                    $laporan->getLaporanTiapUser();
+                if (isset($_SESSION['statusAdmin']) == 'logged') {
+                    $laporan = new LaporanController();
+                    if ($aksi == "view") {
+                        $laporan->index();
+                    } elseif ($aksi == "detailLaporanUserDiproses") {
+                        $laporan->getLaporanUser("Diproses");
+                    } elseif ($aksi == "detailLaporanUserDikirim") {
+                        $laporan->getLaporanUser("Dikirim");
+                    } elseif ($aksi == "detailLaporanUserDiterima") {
+                        $laporan->getLaporanUser("Diterima");
+                    } elseif ($aksi == "semuaTransaksi") {
+                        $laporan->getLaporanSemuaTransaksi();
+                    } elseif ($aksi == "detailLaporanByTanggal") {
+                        $laporan->getDetailLaporanByTanggal();
+                    } elseif ($aksi == "transaksiByUser") {
+                        $laporan->getLaporanTiapUser();
+                    }
+                } else {
+                    header("location: index.php?view=admin");
                 }
             }
         } else {

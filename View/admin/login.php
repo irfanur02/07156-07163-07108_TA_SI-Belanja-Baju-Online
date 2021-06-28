@@ -14,17 +14,23 @@
 </head>
 
 <body>
-    <div class="d-flex justify-content-center ">
+    <div class="d-flex justify-content-center">
         <div class="card w-75 mt-5">
             <div class="card-body">
-                <form action="index.php?view=admin&page=login&aksi=prosesLogin" method="post">
+                <?php if (isset($_SESSION['statusLogin']) == 'gagal') : ?>
+                    <div class="alert alert-danger text-center">
+                        !! Login Gagal !!
+                    </div>
+                <?php session_destroy();
+                endif; ?>
+                <form action="index.php?view=admin&page=auth&aksi=login" method="post">
                     <div class="form-group">
                         <label for="Username">Masukkan Username</label>
                         <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Username">
                     </div>
                     <div class="form-group">
                         <label for="Password">Masukkan Password</label>
-                        <input type="text" class="form-control" id="inputPassword" name="password" placeholder="Password">
+                        <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
                     </div>
                     <button type="submit" class="btn btn-primary btn-block" id="btnMasuk">Masuk</button>
                 </form>
