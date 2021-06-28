@@ -5,11 +5,13 @@ class LaporanController
 
     private $modelLaporan;
     private $modelUser;
+    private $modelTransaksi;
 
     public function __construct()
     {
         $this->modelLaporan = new LaporanModel();
         $this->modelUser = new UserModel();
+        $this->modelTransaksi = new TransaksiModel();
     }
 
     /**
@@ -17,6 +19,8 @@ class LaporanController
      */
     public function index()
     {
+        $dataJumlahPermintaan = $this->modelTransaksi->getJumlahPermintaan();
+        extract($dataJumlahPermintaan);
         $BASE_URL = "http://localhost/projek-belanjaBajuOnline";
         require_once("View/admin/laporan/index.php");
     }
@@ -40,6 +44,8 @@ class LaporanController
         } else {
             $dataLaporan = $this->modelLaporan->getSeluruhLaporanByTanggal();
         }
+        $dataJumlahPermintaan = $this->modelTransaksi->getJumlahPermintaan();
+        extract($dataJumlahPermintaan);
         extract($dataLaporan);
         $th = "Tanggal Transaksi";
         $judul = "semuaTransaksi";
@@ -55,6 +61,8 @@ class LaporanController
         $tanggal = $_GET['tanggal'];
         $dataLaporan = $this->modelLaporan->getLaporanByTanggal($tanggal);
         $dataDetailLaporan = $this->modelLaporan->getDetailLaporanByTanggal($tanggal);
+        $dataJumlahPermintaan = $this->modelTransaksi->getJumlahPermintaan();
+        extract($dataJumlahPermintaan);
         extract($dataLaporan);
         extract($dataDetailLaporan);
         $data = "laporanByTanggal";
@@ -68,6 +76,8 @@ class LaporanController
      */
     public function getLaporanTiapUser()
     {
+        $dataJumlahPermintaan = $this->modelTransaksi->getJumlahPermintaan();
+        extract($dataJumlahPermintaan);
         if (isset($_POST['transaksiTiapUser'])) {
             if ($_POST['transaksiTiapUser'] == "berdasarkanNama") {
                 $namaUser = $_POST['namaUser'];
@@ -99,6 +109,8 @@ class LaporanController
         $dataUser = $this->modelUser->getDataUser($idUser);
         $dataLaporan = $this->modelLaporan->getLaporanTransaksiUser($idUser, $statusTransaksi);
         $dataDetailLaporan = $this->modelLaporan->getDetailLaporanTransaksiUser($idUser, $statusTransaksi);
+        $dataJumlahPermintaan = $this->modelTransaksi->getJumlahPermintaan();
+        extract($dataJumlahPermintaan);
         extract($dataUser);
         extract($dataLaporan);
         extract($dataDetailLaporan);

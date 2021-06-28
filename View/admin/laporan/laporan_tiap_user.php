@@ -37,7 +37,7 @@
                     </div>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary">4</span></a>
+                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary"><?php echo $dataJumlahPermintaan[0]['jumlahPermintaan']; ?></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="index.php?view=admin&page=laporan&aksi=view">Laporan</a>
@@ -171,7 +171,7 @@
                                                             <?php if ($rowDataLaporan['idTransaksi'] == $rowDataDetailLaporan['idTransaksi']) : ?>
                                                                 <tr>
                                                                     <td>
-                                                                        <img class="card-img-top img-thumbnail" src="<?php echo $BASE_URL; ?>/assets/img/<?php echo $rowDataDetailLaporan['gambarBaju']; ?>" style="width: 40%;" alt="Card image cap">
+                                                                        <img class="card-img-top img-thumbnail" src="<?php echo $BASE_URL; ?>/assets/img/tersimpan/<?php echo $rowDataDetailLaporan['gambarBaju']; ?>" style="width: 40%;" alt="Card image cap">
                                                                         <?php echo $rowDataDetailLaporan['namaProduk']; ?>
                                                                     </td>
                                                                     <td class="text-center align-middle"><?php echo $rowDataDetailLaporan['jumlahBaju']; ?></td>

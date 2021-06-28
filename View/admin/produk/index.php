@@ -37,7 +37,7 @@
                     </div>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary">4</span></a>
+                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary"><?php echo $dataJumlahPermintaan[0]['jumlahPermintaan']; ?></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="index.php?view=admin&page=laporan&aksi=view">Laporan</a>
@@ -74,19 +74,32 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item text-dark font-weight-bold">
                     <div class="row">
-                        <div class="col-4">
-                            <span class="float-left">Total : 140 Baju</span>
+                        <div class="col-2">
+                            <span class="float-left">Total : <?php echo $jumlahBaju; ?> Baju</span>
                         </div>
                         <div class="col-4 text-center">
                             <span>Manajemen Produk</span>
+                            <?php if (isset($judul)) : ?>
+                                <?php if ($judul == "populer") : ?>
+                                    <h6>Baju Terpopuler (<?php echo count($dataSeluruhBajuFavorite); ?>)</h6>
+                                <?php elseif ($judul == "favorite") : ?>
+                                    <h6>Baju Terfavorite (<?php echo count($dataSeluruhBajuFavorite); ?>)</h6>
+                                <?php endif; ?>
+                            <?php endif; ?>
                         </div>
-                        <div class="col-4">
-                            <a href="index.php?view=admin&page=produk&aksi=tambah" class="btn btn-success btn-sm float-right mb-3">
-                                Tambah Data
-                            </a>
+                        <div class="col-6">
                             <button class="btn btn-dark btn-sm" data-toggle="modal" data-target="#modalCariProduk">
                                 Cari & Filter Produk
                             </button>
+                            <a href="index.php?view=admin&page=produk&aksi=filterPopuler" class="my-auto btn btn-warning btn-sm mb-3">
+                                Terpopuluer
+                            </a>
+                            <a href="index.php?view=admin&page=produk&aksi=filterFavorite" class="my-auto btn btn-primary btn-sm mb-3">
+                                Terfavorite
+                            </a>
+                            <a href="index.php?view=admin&page=produk&aksi=tambah" class=" my-auto btn btn-success btn-sm float-right mb-3">
+                                Tambah Data
+                            </a>
                         </div>
                     </div>
                 </li>
@@ -98,34 +111,51 @@
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
                 <div class="d-flex flex-wrap justify-content-center">
-                    <div class="card mb-4" style="width: 12rem;">
-                        <img class="card-img-top img-thumbnail" src="<?php echo $BASE_URL; ?>/assets/img/casual 1.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural
-                                lead-in to
-                                additional content.
-                            </p>
+                    <?php if (isset($hasilPencarian) == "found") : ?>
+                        <?php if (!empty($dataSeluruhBajuFavorite)) : ?>
+                            <?php foreach ($dataSeluruhBajuFavorite as $rowDataSeluruhBajuFavorite) : ?>
+                                <div class="card mb-4" style="width: 12rem;">
+                                    <img class="card-img-top img-thumbnail" src="<?php echo $BASE_URL; ?>/assets/img/tersimpan/<?php echo $rowDataSeluruhBajuFavorite['gambarBaju']; ?>" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?php echo $rowDataSeluruhBajuFavorite['namaProduk']; ?></h5>
+                                        <p class="card-text"><?php echo $rowDataSeluruhBajuFavorite['detailProduk']; ?>.
+                                        </p>
+                                    </div>
+                                    <ul class="list-group list-group-flush text-center">
+                                        <li class="list-group-item h6 bg-success text-white">
+                                            <i class="fa fa-heart" aria-hidden="true"></i>
+                                            <?php if (!empty($rowDataSeluruhBajuFavorite['jumlahDisukai'])) : ?>
+                                                <?php echo $rowDataSeluruhBajuFavorite['jumlahDisukai']; ?>
+                                            <?php else : ?>
+                                                0
+                                            <?php endif; ?>
+                                        </li>
+                                    </ul>
+                                    <ul class="list-group list-group-flush text-center">
+                                        <li class="list-group-item h6 bg-info text-white">
+                                            Stok <?php echo $rowDataSeluruhBajuFavorite['stokBaju']; ?>
+                                        </li>
+                                    </ul>
+                                    <ul class="list-group list-group-flush text-center">
+                                        <li class="list-group-item h5 bg-dark text-white">
+                                            Rp. <?php echo $rowDataSeluruhBajuFavorite['hargaBaju']; ?>
+                                        </li>
+                                    </ul>
+                                    <div class="card-footer">
+                                        <a href="index.php?view=admin&page=produk&aksi=edit&id=<?php echo $rowDataSeluruhBajuFavorite['idBaju']; ?>" class="btn btn-danger btn-block"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php else : ?>
+                            <div class="alert alert-danger" role="alert">
+                                Produk tidak ditemukan !
+                            </div>
+                        <?php endif; ?>
+                    <?php else : ?>
+                        <div class="alert alert-danger" role="alert">
+                            Produk tidak ditemukan !
                         </div>
-                        <ul class="list-group list-group-flush text-center">
-                            <li class="list-group-item h6 bg-success text-white">
-                                <i class="fa fa-heart" aria-hidden="true"></i> 43
-                            </li>
-                        </ul>
-                        <ul class="list-group list-group-flush text-center">
-                            <li class="list-group-item h6 bg-info text-white">
-                                Stok 26
-                            </li>
-                        </ul>
-                        <ul class="list-group list-group-flush text-center">
-                            <li class="list-group-item h5 bg-dark text-white">
-                                Rp. 170.000
-                            </li>
-                        </ul>
-                        <div class="card-footer">
-                            <a href="index.php?view=admin&page=produk&aksi=edit&id=masihkosong" class="btn btn-danger btn-block"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                        </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -141,79 +171,68 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="index.php?view=admin&page=produk&aksi=filter" method="post">
-                    <div class="modal-body">
+                <div class="modal-body">
+                    <form action="index.php?view=admin&page=produk&aksi=adminCariBaju" method="post">
                         <div class="form-group row mb-3">
                             <label for="inputProduk" class="col-sm-3 col-form-label">Cari Produk</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="produk" id="inputProduk" placeholder="Masukkan Produk">
+                                <input type="text" class="form-control" name="pencarian" id="inputProduk" placeholder="Masukkan Produk">
+                                <button type="submit" class="btn btn-primary btn btn-block mt-1">Cari Produk</button>
                             </div>
                         </div>
+                    </form>
+                    <form action="index.php?view=admin&page=produk&aksi=adminFilterPencarian" method="post">
                         <span class="font-weight-bold">Filter Berdasarkan</span>
                         <div class="form-group row mt-2">
                             <label for="inputJenis" class="col-sm-2 col-form-label">Jenis</label>
                             <div class="col-sm-10 mb-2">
                                 <select class="custom-select" name="jenis">
-                                    <option selected>Pilih Jenis</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
+                                    <option selected value="">Pilih Jenis</option>
+                                    <?php foreach ($dataJenisBaju as $rowDataJenisBaju) : ?>
+                                        <option value="<?php echo $rowDataJenisBaju['jenisBaju']; ?>"><?php echo $rowDataJenisBaju['jenisBaju']; ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <label for="inputKategori" class="col-sm-2 col-form-label">Kategori</label>
                             <div class="col-sm-10 mb-2">
                                 <select class="custom-select" name="kategori">
-                                    <option selected>Pilih Kategori</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
+                                    <option selected value="">Pilih Kategori</option>
+                                    <?php foreach ($dataKategoriBaju as $rowDataKategoriBaju) : ?>
+                                        <option value="<?php echo $rowDataKategoriBaju['kategoriBaju']; ?>"><?php echo $rowDataKategoriBaju['kategoriBaju']; ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <label for="inputMerek" class="col-sm-2 col-form-label">Merek</label>
                             <div class="col-sm-10 mb-2">
                                 <select class="custom-select" name="merek">
-                                    <option selected>Pilih Merek</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
+                                    <option selected value="">Pilih Merek</option>
+                                    <?php foreach ($dataMerekBaju as $rowDataMerekBaju) : ?>
+                                        <option value="<?php echo $rowDataMerekBaju['merekBaju']; ?>"><?php echo $rowDataMerekBaju['merekBaju']; ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
-                            <label for="inputUkuran" class="col-sm-2 col-form-label">Ukuran</label>
+                            <label for="inputMerek" class="col-sm-2 col-form-label">Ukuran</label>
                             <div class="col-sm-10 mb-2">
                                 <select class="custom-select" name="ukuran">
-                                    <option selected>Pilih Ukuran</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
+                                    <option selected value="">Pilih Ukuran Baju</option>
+                                    <?php foreach ($dataUkuranBaju as $rowDataUkuranBaju) : ?>
+                                        <option value="<?php echo $rowDataUkuranBaju['ukuranBaju']; ?>"><?php echo $rowDataUkuranBaju['ukuranBaju']; ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <label for="inputUrutkanHarga" class="col-sm-2 col-form-label">Harga</label>
                             <div class="col-sm-10 mb-2">
                                 <select class="custom-select" name="harga">
                                     <option selected>Urutkan Harga</option>
-                                    <option value="1">Tertinggi</option>
-                                    <option value="2">Terendah</option>
+                                    <option value="max">Tertinggi</option>
+                                    <option value="min">Terendah</option>
                                 </select>
                             </div>
-                            <label for="inputWarna" class="col-sm-2 col-form-label">Warna</label>
-                            <div class="col-sm-10 mb-2">
-                                <input type="text" class="form-control" name="warna" id="inputWarna" placeholder="Masukkan Warna">
-                            </div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="custom-control custom-checkbox float-right">
-                                    <input type="checkbox" class="custom-control-input" name="terlaris" id="inputTerlaris">
-                                    <label class="custom-control-label" for="inputTerlaris">Terpopuler</label>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" name="disukai" id="inputDisukai">
-                                    <label class="custom-control-label" for="inputDisukai">Disukai</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Terapkan</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Terapkan</button>
+                </div>
                 </form>
             </div>
         </div>

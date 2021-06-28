@@ -56,18 +56,11 @@ class TransaksiController
     /**
      * berfungsi untuk mendapatkan semua transaksi yang memiliki status dalam proses
      */
-    public function getAllPembelianTerproses()
+    public function pembelianTerproses()
     {
-        $idUser = $_SESSION['user']['id_user'];
         $dataJumlahPermintaan = $this->modelTransaksi->getJumlahPermintaan();
         $dataTransaksi = $this->modelTransaksi->getAllDataTransaksiTerproses();
         $detailDataTransaksi = $this->modelTransaksi->getAllDetailDataTransaksiTerproses();
-        $jumlahKeranjangUser = $this->modelTransaksi->getJumlahKeranjangUser($idUser);
-        if (empty($jumlahKeranjangUser)) {
-            $jumlahKeranjang =  0;
-        } else {
-            $jumlahKeranjang =  $jumlahKeranjangUser['jumlahKeranjang'];
-        }
         extract($dataTransaksi);
         extract($detailDataTransaksi);
         extract($dataJumlahPermintaan);

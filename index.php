@@ -52,24 +52,25 @@ if (isset($_GET['view'])) {
                 }
             } elseif ($page == "produk") {
                 if (isset($_SESSION['statusAdmin']) == 'logged') {
+                    $produk = new ProdukController();
                     if ($aksi == "view") {
-                        require_once("View/admin/produk/index.php");
+                        $produk->viewAdmin();
                     } elseif ($aksi == "filterPopuler") {
-                        require_once("View/admin/produk/index.php");
+                        $produk->filterProduk("populer");
                     } elseif ($aksi == "filterFavorite") {
-                        require_once("View/admin/produk/index.php");
-                    } elseif ($aksi == "filterPopuler") {
-                        require_once("View/admin/produk/edit_produk.php");
+                        $produk->filterProduk("favorite");
                     } elseif ($aksi == "tambah") {
-                        require_once("View/admin/produk/tambah_produk.php");
+                        $produk->tambah();
                     } elseif ($aksi == "edit") {
-                        require_once("View/admin/produk/edit_produk.php");
+                        $produk->edit();
                     } elseif ($aksi == "store") {
-                        require_once("View/admin/produk/index.php");
+                        $produk->store();
                     } elseif ($aksi == "update") {
-                        require_once("View/admin/produk/index.php");
-                    } elseif ($aksi == "filter") {
-                        require_once("View/admin/produk/index.php");
+                        $produk->update();
+                    } elseif ($aksi == "adminFilterPencarian") {
+                        $produk->adminFilterPencarian();
+                    } elseif ($aksi == "adminCariBaju") {
+                        $produk->adminCariBaju();
                     }
                 } else {
                     header("location: index.php?view=admin");
@@ -210,7 +211,7 @@ if (isset($_GET['view'])) {
                 if (isset($_SESSION['statusAdmin']) == 'logged') {
                     $permintaan = new TransaksiController();
                     if ($aksi == "view") {
-                        $permintaan->getAllPembelianTerproses();
+                        $permintaan->pembelianTerproses();
                     } elseif ($aksi == "terimaPermintaan") {
                         $permintaan->updateStatusTransaksi(3);
                     }
