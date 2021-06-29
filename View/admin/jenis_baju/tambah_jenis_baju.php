@@ -37,7 +37,7 @@
                     </div>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary">4</span></a>
+                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary"><?php echo $dataJumlahPermintaan[0]['jumlahPermintaan']; ?></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="index.php?view=admin&page=laporan&aksi=view">Laporan</a>

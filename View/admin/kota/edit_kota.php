@@ -37,7 +37,7 @@
                     </div>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary">4</span></a>
+                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary"><?php echo $dataJumlahPermintaan[0]['jumlahPermintaan']; ?></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="index.php?view=admin&page=laporan&aksi=view">Laporan</a>
@@ -66,12 +66,13 @@
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
                 <form action="index.php?view=admin&page=kota&aksi=update" method="post">
+                    <input type="hidden" class="form-control" name="idKota" id="inputEditKota" value="<?php echo $dataKota['id_kota']; ?>">
                     <div class="row justify-content-center">
                         <div class="col-8">
                             <div class="form-group row justify-content-center">
                                 <label for="inputEditKota" class="col-sm-3 col-form-label">Masukkan Kota</label>
                                 <div class="col-sm-5">
-                                    <input type="text" class="form-control" name="kota" id="inputEditKota" values="">
+                                    <input type="text" class="form-control" name="kota" id="inputEditKota" value="<?php echo $dataKota['nama_kota']; ?>">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </div>

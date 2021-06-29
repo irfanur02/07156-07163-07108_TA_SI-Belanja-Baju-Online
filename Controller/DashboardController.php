@@ -3,7 +3,6 @@
 class DashboardController
 {
 
-    private $modelDashboard;
     private $modelTransaksi;
     private $modelJenis;
     private $modelMerek;

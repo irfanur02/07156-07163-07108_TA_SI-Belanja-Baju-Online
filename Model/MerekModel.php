@@ -62,4 +62,32 @@ class MerekModel
         $query = koneksi()->query($sql);
         return $query->fetch_assoc();
     }
+
+    public function getJumlahMerek()
+    {
+        $sql = "SELECT COUNT(*) AS jumlah FROM merek_baju";
+        $query = koneksi()->query($sql);
+        $hasilQuery =  $query->fetch_assoc();
+        $jumlah = $hasilQuery['jumlah'];
+        return $jumlah;
+    }
+
+    public function getDataMerekBaju($idMerek)
+    {
+        $sql = "SELECT * FROM merek_baju WHERE id_merek_baju = $idMerek";
+        $query = koneksi()->query($sql);
+        return $query->fetch_assoc();
+    }
+
+    public function prosesStoreMerek($namaMerek)
+    {
+        $sql = "INSERT INTO merek_baju(nama_merek_baju) VALUES('$namaMerek')";
+        koneksi()->query($sql);
+    }
+
+    public function prosesUpdateMerek($idMerek, $namaMerek)
+    {
+        $sql = "UPDATE merek_baju SET nama_merek_baju = '$namaMerek' WHERE id_merek_baju = $idMerek";
+        koneksi()->query($sql);
+    }
 }

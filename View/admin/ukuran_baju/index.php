@@ -37,7 +37,7 @@
                     </div>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary">4</span></a>
+                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary"><?php echo $dataJumlahPermintaan[0]['jumlahPermintaan']; ?></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="index.php?view=admin&page=laporan&aksi=view">Laporan</a>
@@ -98,48 +98,16 @@
                         </tr>
                     </thead>
                     <tbody class="bg-light">
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=ukuranBaju&aksi=edit&id=masihkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=ukuranBaju&aksi=edit&id=masihkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=ukuranBaju&aksi=edit&id=masihkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=ukuranBaju&aksi=edit&id=masihkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=ukuranBaju&aksi=edit&id=masihkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=ukuranBaju&aksi=edit&id=masihkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                            </td>
-                        </tr>
+                        <?php $no = 1;
+                        foreach ($dataUkuranBaju as $rowDataUkuranBaju) : ?>
+                            <tr>
+                                <th scope="row" class="text-center"><?php echo $no++; ?>.</th>
+                                <td class="text-center"><?php echo $rowDataUkuranBaju['ukuranBaju']; ?></td>
+                                <td class="text-center">
+                                    <a href="index.php?view=admin&page=ukuranBaju&aksi=edit&id=<?php echo $rowDataUkuranBaju['idUkuranBaju']; ?>" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

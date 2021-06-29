@@ -35,4 +35,32 @@ class KotaModel
         }
         return $hasil;
     }
+
+    public function getJumlahKota()
+    {
+        $sql = "SELECT COUNT(*) AS jumlah FROM kota";
+        $query = koneksi()->query($sql);
+        $hasilQuery =  $query->fetch_assoc();
+        $jumlah = $hasilQuery['jumlah'];
+        return $jumlah;
+    }
+
+    public function getKota($idKota)
+    {
+        $sql = "SELECT * FROM kota WHERE id_kota = $idKota";
+        $query = koneksi()->query($sql);
+        return $query->fetch_assoc();
+    }
+
+    public function prosesStoreKota($namaKota)
+    {
+        $sql = "INSERT INTO kota(nama_kota) VALUES('$namaKota')";
+        koneksi()->query($sql);
+    }
+
+    public function prosesUpdateKota($idKota, $namaKota)
+    {
+        $sql = "UPDATE kota SET nama_kota = '$namaKota' WHERE id_kota = $idKota";
+        koneksi()->query($sql);
+    }
 }

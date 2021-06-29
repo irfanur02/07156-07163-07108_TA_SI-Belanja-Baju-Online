@@ -76,7 +76,7 @@
                             <div class="row">
                                 <div class="col-9">Merek Baju Terpopuler</div>
                                 <div class="col-3">
-                                    <a href="index.php?view=admin&page=merekBaju&aksi=filterPopuler" class="btn-link h5 text-light float-right h6"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                                    <a href="index.php?view=admin&page=merekBaju&aksi=view" class="btn-link h5 text-light float-right h6"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
                                 </div>
                             </div>
                         </h5>
@@ -100,7 +100,7 @@
                             <div class="row">
                                 <div class="col-9">Jenis Baju Terpopuler</div>
                                 <div class="col-3">
-                                    <a href="index.php?view=admin&page=jenisBaju&aksi=filterPopuler" class="btn-link h5 text-light float-right h6"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                                    <a href="index.php?view=admin&page=jenisBaju&aksi=view" class="btn-link h5 text-light float-right h6"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
                                 </div>
                             </div>
                         </h5>
@@ -164,7 +164,7 @@
                 <div class="card text-center mb-5 text-dark bg-warning" style="width: 100%;">
                     <h5 class="card-header">
                         <div class="row justify-content-end">
-                            <div class="col-4">Baju Favorit</div>
+                            <div class="col-4">Baju Terfavorit</div>
                             <div class="col-4">
                                 <a href="index.php?view=admin&page=produk&aksi=filterFavorite" class="btn-link h5 text-dark float-right">Lihat</a>
                             </div>
@@ -213,7 +213,7 @@
                             <div class="row">
                                 <div class="col-9">Penjualan Terbanyak</div>
                                 <div class="col-3">
-                                    <a href="index.php?view=admin&page=kota&aksi=kotaTerbanyak" class="btn-link h5 text-light float-right h6"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                                    <a href="index.php?view=admin&page=kota&aksi=view" class="btn-link h5 text-light float-right h6"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
                                 </div>
                             </div>
                         </h5>
@@ -237,7 +237,7 @@
                             <div class="row">
                                 <div class="col-9">Jasa Kurir yang Sering Dipakai</div>
                                 <div class="col-3">
-                                    <a href="index.php?view=admin&page=kurir&aksi=kurirTerbanyak" class="btn-link h5 text-light float-right h6"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                                    <a href="index.php?view=admin&page=kurir&aksi=view" class="btn-link h5 text-light float-right h6"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
                                 </div>
                             </div>
                         </h5>

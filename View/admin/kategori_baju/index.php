@@ -37,7 +37,7 @@
                     </div>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary">4</span></a>
+                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary"><?php echo $dataJumlahPermintaan[0]['jumlahPermintaan']; ?></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="index.php?view=admin&page=laporan&aksi=view">Laporan</a>
@@ -75,7 +75,7 @@
                 <li class="list-group-item text-dark font-weight-bold">
                     <div class="row">
                         <div class="col-4">
-                            <span class="float-left">Total : 140 Kategori</span>
+                            <span class="float-left">Total : <?php echo $jumlah; ?> Kategori</span>
                         </div>
                         <div class="col-4">
                             <span>Manajemen Kategori Baju</span>
@@ -101,16 +101,13 @@
                                                         Kategori Baju</label>
                                                     <div class="col-sm-5">
                                                         <select class="custom-select" name="kategori">
-                                                            <option selected>Pilih Kategori</option>
-                                                            <option value="1">One</option>
-                                                            <option value="2">Two</option>
+                                                            <option selected>Kategori Baju</option>
+                                                            <?php foreach ($dataKategoriBaju as $rowDataKategoriBaju) : ?>
+                                                                <option><?php echo $rowDataKategoriBaju['kategoriBaju']; ?></option>
+                                                            <?php endforeach; ?>
                                                         </select>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-2">
-                                                <button type="submit" class="btn btn-primary">Terapkan
-                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -135,55 +132,16 @@
                         </tr>
                     </thead>
                     <tbody class="bg-light">
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=kategoriBaju&aksi=edit&id=masihkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=kategoriBaju&aksi=edit&id=masihkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=kategoriBaju&aksi=edit&id=masihkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=kategoriBaju&aksi=edit&id=masihkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=kategoriBaju&aksi=edit&id=masihkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=kategoriBaju&aksi=edit&id=masihkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=kategoriBaju&aksi=edit&id=masihkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                            </td>
-                        </tr>
+                        <?php $no = 1;
+                        foreach ($dataKategoriBaju as $rowDataKategoriBaju) : ?>
+                            <tr>
+                                <th scope="row" class="text-center"><?php echo $no++; ?>.</th>
+                                <td><?php echo $rowDataKategoriBaju['kategoriBaju']; ?></td>
+                                <td class="text-center">
+                                    <a href="index.php?view=admin&page=kategoriBaju&aksi=edit&id=<?php echo $rowDataKategoriBaju['idKategoriBaju']; ?>" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

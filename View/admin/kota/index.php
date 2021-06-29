@@ -37,7 +37,7 @@
                     </div>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary">4</span></a>
+                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary"><?php echo $dataJumlahPermintaan[0]['jumlahPermintaan']; ?></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="index.php?view=admin&page=laporan&aksi=view">Laporan</a>
@@ -55,7 +55,7 @@
             <div class="card-body text-dark font-weight-bold" style="overflow-x: auto;">
                 <div class="row">
                     <div class="col-4">
-                        <span class="float-left">Total : 140 Kota</span>
+                        <span class="float-left">Total : <?php echo $jumlah; ?> Kota</span>
                     </div>
                     <div class="col-4">
                         <span>Manajemen Kota</span>
@@ -81,16 +81,13 @@
                                                     Kota</label>
                                                 <div class="col-sm-5">
                                                     <select class="custom-select" name="kota">
-                                                        <option selected>Pilih Kota</option>
-                                                        <option value="1">One</option>
-                                                        <option value="2">Two</option>
+                                                        <option selected>Kota</option>
+                                                        <?php foreach ($dataKota as $rowDataKota) : ?>
+                                                            <option><?php echo $rowDataKota['nama_kota']; ?></option>
+                                                        <?php endforeach; ?>
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-2">
-                                            <button type="submit" class="btn btn-primary">Terapkan
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -114,55 +111,16 @@
                         </tr>
                     </thead>
                     <tbody class="bg-light">
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=kota&aksi=edit&id=masohkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=kota&aksi=edit&id=masohkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=kota&aksi=edit&id=masohkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=kota&aksi=edit&id=masohkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=kota&aksi=edit&id=masohkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=kota&aksi=edit&id=masohkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=kota&aksi=edit&id=masohkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                            </td>
-                        </tr>
+                        <?php $no = 1;
+                        foreach ($dataKota as $rowDataKota) : ?>
+                            <tr>
+                                <th scope="row" class="text-center"><?php echo $no++; ?>.</th>
+                                <td><?php echo $rowDataKota['nama_kota']; ?></td>
+                                <td class="text-center">
+                                    <a href="index.php?view=admin&page=kota&aksi=edit&id=<?php echo $rowDataKota['id_kota']; ?>" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

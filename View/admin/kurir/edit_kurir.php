@@ -37,7 +37,7 @@
                     </div>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary">4</span></a>
+                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary"><?php echo $dataJumlahPermintaan[0]['jumlahPermintaan']; ?></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="index.php?view=admin&page=laporan&aksi=view">Laporan</a>
@@ -66,17 +66,18 @@
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
                 <form action="index.php?view=admin&page=kurir&aksi=update" method="post">
-                    <div class="row justify-content-center">
+                    <input type="hidden" class="form-control" name="idKurir" id="inputEditBiaya" value="<?php echo $dataKurir['id_kurir']; ?>">
+                    <div class=" row justify-content-center">
                         <div class="col-11">
                             <div class="form-group row justify-content-center">
                                 <label for="inputEditJasaKurir" class="col-sm-3 col-form-label">Masukkan Jasa
                                     Kurir</label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control" name="jasaKurir" id="inputEditJasaKurir" values="">
+                                    <input type="text" class="form-control" name="jasaKurir" id="inputEditJasaKurir" value="<?php echo $dataKurir['jasa_kurir']; ?>">
                                 </div>
                                 <label for="inputEditBiaya" class="col-sm-3 col-form-label">Masukkan Biaya (Rp.)</label>
                                 <div class="col-sm-2">
-                                    <input type="text" class="form-control" name="biaya" id="inputEditBiaya" values="">
+                                    <input type="text" class="form-control" name="biaya" id="inputEditBiaya" value="<?php echo $dataKurir['biaya_jasa_kurir']; ?>">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </div>

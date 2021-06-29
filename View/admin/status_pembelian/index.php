@@ -37,7 +37,7 @@
                     </div>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary">4</span></a>
+                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary"><?php echo $dataJumlahPermintaan[0]['jumlahPermintaan']; ?></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="index.php?view=admin&page=laporan&aksi=view">Laporan</a>
@@ -51,54 +51,28 @@
 
     <div class="container mt-5 sticky-top" style="top: 55px;">
         <div class="card text-center mt-3 border border-light" style="width: 100%;">
-            <h5 class="card-header text-light bg-primary">Manajemen Status Pembelian</h5>
+            <h5 class="card-header text-light bg-primary">Status Pembelian</h5>
         </div>
     </div>
 
     <div class="container" style="margin-top: 20px;">
         <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <div class="container">
-                    <div class="row">
-                        <div class="col justify-content-end"></div>
-                        <a href="index.php?view=admin&page=statusPembelian&aksi=tambah" class="btn btn-success btn-sm mb-3">
-                            Tambah Data
-                        </a>
-                    </div>
-                </div>
+            <div class="container">=
                 <table class="table table-hover table-bordered">
                     <thead class="thead-dark text-center">
                         <tr>
                             <th scope="col" style="width: 10%;">No. </th>
                             <th scope="col" style="width: 70%;">Status Pembelian</th>
-                            <th scope="col" style="width: 20%;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="bg-light">
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=statusPembelian&aksi=edit&id=masihkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=statusPembelian&aksi=edit&id=masihkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center">1.</th>
-                            <td>Mark</td>
-                            <td class="text-center">
-                                <a href="index.php?view=admin&page=statusPembelian&aksi=edit&id=masihkosong" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    Edit</a>
-                            </td>
-                        </tr>
+                        <?php $no = 1;
+                        foreach ($dataStatus as $rowDataStatus) : ?>
+                            <tr>
+                                <th scope="row" class="text-center"><?php echo $no++; ?>.</th>
+                                <td class="text-center"><?php echo $rowDataStatus['nama_status_pembelian']; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

@@ -33,4 +33,46 @@ class KurirModel
         }
         return $hasil;
     }
+
+    public function getJumlahKurir()
+    {
+        $sql = "SELECT COUNT(*) AS jumlah FROM kurir";
+        $query = koneksi()->query($sql);
+        $hasilQuery =  $query->fetch_assoc();
+        $jumlah = $hasilQuery['jumlah'];
+        return $jumlah;
+    }
+
+    public function getDataKurir($idKurir)
+    {
+        $sql = "SELECT * FROM kurir WHERE id_kurir = $idKurir";
+        $query = koneksi()->query($sql);
+        return $query->fetch_assoc();
+    }
+
+    public function prosesStoreKurir($jasaKurir, $biaya)
+    {
+        $sql = "INSERT INTO kurir(jasa_kurir, biaya_jasa_kurir) VALUES('$jasaKurir', $biaya)";
+        koneksi()->query($sql);
+    }
+
+    public function prosesUpdateKurir($idKurir, $jasaKurir, $biaya)
+    {
+        $sql = "UPDATE kurir SET 
+                    jasa_kurir = '$jasaKurir',
+                    biaya_jasa_kurir = $biaya
+                WHERE id_kurir = $idKurir";
+        koneksi()->query($sql);
+    }
+
+    public function prosesFilterHargaKurir($sort)
+    {
+        $sql = "SELECT * FROM kurir ORDER BY biaya_jasa_kurir $sort";
+        $query = koneksi()->query($sql);
+        $hasil = [];
+        while ($data = $query->fetch_assoc()) {
+            $hasil[] = $data;
+        }
+        return $hasil;
+    }
 }

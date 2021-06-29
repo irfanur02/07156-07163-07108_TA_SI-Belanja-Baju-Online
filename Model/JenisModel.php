@@ -62,4 +62,32 @@ class JenisModel
         $query = koneksi()->query($sql);
         return $query->fetch_assoc();
     }
+
+    public function getJumlahJenis()
+    {
+        $sql = "SELECT COUNT(*) AS jumlah FROM jenis_baju";
+        $query = koneksi()->query($sql);
+        $hasilQuery =  $query->fetch_assoc();
+        $jumlah = $hasilQuery['jumlah'];
+        return $jumlah;
+    }
+
+    public function getDataJenisBaju($idJenis)
+    {
+        $sql = "SELECT * FROM jenis_baju WHERE id_jenis_baju = $idJenis";
+        $query = koneksi()->query($sql);
+        return $query->fetch_assoc();
+    }
+
+    public function prosesStore($namaJenis)
+    {
+        $sql = "INSERT INTO jenis_baju(nama_jenis_baju) VALUES('$namaJenis')";
+        koneksi()->query($sql);
+    }
+
+    public function prosesUpdate($idJenis, $namaJenis)
+    {
+        $sql = "UPDATE jenis_baju SET nama_jenis_baju = '$namaJenis' WHERE id_jenis_baju = $idJenis";
+        koneksi()->query($sql);
+    }
 }

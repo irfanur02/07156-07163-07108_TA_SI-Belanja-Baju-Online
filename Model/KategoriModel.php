@@ -60,4 +60,45 @@ class KategoriModel
         $query = koneksi()->query($sql);
         return $query->fetch_assoc();
     }
+
+    public function getJumlahDataKategori()
+    {
+        $sql = "SELECT COUNT(*) AS jumlah FROM kategori_baju";
+        $query = koneksi()->query($sql);
+        $hasilQuery =  $query->fetch_assoc();
+        $jumlah = $hasilQuery['jumlah'];
+        return $jumlah;
+    }
+
+    public function getDataKategori($idKategori)
+    {
+        $sql = "SELECT * FROM kategori_baju WHERE id_kategori_baju = $idKategori";
+        $query = koneksi()->query($sql);
+        return $query->fetch_assoc();
+    }
+
+    public function getAllKategori()
+    {
+        $sql = "SELECT * FROM kategori_baju ORDER BY nama_kategori_baju ASC";
+        $query = koneksi()->query($sql);
+        $hasil = [];
+        while ($data = $query->fetch_assoc()) {
+            $hasil[] = $data;
+        }
+        return $hasil;
+    }
+
+    public function prosesStoreKategori($namaKategori)
+    {
+        $sql = "INSERT INTO kategori_baju(nama_kategori_baju) VALUES('$namaKategori')";
+        koneksi()->query($sql);
+    }
+
+    public function prosesUpdataKategori($idKategori, $namaKategori)
+    {
+        $sql = "UPDATE kategori_baju SET 
+                        nama_kategori_baju = '$namaKategori' 
+                WHERE id_kategori_baju = $idKategori";
+        koneksi()->query($sql);
+    }
 }
