@@ -33,4 +33,18 @@ class KurirModel
         }
         return $hasil;
     }
+
+    public function prosesStoreKurir($idKurir,$jasaKurir)
+    {
+        $jasaKurir = $_POST['jasa_kurir'];
+        $sql = "INSERT INTO kurir(id_kurir,jasa_kurir) VALUES('$idKurir','$jasaKurir')";
+        return koneksi()->query($sql);
+    }
+
+    public function prosesKurir($idKurir, $jasaKurir)
+    {
+        $sql = "UPDATE kurir SET jasa_kurir='$jasakurir' WHERE id_kurir = $idKurir";
+        $query = koneksi()->query($sql);
+        return $query;
+    }
 }

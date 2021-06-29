@@ -31,4 +31,25 @@ class UkuranModel
         }
         return $hasil;
     }
+
+    public function getUkuranBaju($pencarian)
+    {
+        $sql = "SELECT * FROM ukuran_baju WHERE satuan_ukuran_baju LIKE '%$pencarian%'";
+        $query = koneksi()->query($sql);
+        return $query->fetch_assoc();
+    }
+    
+    public function prosesStoreUkuran($idUkuran,$satuanUkuran)
+    {
+        $satuanUkuran = $_POST['satuan_ukuran_baju'];
+        $sql = "INSERT INTO ukuran_baju(id_ukuran_baju,satuan_ukuran_baju) VALUES('$idUkuran','$satuanUkuran')";
+        return koneksi()->query($sql);
+    }
+
+    public function prosesUkuran($idUkuran,$satuanUkuran)
+    {
+        $sql = "UPDATE ukuran_baju SET satuan_ukuran_baju='$satuanUkuran' WHERE id_ukuran_baju = $idUkuran";
+        $query = koneksi()->query($sql);
+        return $query;
+    }
 }

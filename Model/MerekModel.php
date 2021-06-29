@@ -62,4 +62,18 @@ class MerekModel
         $query = koneksi()->query($sql);
         return $query->fetch_assoc();
     }
+
+    public function prosesStoreMerek($idMerek,$namaMerek)
+    {
+        $namaMerek = $_POST['nama_merek_baju'];
+        $sql = "INSERT INTO merek_baju(id_merek_baju,nama_merek_baju) VALUES('$idMerek','$namaMerek')";
+        return koneksi()->query($sql);
+    }
+
+    public function prosesMerek($idMerek, $namaMerek)
+    {
+        $sql = "UPDATE merek_baju SET nama_merek_baju='$namaMerek' WHERE id_merek_baju = $idMerek";
+        $query = koneksi()->query($sql);
+        return $query;
+    }
 }
