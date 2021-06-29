@@ -74,7 +74,7 @@
                                 <input type="hidden" name="idTransaksi" class="idTransaksi" value="<?php echo $rowDataKeranjang['idTransaksi']; ?>">
                                 <div class="row justify-content-center">
                                     <div class="col-3">
-                                        <img src="<?php echo $BASE_URL; ?>/assets/img/<?php echo $rowDataKeranjang['gambarBaju']; ?>" class="rounded img-fluid" alt="Image Preview">
+                                        <img src="<?php echo $BASE_URL; ?>/assets/img/tersimpan/<?php echo $rowDataKeranjang['gambarBaju']; ?>" class="rounded img-fluid" alt="Image Preview">
                                     </div>
                                     <div class="col-7">
                                         <div class="card" style="height: 100%;">

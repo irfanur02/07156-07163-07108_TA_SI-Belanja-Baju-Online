@@ -104,7 +104,7 @@
                                         <div class="card-body">
                                             <div class="row justify-content-center">
                                                 <div class="col-3">
-                                                    <img src="<?php echo $BASE_URL; ?>/assets/img/<?php echo $rowDataBajuPopuler['gambarBaju']; ?>" class="rounded img-fluid" style="height: 19rem;" alt="Image Preview">
+                                                    <img src="<?php echo $BASE_URL; ?>/assets/img/tersimpan/<?php echo $rowDataBajuPopuler['gambarBaju']; ?>" class="rounded img-fluid" style="height: 19rem;" alt="Image Preview">
                                                 </div>
                                                 <div class="col-7">
                                                     <div class="card" style="height: 100%;">
@@ -189,7 +189,7 @@
                         <?php if (!empty($dataSeluruhBaju)) : ?>
                             <?php foreach ($dataSeluruhBaju as $rowDataSeluruhBaju) : ?>
                                 <div class="card mb-4" style="width: 16rem;">
-                                    <img class="card-img-top img-thumbnail" src="<?php echo $BASE_URL; ?>/assets/img/<?php echo $rowDataSeluruhBaju['gambarBaju']; ?>" alt="Card image cap">
+                                    <img class="card-img-top img-thumbnail" src="<?php echo $BASE_URL; ?>/assets/img/tersimpan/<?php echo $rowDataSeluruhBaju['gambarBaju']; ?>" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $rowDataSeluruhBaju['namaProduk']; ?></h5>
                                         <p class="card-text"><?php echo $rowDataSeluruhBaju['detailProduk']; ?>.

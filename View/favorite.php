@@ -63,7 +63,7 @@
                     <?php if (!empty($dataBajuFavorite)) : ?>
                         <?php foreach ($dataBajuFavorite as $row) : ?>
                             <div class="card mb-4" style="width: 12rem;">
-                                <img class="card-img-top img-thumbnail" src="<?php echo $BASE_URL; ?>/assets/img/<?php echo $row['gambarProduk']; ?>" alt="Card image cap">
+                                <img class="card-img-top img-thumbnail" src="<?php echo $BASE_URL; ?>/assets/img/tersimpan/<?php echo $row['gambarProduk']; ?>" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $row['namaProduk']; ?></h5>
                                     <p class="card-text"><?php echo $row['detailProduk']; ?>.

@@ -115,7 +115,7 @@
                                                             <?php if ($rowDetailDataTransaksi['idTransaksi'] == $rowDataTransaksi['idTransaksi']) : ?>
                                                                 <tr>
                                                                     <td class="align-middle">
-                                                                        <img class="card-img-top img-thumbnail" src="<?php echo $BASE_URL; ?>/assets/img/<?php echo $rowDetailDataTransaksi['gambarBaju']; ?>" style="width: 50%;" alt="Card image cap"></br>
+                                                                        <img class="card-img-top img-thumbnail" src="<?php echo $BASE_URL; ?>/assets/img/tersimpan/<?php echo $rowDetailDataTransaksi['gambarBaju']; ?>" style="width: 50%;" alt="Card image cap"></br>
                                                                         <?php echo $rowDetailDataTransaksi['namaProduk']; ?>
                                                                     </td>
                                                                     <td class="align-middle"><?php echo $rowDetailDataTransaksi['jumlahBaju']; ?></td>

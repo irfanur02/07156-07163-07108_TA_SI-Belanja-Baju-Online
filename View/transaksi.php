@@ -38,7 +38,7 @@
                                     <li class="list-group-item">
                                         <div class="row justify-content-center" style="height: 15rem;">
                                             <div class="col-4 text-center">
-                                                <img src="<?php echo $BASE_URL; ?>/assets/img/<?php echo $rowDataCheckout['gambarBaju']; ?>" class="rounded my-auto" style="width: 80%;" alt="Image Preview">
+                                                <img src="<?php echo $BASE_URL; ?>/assets/img/tersimpan/<?php echo $rowDataCheckout['gambarBaju']; ?>" class="rounded my-auto" style="width: 80%;" alt="Image Preview">
                                             </div>
                                             <div class="col-7">
                                                 <div class="card" style="height: 100%;">

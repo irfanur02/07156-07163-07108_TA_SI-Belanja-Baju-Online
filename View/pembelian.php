@@ -139,7 +139,7 @@
                                                                             <div class="card" style="height: 100%;">
                                                                                 <div class="card-body">
                                                                                     <div class="row">
-                                                                                        <div class="col-4"><img src="<?php echo $BASE_URL; ?>/assets/img/<?php echo $rowDetailDataTransaksi['gambarBaju']; ?>" class="rounded img-fluid" style="width: 100%;" alt="Image Preview"></div>
+                                                                                        <div class="col-4"><img src="<?php echo $BASE_URL; ?>/assets/img/tersimpan/<?php echo $rowDetailDataTransaksi['gambarBaju']; ?>" class="rounded img-fluid" style="width: 100%;" alt="Image Preview"></div>
                                                                                         <div class="col-8">
                                                                                             <h5 class="card-title"><?php echo $rowDetailDataTransaksi['namaProduk']; ?>
                                                                                             </h5>
