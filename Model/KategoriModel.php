@@ -61,7 +61,6 @@ class KategoriModel
         return $query->fetch_assoc();
     }
 
-<<<<<<< HEAD
     public function getJumlahDataKategori()
     {
         $sql = "SELECT COUNT(*) AS jumlah FROM kategori_baju";
@@ -101,19 +100,5 @@ class KategoriModel
                         nama_kategori_baju = '$namaKategori' 
                 WHERE id_kategori_baju = $idKategori";
         koneksi()->query($sql);
-=======
-    public function prosesStoreKategori($idKategori,$namaKategori)
-    {
-        $namaKategori = $_POST['nama_kategori_baju'];
-        $sql = "INSERT INTO kategori_baju(id_kategori_baju,nama_kategori_baju) VALUES('$idJenis','$namaKategori')";
-        return koneksi()->query($sql);
-    }
-
-    public function prosesKategori($idKategori, $namaKategori)
-    {
-        $sql = "UPDATE kategori_baju SET nama_kategori_baju='$namaKategori' WHERE id_jenis_baju = $idKategori";
-        $query = koneksi()->query($sql);
-        return $query;
->>>>>>> 7034e355617db2ecce6a083066c9bc228d8b848b
     }
 }

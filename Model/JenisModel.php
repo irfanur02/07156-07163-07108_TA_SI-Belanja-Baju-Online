@@ -63,7 +63,6 @@ class JenisModel
         return $query->fetch_assoc();
     }
 
-<<<<<<< HEAD
     public function getJumlahJenis()
     {
         $sql = "SELECT COUNT(*) AS jumlah FROM jenis_baju";
@@ -90,20 +89,5 @@ class JenisModel
     {
         $sql = "UPDATE jenis_baju SET nama_jenis_baju = '$namaJenis' WHERE id_jenis_baju = $idJenis";
         koneksi()->query($sql);
-=======
-    public function prosesStoreJenis($namaJenis)
-    {
-        $namaJenis = $_POST['nama_jenis_baju'];
-        $sql = "INSERT INTO jenis_baju(nama_jenis_baju) VALUES('$namaJenis')";
-        return koneksi()->query($sql);
-    }
-
-    public function prosesJenis($idJenis, $namaJenis)
-    {
-        $sql = "UPDATE jenis_baju SET nama_jenis_baju='$namaJenis' WHERE id_jenis_baju = $idJenis";
-        $query = koneksi()->query($sql);
-        return $query;
->>>>>>> 7034e355617db2ecce6a083066c9bc228d8b848b
     }
 }
-
