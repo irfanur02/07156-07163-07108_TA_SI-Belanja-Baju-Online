@@ -34,6 +34,7 @@ class KurirModel
         return $hasil;
     }
 
+<<<<<<< HEAD
     public function getJumlahKurir()
     {
         $sql = "SELECT COUNT(*) AS jumlah FROM kurir";
@@ -74,5 +75,19 @@ class KurirModel
             $hasil[] = $data;
         }
         return $hasil;
+=======
+    public function prosesStoreKurir($idKurir,$jasaKurir)
+    {
+        $jasaKurir = $_POST['jasa_kurir'];
+        $sql = "INSERT INTO kurir(id_kurir,jasa_kurir) VALUES('$idKurir','$jasaKurir')";
+        return koneksi()->query($sql);
+    }
+
+    public function prosesKurir($idKurir, $jasaKurir)
+    {
+        $sql = "UPDATE kurir SET jasa_kurir='$jasakurir' WHERE id_kurir = $idKurir";
+        $query = koneksi()->query($sql);
+        return $query;
+>>>>>>> 7034e355617db2ecce6a083066c9bc228d8b848b
     }
 }

@@ -63,6 +63,7 @@ class MerekModel
         return $query->fetch_assoc();
     }
 
+<<<<<<< HEAD
     public function getJumlahMerek()
     {
         $sql = "SELECT COUNT(*) AS jumlah FROM merek_baju";
@@ -89,5 +90,19 @@ class MerekModel
     {
         $sql = "UPDATE merek_baju SET nama_merek_baju = '$namaMerek' WHERE id_merek_baju = $idMerek";
         koneksi()->query($sql);
+=======
+    public function prosesStoreMerek($idMerek,$namaMerek)
+    {
+        $namaMerek = $_POST['nama_merek_baju'];
+        $sql = "INSERT INTO merek_baju(id_merek_baju,nama_merek_baju) VALUES('$idMerek','$namaMerek')";
+        return koneksi()->query($sql);
+    }
+
+    public function prosesMerek($idMerek, $namaMerek)
+    {
+        $sql = "UPDATE merek_baju SET nama_merek_baju='$namaMerek' WHERE id_merek_baju = $idMerek";
+        $query = koneksi()->query($sql);
+        return $query;
+>>>>>>> 7034e355617db2ecce6a083066c9bc228d8b848b
     }
 }

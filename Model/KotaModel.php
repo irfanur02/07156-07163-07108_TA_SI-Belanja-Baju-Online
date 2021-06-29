@@ -36,6 +36,7 @@ class KotaModel
         return $hasil;
     }
 
+<<<<<<< HEAD
     public function getJumlahKota()
     {
         $sql = "SELECT COUNT(*) AS jumlah FROM kota";
@@ -48,10 +49,16 @@ class KotaModel
     public function getKota($idKota)
     {
         $sql = "SELECT * FROM kota WHERE id_kota = $idKota";
+=======
+    public function getKota($pencarian)
+    {
+        $sql = "SELECT * FROM kota WHERE nama_kota LIKE '%$pencarian%'";
+>>>>>>> 7034e355617db2ecce6a083066c9bc228d8b848b
         $query = koneksi()->query($sql);
         return $query->fetch_assoc();
     }
 
+<<<<<<< HEAD
     public function prosesStoreKota($namaKota)
     {
         $sql = "INSERT INTO kota(nama_kota) VALUES('$namaKota')";
@@ -62,5 +69,19 @@ class KotaModel
     {
         $sql = "UPDATE kota SET nama_kota = '$namaKota' WHERE id_kota = $idKota";
         koneksi()->query($sql);
+=======
+    public function prosesStoreKota($idKota,$namaKota)
+    {
+        $namaKota = $_POST['nama_kota'];
+        $sql = "INSERT INTO kota(id_kota,nama_kota) VALUES('$idKota','$namaKota')";
+        return koneksi()->query($sql);
+    }
+
+    public function prosesKota($idKota, $namaKota)
+    {
+        $sql = "UPDATE kota SET nama_kota='$namaKota' WHERE id_kota = $idKota";
+        $query = koneksi()->query($sql);
+        return $query;
+>>>>>>> 7034e355617db2ecce6a083066c9bc228d8b848b
     }
 }
