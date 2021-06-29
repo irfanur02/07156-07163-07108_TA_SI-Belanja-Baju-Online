@@ -2,6 +2,25 @@
 
 class KategoriModel
 {
+
+    /**
+     * berfungsi untuk mendapatkan jumlah kategori baju
+     */
+    public function getJumlahKategori()
+    {
+        $sql = "SELECT kb.nama_kategori_baju as namaKategori, 
+                    COUNT(ba.id_kategori_baju) AS jumlah
+                FROM baju ba 
+                JOIN kategori_baju kb ON ba.id_kategori_baju = kb.id_kategori_baju 
+                GROUP BY ba.id_kategori_baju ORDER BY jumlah DESC";
+        $query = koneksi()->query($sql);
+        $hasil = [];
+        while ($data = $query->fetch_assoc()) {
+            $hasil[] = $data;
+        }
+        return $hasil;
+    }
+
     /**
      * berfungsi untuk mendapatkan semua kategori produk
      */

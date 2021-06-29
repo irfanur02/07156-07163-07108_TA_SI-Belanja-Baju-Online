@@ -25,6 +25,7 @@ require_once("Controller/FavoriteController.php");
 require_once("Controller/LaporanController.php");
 require_once("Controller/AuthController.php");
 require_once("Controller/UserController.php");
+require_once("Controller/DashboardController.php");
 
 if (isset($_GET['view'])) {
     $view = $_GET['view'];
@@ -44,8 +45,9 @@ if (isset($_GET['view'])) {
                 }
             } elseif ($page == "dashboard") {
                 if (isset($_SESSION['statusAdmin']) == 'logged') {
+                    $dashboard = new DashboardController();
                     if ($aksi == "view") {
-                        require_once("View/admin/index.php");
+                        $dashboard->view();
                     }
                 } else {
                     header("location: index.php?view=admin");

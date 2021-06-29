@@ -2,6 +2,27 @@
 
 class JenisModel
 {
+
+    /**
+     * berfungsi untuk mendapatkan semua jenis baju yang sering dibeli
+     */
+    public function getAllJenisTerpopuler()
+    {
+        $sql = "SELECT jb.nama_jenis_baju as namaJenis, 
+                    (SUM(dt.jumlah_pembelian) + COUNT(jb.id_jenis_baju)) AS jumlah 
+                FROM transaksi tr 
+                JOIN detail_transaksi dt ON tr.id_transaksi = dt.id_transaksi 
+                JOIN baju ba ON dt.id_baju = ba.id_baju 
+                JOIN jenis_baju jb ON ba.id_jenis_baju = jb.id_jenis_baju 
+                WHERE tr.tanggal_transaksi IS NOT NULL GROUP BY jb.id_jenis_baju ORDER BY jumlah DESC, namaJenis ASC";
+        $query = koneksi()->query($sql);
+        $hasil = [];
+        while ($data = $query->fetch_assoc()) {
+            $hasil[] = $data;
+        }
+        return $hasil;
+    }
+
     /**
      * berfungsi untuk mendapatkan semua jenis produk
      */

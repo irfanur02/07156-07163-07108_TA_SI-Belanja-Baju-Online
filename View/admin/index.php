@@ -37,7 +37,7 @@
                     </div>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary">4</span></a>
+                    <a class="nav-link" href="index.php?view=admin&page=permintaan&aksi=view">Permintaan <span class="badge badge-primary"><?php echo $dataJumlahPermintaan[0]['jumlahPermintaan']; ?></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="index.php?view=admin&page=laporan&aksi=view">Laporan</a>
@@ -58,24 +58,14 @@
                         <h5 class="card-header">Jumlah Baju</h5>
                         <div class="card-body text-dark">
                             <div class="d-flex flex-wrap justify-content-center">
-                                <div class="card text-center" style="width: 8rem;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Pria</h5>
-                                        <p class="h2">90</p>
+                                <?php foreach ($dataJumlahKategori as $rowDataJumlahKategori) : ?>
+                                    <div class="card text-center" style="width: 8rem;">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?php echo $rowDataJumlahKategori['namaKategori']; ?></h5>
+                                            <p class="h2"><?php echo $rowDataJumlahKategori['jumlah']; ?></p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="card text-center" style="width: 8rem;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Wanita</h5>
-                                        <p class="h2">120</p>
-                                    </div>
-                                </div>
-                                <div class="card text-center" style="width: 8rem;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Anak</h5>
-                                        <p class="h2">60</p>
-                                    </div>
-                                </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
@@ -93,22 +83,12 @@
                         <div class="card-body text-dark" style="overflow-y: auto;">
                             <div class="card">
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span style="font-size: 12pt;">Lea</span>
-                                        <span style="font-size: 14pt;">140</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span style="font-size: 12pt;">The Executive</span>
-                                        <span style="font-size: 14pt;">120</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span style="font-size: 12pt;">Greenlight</span>
-                                        <span style="font-size: 14pt;">67</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span style="font-size: 12pt;">Casual</span>
-                                        <span style="font-size: 14pt;">30</span>
-                                    </li>
+                                    <?php foreach ($dataMerekTerpopuler as $rowDataMerekTerpopuler) : ?>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span style="font-size: 12pt;"><?php echo $rowDataMerekTerpopuler['namaMerek']; ?></span>
+                                            <span style="font-size: 14pt;"><?php echo $rowDataMerekTerpopuler['jumlah']; ?></span>
+                                        </li>
+                                    <?php endforeach; ?>
                                 </ul>
                             </div>
                         </div>
@@ -127,22 +107,12 @@
                         <div class="card-body text-dark" style="overflow-y: auto;">
                             <div class="card">
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span style="font-size: 12pt;">Casual</span>
-                                        <span style="font-size: 14pt;">60</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span style="font-size: 12pt;">Formal</span>
-                                        <span style="font-size: 14pt;">45</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span style="font-size: 12pt;">Sport</span>
-                                        <span style="font-size: 14pt;">40</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span style="font-size: 12pt;">Fancy</span>
-                                        <span style="font-size: 14pt;">23</span>
-                                    </li>
+                                    <?php foreach ($dataJenisTerpopuler as $rowDataJenisTerpopuler) : ?>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span style="font-size: 12pt;"><?php echo $rowDataJenisTerpopuler['namaJenis']; ?></span>
+                                            <span style="font-size: 14pt;"><?php echo $rowDataJenisTerpopuler['jumlah']; ?></span>
+                                        </li>
+                                    <?php endforeach; ?>
                                 </ul>
                             </div>
                         </div>
@@ -161,30 +131,31 @@
                     </h5>
                     <div class="card-body text-dark" style="overflow-x: auto;">
                         <div class="row flex-row flex-nowrap">
-                            <div class="col-3">
-                                <div class="card border border-dark rounded">
-                                    <img class="card-img-top" src="<?php echo $BASE_URL; ?>/assets/img/casual 1.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make
-                                            up the bulk of the card's content.
-                                        </p>
-                                    </div>
-                                    <ul class="list-group list-group-flush text-center">
-                                        <li class="list-group-item h6 bg-info text-white">
-                                            Stok 26
-                                        </li>
-                                    </ul>
-                                    <ul class="list-group list-group-flush text-center">
-                                        <li class="list-group-item h5 bg-dark text-white">
-                                            Rp. 170.000
-                                        </li>
-                                    </ul>
-                                    <div class="card-footer">
-                                        <a href="index.php?view=admin&page=produk&aksi=edit&id=masihkosong" class="btn btn-danger btn-block"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                            <?php foreach ($dataBajuTerpopuler as $rowDataBajuTerpopuler) : ?>
+                                <div class="col-3">
+                                    <div class="card border border-dark rounded">
+                                        <img class="card-img-top" src="<?php echo $BASE_URL; ?>/assets/img/tersimpan/<?php echo $rowDataBajuTerpopuler['gambarBaju']; ?>" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?php echo $rowDataBajuTerpopuler['namaProduk']; ?></h5>
+                                            <p class="card-text"><?php echo $rowDataBajuTerpopuler['detailProduk']; ?>.
+                                            </p>
+                                        </div>
+                                        <ul class="list-group list-group-flush text-center">
+                                            <li class="list-group-item h6 bg-info text-white">
+                                                Stok <?php echo $rowDataBajuTerpopuler['stokBaju']; ?>
+                                            </li>
+                                        </ul>
+                                        <ul class="list-group list-group-flush text-center">
+                                            <li class="list-group-item h5 bg-dark text-white">
+                                                Rp. <?php echo $rowDataBajuTerpopuler['hargaBaju']; ?>
+                                            </li>
+                                        </ul>
+                                        <div class="card-footer">
+                                            <a href="index.php?view=admin&page=produk&aksi=edit&id=<?php echo $rowDataBajuTerpopuler['idBaju']; ?>" class="btn btn-danger btn-block"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
@@ -201,35 +172,36 @@
                     </h5>
                     <div class="card-body text-dark" style="overflow-x: auto;">
                         <div class="row flex-row flex-nowrap">
-                            <div class="col-3">
-                                <div class="card border border-dark rounded">
-                                    <img class="card-img-top" src="<?php echo $BASE_URL; ?>/assets/img/casual 1.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make
-                                            up the bulk of the card's content.
-                                        </p>
-                                    </div>
-                                    <ul class="list-group list-group-flush text-center">
-                                        <li class="list-group-item h6 bg-success text-white">
-                                            <i class="fa fa-heart" aria-hidden="true"></i> 43
-                                        </li>
-                                    </ul>
-                                    <ul class="list-group list-group-flush text-center">
-                                        <li class="list-group-item h6 bg-info text-white">
-                                            Stok 26
-                                        </li>
-                                    </ul>
-                                    <ul class="list-group list-group-flush text-center">
-                                        <li class="list-group-item h5 bg-dark text-white">
-                                            Rp. 170.000
-                                        </li>
-                                    </ul>
-                                    <div class="card-footer">
-                                        <a href="index.php?view=admin&page=produk&aksi=edit&id=masihkosong" class="btn btn-danger btn-block"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                            <?php foreach ($dataBajuTerfavorite as $rowDataBajuTerfavorite) : ?>
+                                <div class="col-3">
+                                    <div class="card border border-dark rounded">
+                                        <img class="card-img-top" src="<?php echo $BASE_URL; ?>/assets/img/tersimpan/<?php echo $rowDataBajuTerfavorite['gambarBaju']; ?>" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?php echo $rowDataBajuTerfavorite['namaProduk']; ?></h5>
+                                            <p class="card-text"><?php echo $rowDataBajuTerfavorite['detailProduk']; ?>.
+                                            </p>
+                                        </div>
+                                        <ul class="list-group list-group-flush text-center">
+                                            <li class="list-group-item h6 bg-success text-white">
+                                                <i class="fa fa-heart" aria-hidden="true"></i> <?php echo $rowDataBajuTerfavorite['jumlahDisukai']; ?>
+                                            </li>
+                                        </ul>
+                                        <ul class="list-group list-group-flush text-center">
+                                            <li class="list-group-item h6 bg-info text-white">
+                                                Stok <?php echo $rowDataBajuTerfavorite['stokBaju']; ?>
+                                            </li>
+                                        </ul>
+                                        <ul class="list-group list-group-flush text-center">
+                                            <li class="list-group-item h5 bg-dark text-white">
+                                                Rp. <?php echo $rowDataBajuTerfavorite['hargaBaju']; ?>
+                                            </li>
+                                        </ul>
+                                        <div class="card-footer">
+                                            <a href="index.php?view=admin&page=produk&aksi=edit&id=<?php echo $rowDataBajuTerfavorite['idBaju']; ?>" class="btn btn-danger btn-block"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
@@ -248,30 +220,12 @@
                         <div class="card-body text-dark" style="overflow-y: auto;">
                             <div class="card">
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span style="font-size: 12pt;">Gresik</span>
-                                        <span style="font-size: 14pt;">40</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span style="font-size: 12pt;">Surabaya</span>
-                                        <span style="font-size: 14pt;">37</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span style="font-size: 12pt;">Malang</span>
-                                        <span style="font-size: 14pt;">27</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span style="font-size: 12pt;">Jakarta</span>
-                                        <span style="font-size: 14pt;">20</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span style="font-size: 12pt;">Madiun</span>
-                                        <span style="font-size: 14pt;">18</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span style="font-size: 12pt;">Bandung</span>
-                                        <span style="font-size: 14pt;">13</span>
-                                    </li>
+                                    <?php foreach ($dataKotaTerbanyakTransaksi as $rowDataKotaTerbanyakTransaksi) : ?>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span style="font-size: 12pt;"><?php echo $rowDataKotaTerbanyakTransaksi['kota']; ?></span>
+                                            <span style="font-size: 14pt;"><?php echo $rowDataKotaTerbanyakTransaksi['jumlah']; ?></span>
+                                        </li>
+                                    <?php endforeach; ?>
                                 </ul>
                             </div>
                         </div>
@@ -290,22 +244,12 @@
                         <div class="card-body text-dark" style="overflow-y: auto;">
                             <div class="card">
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span style="font-size: 12pt;">JNE</span>
-                                        <span style="font-size: 14pt;">80</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span style="font-size: 12pt;">JNT</span>
-                                        <span style="font-size: 14pt;">60</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span style="font-size: 12pt;">POS INDONESIA</span>
-                                        <span style="font-size: 14pt;">69</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span style="font-size: 12pt;">Ninja Express</span>
-                                        <span style="font-size: 14pt;">59</span>
-                                    </li>
+                                    <?php foreach ($dataKurirTerbanyakDigunakan as $rowDataKurirTerbanyakDigunakan) : ?>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span style="font-size: 12pt;"><?php echo $rowDataKurirTerbanyakDigunakan['kurir']; ?></span>
+                                            <span style="font-size: 14pt;"><?php echo $rowDataKurirTerbanyakDigunakan['jumlah']; ?></span>
+                                        </li>
+                                    <?php endforeach; ?>
                                 </ul>
                             </div>
                         </div>

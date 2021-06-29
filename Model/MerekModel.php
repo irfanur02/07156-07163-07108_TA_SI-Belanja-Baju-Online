@@ -2,6 +2,27 @@
 
 class MerekModel
 {
+
+    /**
+     * berfungsi untuk mendapatkan semua merek baju yang sering dibeli
+     */
+    public function getAllMerekTerpopuler()
+    {
+        $sql = "SELECT mb.nama_merek_baju as namaMerek, 
+                    (SUM(dt.jumlah_pembelian) + COUNT(mb.id_merek_baju)) AS jumlah 
+                FROM transaksi tr 
+                JOIN detail_transaksi dt ON tr.id_transaksi = dt.id_transaksi 
+                JOIN baju ba ON dt.id_baju = ba.id_baju 
+                JOIN merek_baju mb ON ba.id_merek_baju = mb.id_merek_baju 
+                WHERE tr.tanggal_transaksi IS NOT NULL GROUP BY mb.id_merek_baju ORDER BY jumlah DESC, namaMerek ASC";
+        $query = koneksi()->query($sql);
+        $hasil = [];
+        while ($data = $query->fetch_assoc()) {
+            $hasil[] = $data;
+        }
+        return $hasil;
+    }
+
     /**
      * berfungsi untuk mendapatkan semua merek produk
      */
