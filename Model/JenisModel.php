@@ -62,4 +62,19 @@ class JenisModel
         $query = koneksi()->query($sql);
         return $query->fetch_assoc();
     }
+
+    public function prosesStoreJenis($namaJenis)
+    {
+        $namaJenis = $_POST['nama_jenis_baju'];
+        $sql = "INSERT INTO jenis_baju(nama_jenis_baju) VALUES('$namaJenis')";
+        return koneksi()->query($sql);
+    }
+
+    public function prosesJenis($idJenis, $namaJenis)
+    {
+        $sql = "UPDATE jenis_baju SET nama_jenis_baju='$namaJenis' WHERE id_jenis_baju = $idJenis";
+        $query = koneksi()->query($sql);
+        return $query;
+    }
 }
+
