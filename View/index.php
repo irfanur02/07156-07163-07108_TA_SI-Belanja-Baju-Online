@@ -134,7 +134,7 @@
                                                                         <?php endif; ?>
                                                                     <?php endforeach; ?>
                                                                 <?php else : ?>
-                                                                    <a href="javascript:0" data-id="<?php echo $rowDataSeluruhBaju['idBaju']; ?>" class="btn btn-primary tambahKeranjang mb-1">
+                                                                    <a href="javascript:0" data-id="<?php echo $rowDataBajuPopuler['idBaju']; ?>" class="btn btn-primary tambahKeranjang mb-1">
                                                                         Masukkan Keranjang
                                                                     </a>
                                                                 <?php endif; ?>
