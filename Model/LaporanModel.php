@@ -80,7 +80,7 @@ class LaporanModel
                 JOIN users us ON tr.id_user= us.id_user
                 JOIN owner_user ou ON us.id_user = ou.id_user 
                 JOIN kota ko ON ou.id_kota = ko.id_kota
-                WHERE tr.id_user = $idUser AND sp.nama_status_pembelian = '$statusTransaksi' GROUP BY LEFT(tr.tanggal_transaksi, 10)";
+                WHERE tr.id_user = $idUser AND sp.nama_status_pembelian = '$statusTransaksi' GROUP BY tr.tanggal_transaksi";
         $query = koneksi()->query($sql);
         $hasil = [];
         while ($data = $query->fetch_assoc()) {

@@ -32,7 +32,7 @@ class AuthController
      */
     public function prosesLogoutAdmin()
     {
-        session_destroy();
+        unset($_SESSION['statusAdmin']);
         header("location: index.php?view=admin");
     }
 
@@ -59,7 +59,7 @@ class AuthController
      */
     public function prosesLogout()
     {
-        session_destroy();
+        unset($_SESSION['user']);
         header("location: index.php?page=utama&aksi=view");
     }
 
