@@ -3,6 +3,7 @@
 require_once("Koneksi.php");
 
 $BASE_URL = "http://localhost/projek-belanjaBajuOnline";
+//$BASE_URL = "https://belanjabajuonline.000webhostapp.com";
 
 //memanggil model
 require_once("Model/TransaksiModel.php");
